@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    try {
+      var savedScheme = localStorage.getItem("color-scheme");
+      document.querySelector('meta[name="color-scheme"]').content = savedScheme || "light dark";
+      if (savedScheme === "light" || savedScheme === "dark") {
+        document.documentElement.dataset.theme = savedScheme;
+      }
+    } catch (e) {}
+  </script>
+  <title>Training Catalog | Core Synergy Sdn Bhd — ISO &amp; Tech Courses</title>
+  <meta name="description" content="Explore HRD Corp claimable ISO 9001, ISO/IEC 27001, ISO 27000, ISO 22301, ISO 37001, AI governance, and technology management courses.">
+  <link rel="icon" type="image/webp" href="assets/CoreSynergyDynamic(logo).webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header id="site-header" class="site-header">
+    <div class="utility-bar">
+      <div class="container utility-bar-inner">
+        <div class="utility-left">
+          <span class="utility-dot" aria-hidden="true"></span>
+          <span data-i18n="utility.badge">HRD Corp Registered Training Provider • Kuala Lumpur, Malaysia</span>
+        </div>
+        <div class="utility-right">
+          <a class="utility-link utility-contact-hide" href="tel:+60327894500" data-i18n="utility.phone">+60 3-2789 4500</a>
+          <a class="utility-link utility-contact-hide" href="mailto:enquiry@coresynergy.com.my" data-i18n="utility.email">enquiry@coresynergy.com.my</a>
+          <div class="lang-switch" role="group" aria-label="Language switch">
+            <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" class="lang-btn" data-lang="ms" aria-pressed="false">BM</button>
+          </div>
+          <button type="button" id="theme-toggle-btn" class="theme-btn" aria-pressed="false" aria-label="Toggle color theme">
+            <span class="theme-icon-light" aria-hidden="true">☀</span>
+            <span class="theme-icon-dark" aria-hidden="true">☾</span>
+            <span class="theme-btn-label" data-i18n="utility.themeLight">Light</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-link" aria-label="Core Synergy Sdn Bhd Home">
+        <span class="brand-emblem-frame">
+          <img src="assets/CoreSynergyDynamic(logo).webp" alt="Core Synergy Dynamics Sdn Bhd Emblem" width="46" height="46">
+        </span>
+        <span class="brand-text">
+          <span class="brand-title">CORE <span>SYNERGY</span></span>
+          <span class="brand-sub">DYNAMICS SDN. BHD.</span>
+        </span>
+      </a>
+
+      <nav id="primary-nav" class="primary-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html" class="nav-link" data-i18n="nav.home">Home</a></li>
+          <li><a href="services.html" class="nav-link" data-i18n="nav.services">Our Services</a></li>
+          <li><a href="about.html" class="nav-link" data-i18n="nav.about">About Us</a></li>
+          <li><a href="bulletin.html" class="nav-link" data-i18n="nav.bulletin">Bulletin Update</a></li>
+          <li><a href="contact.html" class="nav-link" data-i18n="nav.contact">Contact Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="contact.html#corporate-enquiry-form" class="btn btn-primary btn-sm nav-cta-desktop" data-i18n="nav.cta">Fill Out Inquiry Form</a>
+        <button type="button" id="mobile-menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open navigation menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="scroll-progress" aria-hidden="true"></div>
+  </header>
+
+  <main id="main-content" class="page-main">
+    <!-- Real Visual Page Banner -->
+    <section class="page-banner" aria-labelledby="training-banner-heading">
+      <div class="page-banner-bg" aria-hidden="true">
+        <img src="assets/banner-training.jpg" alt="" fetchpriority="high">
+      </div>
+      <div class="container page-banner-inner">
+        <div>
+          <span class="hero-eyebrow" data-i18n="training.bannerEyebrow">ACCREDITED CURRICULUM</span>
+          <h1 id="training-banner-heading" data-i18n="training.bannerTitle">ISO, Cybersecurity &amp; Management Training Catalog</h1>
+          <p data-i18n="training.bannerDesc">Practical, audit-tested workshops led by Principal Lead Auditors and Enterprise Technologists. 100% HRD Corp SBL-Khas claimable.</p>
+        </div>
+        <div class="banner-emblem-card">
+          <img src="assets/CoreSynergyDynamic(logo).webp" alt="Core Synergy Dynamics Accredited Badge" width="52" height="52">
+          <div>
+            <strong style="display:block;color:#ffffff;font-size:0.9rem;">HRD Corp SBL-Khas</strong>
+            <span style="font-size:0.78rem;color:#d8d2e2;">12 Flagship Programs</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Course Search, Filter & Catalog -->
+    <section class="section">
+      <div class="container">
+        <search>
+          <div class="filter-panel reveal-up">
+            <div class="filter-top-row">
+              <div class="field" style="margin-bottom:0;">
+                <label for="training-search-input" data-i18n="training.searchLabel">Search courses by ISO code, keyword, or skill</label>
+                <input type="search" id="training-search-input" data-i18n-placeholder="training.searchPlaceholder" placeholder="Search e.g. ISO 27001, 9001, BCMS, AI, Audit..." autocomplete="off">
+              </div>
+              <div class="field" style="margin-bottom:0;">
+                <label for="training-level-select" data-i18n="training.levelLabel">Competency Tier</label>
+                <select id="training-level-select">
+                  <option value="all" data-i18n="training.levelAll">All Levels</option>
+                  <option value="foundation" data-i18n="training.levelFoundation">Foundation / Governance</option>
+                  <option value="internal-auditor" data-i18n="training.levelIA">Internal Auditor</option>
+                  <option value="lead-implementer" data-i18n="training.levelLI">Lead Implementer</option>
+                  <option value="executive" data-i18n="training.levelExec">Executive Masterclass</option>
+                </select>
+              </div>
+            </div>
+
+            <div id="training-cat-pills" class="filter-pills" role="group" aria-label="Course Categories"></div>
+
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;font-size:0.86rem;color:var(--text-muted);">
+              <span id="training-results-count">12 programs matching your criteria</span>
+            </div>
+          </div>
+        </search>
+
+        <div id="training-courses-grid" class="courses-grid"></div>
+
+        <div id="training-empty-state" class="form-card" style="text-align:center;" hidden>
+          <p data-i18n="training.noResults" style="margin-bottom:1rem;">No training programs match your current filter. Reset filters to view all 12 flagship courses.</p>
+          <button type="button" id="training-reset-btn" class="btn btn-primary btn-sm" data-i18n="training.resetBtn">Reset All Filters</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Delivery Formats Comparison -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="eyebrow" data-i18n="training.deliveryEyebrow">FLEXIBLE DELIVERY MODELS</span>
+          <h2 class="section-title" data-i18n="training.deliveryTitle">Built Around Your Operational Schedule</h2>
+        </div>
+
+        <div class="pdca-grid">
+          <article class="pdca-card reveal-up">
+            <span class="pdca-step">01 • IN-HOUSE TRAINING</span>
+            <h3 data-i18n="training.del1Title">In-House Corporate Training</h3>
+            <p data-i18n="training.del1Desc">Delivered exclusively for your corporate employees and management team at your premises, tailored around real SOPs with provided training slide decks.</p>
+          </article>
+          <article class="pdca-card reveal-up">
+            <span class="pdca-step">02 • CORPORATE WORKSHOPS</span>
+            <h3 data-i18n="training.del2Title">Corporate Workshops</h3>
+            <p data-i18n="training.del2Desc">Interactive workshops in Kuala Lumpur, Penang, and Johor Bahru featuring practical audit case studies, physical/digital slide handouts, and tracked certificates.</p>
+          </article>
+          <article class="pdca-card reveal-up">
+            <span class="pdca-step">03 • FINAL-YEAR STUDENTS</span>
+            <h3 data-i18n="training.del3Title">Final-Year Student Workshops</h3>
+            <p data-i18n="training.del3Desc">Structured university and graduate-readiness workshops equipping final-year students with practical ISO &amp; tech governance skills plus tracked certificate numbers.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="syllabus-dialog" class="syllabus-dialog" aria-labelledby="modal-title">
+    <div class="dialog-shell">
+      <div class="dialog-header">
+        <div>
+          <span id="modal-code" class="pillar-code">CS-27001-LI</span>
+          <h2 id="modal-title" style="font-size:1.25rem;margin-top:0.25rem;">Course Title</h2>
+        </div>
+        <button type="button" id="modal-close-btn" class="btn btn-secondary btn-sm" aria-label="Close syllabus modal">✕</button>
+      </div>
+      <div class="dialog-body">
+        <div class="dialog-meta-grid">
+          <div><span data-i18n="modal.durationLabel">Duration</span><strong id="modal-duration"></strong></div>
+          <div><span data-i18n="modal.modeLabel">Delivery</span><strong id="modal-mode"></strong></div>
+          <div><span data-i18n="modal.nextLabel">Next Intake</span><strong id="modal-next"></strong></div>
+        </div>
+        <div>
+          <h3 style="font-size:1rem;margin-bottom:0.5rem;" data-i18n="modal.outcomesTitle">Key Competency Outcomes</h3>
+          <ul id="modal-outcomes" class="check-list"></ul>
+        </div>
+        <div>
+          <h3 style="font-size:1rem;margin-bottom:0.5rem;" data-i18n="modal.syllabusTitle">Day-by-Day Curriculum Outline</h3>
+          <ul id="modal-syllabus" class="check-list"></ul>
+        </div>
+        <div>
+          <h3 style="font-size:1rem;margin-bottom:0.35rem;" data-i18n="modal.audienceTitle">Who Should Attend</h3>
+          <p id="modal-audience" style="color:var(--text-muted);font-size:0.94rem;"></p>
+        </div>
+      </div>
+      <div class="dialog-footer">
+        <a id="modal-book-link" href="contact.html" class="btn btn-primary" data-i18n="modal.bookCourseBtn">Register / Request In-House Quote</a>
+      </div>
+    </div>
+  </dialog>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-brand-showcase">
+            <img src="assets/CoreSynergyDynamic.webp" alt="Core Synergy Dynamics Sdn Bhd Official Logo" class="footer-brand-lockup-img" width="120" height="120" loading="lazy">
+            <div class="brand-text">
+              <span class="brand-title" style="color:#ffffff;">CORE <span>SYNERGY</span></span>
+              <span class="brand-sub" style="color:#b9b4c4;">DYNAMICS SDN. BHD.</span>
+            </div>
+          </div>
+          <p style="font-size:0.9rem;color:#c9c4d3;" data-i18n="footer.desc">
+            Core Synergy Sdn Bhd is a Malaysian ISO management systems, cybersecurity governance, and executive technology training institution empowering compliant, high-performing enterprises.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h3 data-i18n="footer.quickLinks">Navigation</h3>
+          <ul class="footer-links">
+            <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+            <li><a href="services.html" data-i18n="nav.services">Our Services</a></li>
+            <li><a href="about.html" data-i18n="nav.about">About Us</a></li>
+            <li><a href="bulletin.html" data-i18n="nav.bulletin">Bulletin Update</a></li>
+            <li><a href="contact.html" data-i18n="nav.contact">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3 data-i18n="footer.standardsTitle">Flagship Standards</h3>
+          <ul class="footer-links">
+            <li><a href="training.html?category=iso-9001">ISO 9001:2015 (QMS)</a></li>
+            <li><a href="training.html?category=iso-27001">ISO/IEC 27001:2022 &amp; 27000</a></li>
+            <li><a href="training.html?category=iso-22301">ISO 22301:2019 (BCMS)</a></li>
+            <li><a href="training.html?category=governance">ISO 37001:2016 (ABMS)</a></li>
+            <li><a href="training.html?category=tech">ISO/IEC 42001 &amp; Cloud</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3 data-i18n="footer.contactTitle">Corporate Office</h3>
+          <ul class="footer-links">
+            <li data-i18n="contact.hqAddress">Level 18, Menara Core Synergy, Jalan Tun Razak, 50400 Kuala Lumpur, Malaysia</li>
+            <li><a href="tel:+60327894500">+60 3-2789 4500</a></li>
+            <li><a href="mailto:enquiry@coresynergy.com.my">enquiry@coresynergy.com.my</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span data-i18n="footer.rights">© 2026 Core Synergy Sdn Bhd (201901034812). All rights reserved.</span>
+        <span data-i18n="footer.netlifyReady">HRD Corp Registered Training Provider • ISO &amp; Tech Excellence</span>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

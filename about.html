@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    try {
+      var savedScheme = localStorage.getItem("color-scheme");
+      document.querySelector('meta[name="color-scheme"]').content = savedScheme || "light dark";
+      if (savedScheme === "light" || savedScheme === "dark") {
+        document.documentElement.dataset.theme = savedScheme;
+      }
+    } catch (e) { }
+  </script>
+  <title>About Us | Core Synergy Sdn Bhd — ISO &amp; Technology Academy</title>
+  <meta name="description"
+    content="Learn about Core Synergy Sdn Bhd — uniting Principal ISO Lead Auditors and Enterprise Technologists to build resilient Malaysian and ASEAN organizations.">
+  <link rel="icon" type="image/webp" href="assets/CoreSynergyDynamic(logo).webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header id="site-header" class="site-header">
+    <div class="utility-bar">
+      <div class="container utility-bar-inner">
+        <div class="utility-left">
+          <span class="utility-dot" aria-hidden="true"></span>
+          <span data-i18n="utility.badge">HRD Corp Registered Training Provider • Kuala Lumpur, Malaysia</span>
+        </div>
+        <div class="utility-right">
+          <a class="utility-link utility-contact-hide" href="tel:+60327894500" data-i18n="utility.phone">+60 3-2789
+            4500</a>
+          <a class="utility-link utility-contact-hide" href="mailto:enquiry@coresynergy.com.my"
+            data-i18n="utility.email">enquiry@coresynergy.com.my</a>
+          <div class="lang-switch" role="group" aria-label="Language switch">
+            <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" class="lang-btn" data-lang="ms" aria-pressed="false">BM</button>
+          </div>
+          <button type="button" id="theme-toggle-btn" class="theme-btn" aria-pressed="false"
+            aria-label="Toggle color theme">
+            <span class="theme-icon-light" aria-hidden="true">☀</span>
+            <span class="theme-icon-dark" aria-hidden="true">☾</span>
+            <span class="theme-btn-label" data-i18n="utility.themeLight">Light</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-link" aria-label="Core Synergy Sdn Bhd Home">
+        <span class="brand-emblem-frame">
+          <img src="assets/CoreSynergyDynamic(logo).webp" alt="Core Synergy Dynamics Sdn Bhd Emblem" width="46" height="46">
+        </span>
+        <span class="brand-text">
+          <span class="brand-title">CORE <span>SYNERGY</span></span>
+          <span class="brand-sub">DYNAMICS SDN. BHD.</span>
+        </span>
+      </a>
+
+      <nav id="primary-nav" class="primary-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html" class="nav-link" data-i18n="nav.home">Home</a></li>
+          <li><a href="services.html" class="nav-link" data-i18n="nav.services">Our Services</a></li>
+          <li><a href="about.html" class="nav-link" aria-current="page" data-i18n="nav.about">About Us</a></li>
+          <li><a href="bulletin.html" class="nav-link" data-i18n="nav.bulletin">Bulletin Update</a></li>
+          <li><a href="contact.html" class="nav-link" data-i18n="nav.contact">Contact Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="contact.html#corporate-enquiry-form" class="btn btn-primary btn-sm nav-cta-desktop" data-i18n="nav.cta">Fill Out Inquiry Form</a>
+        <button type="button" id="mobile-menu-toggle" class="menu-toggle" aria-expanded="false"
+          aria-controls="primary-nav" aria-label="Open navigation menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" aria-hidden="true">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="scroll-progress" aria-hidden="true"></div>
+  </header>
+
+  <main id="main-content" class="page-main">
+    <section class="page-banner" aria-labelledby="about-banner-heading">
+      <div class="page-banner-bg" aria-hidden="true">
+        <img src="assets/banner-about.jpg" alt="" fetchpriority="high">
+      </div>
+      <div class="container page-banner-inner">
+        <div>
+          <span class="hero-eyebrow" data-i18n="about.bannerEyebrow">OUR INSTITUTION</span>
+          <h1 id="about-banner-heading" data-i18n="about.bannerTitle">Where International Standards Meet Modern
+            Technology Execution</h1>
+          <p data-i18n="about.bannerDesc">Core Synergy Sdn Bhd empowers Malaysian and ASEAN enterprises to transform ISO
+            frameworks into measurable operational resilience.</p>
+        </div>
+        <div class="banner-emblem-card">
+          <img src="assets/CoreSynergyDynamic(logo).webp" alt="Core Synergy Dynamics Official Emblem" width="52" height="52">
+          <div>
+            <strong style="display:block;color:#ffffff;font-size:0.9rem;">CORE SYNERGY DYNAMICS</strong>
+            <span style="font-size:0.78rem;color:#d8d2e2;">SDN. BHD. • Est. Malaysia</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Training Hours Credibility Strip -->
+    <section class="trust-strip" aria-label="Training Hours Credibility">
+      <div class="container trust-grid">
+        <div class="trust-item">
+          <strong data-i18n="trust.stat1Num">14,800+</strong>
+          <span data-i18n="trust.stat1Label">Total Training Hours Delivered</span>
+        </div>
+        <div class="trust-item">
+          <strong data-i18n="trust.stat2Num">9,200+ hrs</strong>
+          <span data-i18n="trust.stat2Label">In-House Corporate Training Hours</span>
+        </div>
+        <div class="trust-item">
+          <strong data-i18n="trust.stat3Num">5,600+ hrs</strong>
+          <span data-i18n="trust.stat3Label">Corporate &amp; Final-Year Student Workshop Hours</span>
+        </div>
+        <div class="trust-item">
+          <strong data-i18n="trust.stat4Num">100%</strong>
+          <span data-i18n="trust.stat4Label">Slide-Deck Delivery &amp; Certificate Tracking</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container split-grid">
+        <div class="section-header reveal-left" style="margin-bottom:0;">
+          <span class="eyebrow" data-i18n="about.storyEyebrow">WHO WE ARE</span>
+          <h2 class="section-title" data-i18n="about.storyTitle">Built for Stakeholders Who Demand Substance Over
+            Checkboxes</h2>
+          <p data-i18n="about.storyP1">Too many organizations treat ISO certification or technical governance as a
+            paperwork exercise—resulting in bulky binders nobody reads and audit-day panic. Core Synergy Sdn Bhd was
+            established to solve that exact disconnect.</p>
+          <p data-i18n="about.storyP2">By uniting Principal ISO Lead Auditors with active Cybersecurity, Cloud, and
+            Enterprise Management practitioners, we deliver training and consultancy that works in the real boardroom,
+            server room, and factory floor.</p>
+        </div>
+        <div class="about-media-frame about-brand-showcase reveal-right">
+          <img src="assets/CoreSynergyDynamic.webp" alt="Core Synergy Dynamics Sdn Bhd official 3D emblem and wordmark"
+            loading="lazy" width="520" height="520">
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="eyebrow" data-i18n="about.ethosEyebrow">THE CORE SYNERGY ETHOS</span>
+          <h2 class="section-title" data-i18n="about.ethosTitle">Trust. Accountability. Capability.</h2>
+        </div>
+
+        <div class="pdca-grid">
+          <article class="pdca-card reveal-up">
+            <span class="pdca-step">01 • TRUST</span>
+            <h3 data-i18n="about.ethos1Title">Technical Rigor &amp; Trust</h3>
+            <p data-i18n="about.ethos1Desc">Every curriculum and consultancy blueprint is anchored in current ISO
+              clauses, NACSA/BNM expectations, and real audit defensibility.</p>
+          </article>
+          <article class="pdca-card reveal-up">
+            <span class="pdca-step">02 • ACCOUNTABILITY</span>
+            <h3 data-i18n="about.ethos2Title">Execution Accountability</h3>
+            <p data-i18n="about.ethos2Desc">We measure our success by your first-time certification pass rate, closed
+              non-conformities, and measurable workflow efficiency.</p>
+          </article>
+          <article class="pdca-card reveal-up">
+            <span class="pdca-step">03 • CAPABILITY</span>
+            <h3 data-i18n="about.ethos3Title">Practitioner-Led Care</h3>
+            <p data-i18n="about.ethos3Desc">Our faculty includes certified Lead Auditors and CTO/CISO advisors who stay
+              beside your team from classroom lab to external audit sign-off.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="eyebrow" data-i18n="about.sectorsEyebrow">INDUSTRIES WE SERVE</span>
+          <h2 class="section-title" data-i18n="about.sectorsTitle">Trusted Across Regulated &amp; High-Growth Sectors
+          </h2>
+        </div>
+
+        <div id="about-sectors-grid" class="sectors-grid"></div>
+      </div>
+    </section>
+
+    <!-- Target Audiences & Inquiry CTA -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="eyebrow" data-i18n="home.audienceEyebrow">WHO WE TRAIN &amp; HOW WE DELIVER</span>
+          <h2 class="section-title" data-i18n="home.audienceTitle">Tailored Workshops for Every Stage of Leadership &amp; Career Readiness</h2>
+          <p class="section-desc" data-i18n="home.audienceDesc">All training slides and audit toolkits are provided directly during each workshop—no separate student login portal needed. Online course checkout is in planning; reserve cohorts via our inquiry form.</p>
+        </div>
+
+        <div class="audience-grid" style="margin-bottom:2rem;">
+          <article class="pillar-card reveal-up">
+            <span class="badge" data-i18n="home.aud1Tag">CORPORATE EMPLOYEES</span>
+            <h3 data-i18n="home.aud1Title">Operational &amp; Technical Teams</h3>
+            <p data-i18n="home.aud1Desc">Hands-on SOP, QA/QC, cybersecurity control mapping, and internal auditing skills delivered using practical slide decks and workplace templates.</p>
+          </article>
+          <article class="pillar-card reveal-up">
+            <span class="badge" data-i18n="home.aud2Tag">MANAGEMENT TEAMS</span>
+            <h3 data-i18n="home.aud2Title">Executives, HODs &amp; Board Leaders</h3>
+            <p data-i18n="home.aud2Desc">Strategic ISO Clause 5 leadership, enterprise risk oversight, MACC Section 17A defense, and high-impact management review workshops.</p>
+          </article>
+          <article class="pillar-card reveal-up">
+            <span class="badge badge-hrd" data-i18n="home.aud3Tag">FINAL-YEAR STUDENTS</span>
+            <h3 data-i18n="home.aud3Title">Graduating University Cohorts</h3>
+            <p data-i18n="home.aud3Desc">Career-bridging workshops introducing real ISO frameworks, AI governance, and industry audit discipline with verified completion certificates.</p>
+          </article>
+        </div>
+
+        <div style="text-align:center;">
+          <a href="contact.html#corporate-enquiry-form" class="btn btn-primary" data-i18n="hero.ctaPrimary">Fill Out Inquiry Form</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-brand-showcase">
+            <img src="assets/CoreSynergyDynamic.webp" alt="Core Synergy Dynamics Sdn Bhd Official Logo" class="footer-brand-lockup-img" width="120" height="120" loading="lazy">
+            <div class="brand-text">
+              <span class="brand-title" style="color:#ffffff;">CORE <span>SYNERGY</span></span>
+              <span class="brand-sub" style="color:#b9b4c4;">DYNAMICS SDN. BHD.</span>
+            </div>
+          </div>
+          <p style="font-size:0.9rem;color:#c9c4d3;" data-i18n="footer.desc">
+            Core Synergy Sdn Bhd is a Malaysian ISO management systems, cybersecurity governance, and executive
+            technology training institution empowering compliant, high-performing enterprises.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h3 data-i18n="footer.quickLinks">Navigation</h3>
+          <ul class="footer-links">
+            <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+            <li><a href="services.html" data-i18n="nav.services">Our Services</a></li>
+            <li><a href="about.html" data-i18n="nav.about">About Us</a></li>
+            <li><a href="bulletin.html" data-i18n="nav.bulletin">Bulletin Update</a></li>
+            <li><a href="contact.html" data-i18n="nav.contact">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3 data-i18n="footer.standardsTitle">Flagship Standards</h3>
+          <ul class="footer-links">
+            <li><a href="training.html?category=iso-9001">ISO 9001:2015 (QMS)</a></li>
+            <li><a href="training.html?category=iso-27001">ISO/IEC 27001:2022 &amp; 27000</a></li>
+            <li><a href="training.html?category=iso-22301">ISO 22301:2019 (BCMS)</a></li>
+            <li><a href="training.html?category=governance">ISO 37001:2016 (ABMS)</a></li>
+            <li><a href="training.html?category=tech">ISO/IEC 42001 &amp; Cloud</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3 data-i18n="footer.contactTitle">Corporate Office</h3>
+          <ul class="footer-links">
+            <li data-i18n="contact.hqAddress">Level 18, Menara Core Synergy, Jalan Tun Razak, 50400 Kuala Lumpur,
+              Malaysia</li>
+            <li><a href="tel:+60327894500">+60 3-2789 4500</a></li>
+            <li><a href="mailto:enquiry@coresynergy.com.my">enquiry@coresynergy.com.my</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span data-i18n="footer.rights">© 2026 Core Synergy Sdn Bhd (201901034812). All rights reserved.</span>
+        <span data-i18n="footer.netlifyReady">HRD Corp Registered Training Provider • ISO &amp; Tech Excellence</span>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+
+</html>

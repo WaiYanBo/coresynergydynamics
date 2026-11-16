@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    try {
+      var savedScheme = localStorage.getItem("color-scheme");
+      document.querySelector('meta[name="color-scheme"]').content = savedScheme || "light dark";
+      if (savedScheme === "light" || savedScheme === "dark") {
+        document.documentElement.dataset.theme = savedScheme;
+      }
+    } catch (e) {}
+  </script>
+  <title>Core Synergy Sdn Bhd | ISO Standards, Cybersecurity & Management Training</title>
+  <meta name="description" content="Core Synergy Sdn Bhd — Malaysia’s premier HRD Corp registered training & consultancy institution for ISO 9001, ISO/IEC 27001, ISO 27000, ISO 22301, ISO 37001, and enterprise technology management.">
+  <link rel="icon" type="image/webp" href="assets/CoreSynergyDynamic(logo).webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header id="site-header" class="site-header">
+    <div class="utility-bar">
+      <div class="container utility-bar-inner">
+        <div class="utility-left">
+          <span class="utility-dot" aria-hidden="true"></span>
+          <span data-i18n="utility.badge">HRD Corp Registered Training Provider • Kuala Lumpur, Malaysia</span>
+        </div>
+        <div class="utility-right">
+          <a class="utility-link utility-contact-hide" href="tel:+60327894500" data-i18n="utility.phone">+60 3-2789 4500</a>
+          <a class="utility-link utility-contact-hide" href="mailto:enquiry@coresynergy.com.my" data-i18n="utility.email">enquiry@coresynergy.com.my</a>
+          <div class="lang-switch" role="group" aria-label="Language switch">
+            <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" class="lang-btn" data-lang="ms" aria-pressed="false">BM</button>
+          </div>
+          <button type="button" id="theme-toggle-btn" class="theme-btn" aria-pressed="false" aria-label="Toggle color theme">
+            <span class="theme-icon-light" aria-hidden="true">☀</span>
+            <span class="theme-icon-dark" aria-hidden="true">☾</span>
+            <span class="theme-btn-label" data-i18n="utility.themeLight">Light</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-link" aria-label="Core Synergy Sdn Bhd Home">
+        <span class="brand-emblem-frame">
+          <img src="assets/CoreSynergyDynamic(logo).webp" alt="Core Synergy Dynamics Sdn Bhd Emblem" width="46" height="46">
+        </span>
+        <span class="brand-text">
+          <span class="brand-title">CORE <span>SYNERGY</span></span>
+          <span class="brand-sub">DYNAMICS SDN. BHD.</span>
+        </span>
+      </a>
+
+      <nav id="primary-nav" class="primary-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html" class="nav-link" aria-current="page" data-i18n="nav.home">Home</a></li>
+          <li><a href="services.html" class="nav-link" data-i18n="nav.services">Our Services</a></li>
+          <li><a href="about.html" class="nav-link" data-i18n="nav.about">About Us</a></li>
+          <li><a href="bulletin.html" class="nav-link" data-i18n="nav.bulletin">Bulletin Update</a></li>
+          <li><a href="contact.html" class="nav-link" data-i18n="nav.contact">Contact Us</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="contact.html#corporate-enquiry-form" class="btn btn-primary btn-sm nav-cta-desktop" data-i18n="nav.cta">Fill Out Inquiry Form</a>
+        <button type="button" id="mobile-menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open navigation menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="scroll-progress" aria-hidden="true"></div>
+  </header>
+
+  <main id="main-content" class="page-main">
+    <!-- 3-Second Impact Hero Banner -->
+    <section class="hero-banner" aria-labelledby="hero-heading">
+      <div class="hero-bg-media" aria-hidden="true">
+        <img src="assets/hero-boardroom.jpg" alt="" fetchpriority="high">
+        <div class="hero-bg-overlay"></div>
+      </div>
+
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <span class="hero-eyebrow" data-i18n="hero.eyebrow">IN-HOUSE TRAINING &amp; CORPORATE WORKSHOPS • HRD CORP CLAIMABLE</span>
+          <h1 id="hero-heading" class="hero-title" data-i18n="hero.title">
+            Certify Your Standards. Elevate Technical &amp; Management Excellence.
+          </h1>
+          <p class="hero-subtitle" data-i18n="hero.subtitle">
+            Malaysia’s practitioner-led academy delivering in-house training and corporate workshops for corporate employees, management teams, and final-year students—with provided slide decks and tracked completion certificates.
+          </p>
+
+          <div class="hero-cta-row">
+            <a href="contact.html#corporate-enquiry-form" class="btn btn-primary" data-i18n="hero.ctaPrimary">Fill Out Inquiry Form</a>
+            <a href="services.html" class="btn btn-ghost-light" data-i18n="hero.ctaSecondary">Explore Our Services</a>
+          </div>
+
+          <div class="hero-selector-box">
+            <div class="hero-selector-label" data-i18n="hero.selectorLabel">Select an ISO or Technology Track to Preview:</div>
+            <div id="hero-std-pills" class="hero-pills" role="group" aria-label="ISO Standards Preview"></div>
+            <div class="hero-preview-card">
+              <div class="hero-preview-info">
+                <h2 id="hero-preview-title">ISO/IEC 27001:2022 &amp; ISO 27000 ISMS Series</h2>
+                <p id="hero-preview-desc">Master the 93 Annex A controls, risk treatment plans, and cyber resilience governance for enterprise data.</p>
+                <span id="hero-preview-meta" class="hero-preview-meta">93 Annex A Controls • NACSA &amp; PDPA Aligned</span>
+              </div>
+              <a id="hero-preview-link" href="training.html?category=iso-27001" class="btn btn-secondary btn-sm" data-i18n="hero.previewBtn">View Matching Courses</a>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-visual-panel" aria-label="Institutional Accreditation Snapshot">
+          <div class="hero-showcase-card">
+            <img src="assets/hero-boardroom.jpg" alt="Core Synergy executive ISO training boardroom in Kuala Lumpur" class="hero-showcase-img" width="640" height="400">
+            <div class="hero-showcase-brandbar">
+              <div class="hero-logo-badge">
+                <img src="assets/CoreSynergyDynamic(logo).webp" alt="Core Synergy Dynamics Sdn Bhd official logo" width="54" height="54">
+              </div>
+              <div>
+                <strong style="color:#ffffff;display:block;font-size:0.95rem;">CORE SYNERGY DYNAMICS SDN. BHD.</strong>
+                <span style="color:#d6d1df;font-size:0.78rem;" data-i18n="hero.metric3Label">ISO PDCA Audit Readiness</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-stat-cards">
+            <div class="hero-mini-stat">
+              <strong data-i18n="hero.metric1Num">14,800+</strong>
+              <span data-i18n="hero.metric1Label">Training Hours Delivered</span>
+            </div>
+            <div class="hero-mini-stat">
+              <strong data-i18n="hero.metric2Num">100%</strong>
+              <span data-i18n="hero.metric2Label">Tracked Certificates &amp; Slide Decks</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Trust Metrics Strip -->
+    <section class="trust-strip" aria-label="Institutional Training Hours & Track Record">
+      <div class="container trust-grid">
+        <div class="trust-item">
+          <strong data-i18n="trust.stat1Num">14,800+</strong>
+          <span data-i18n="trust.stat1Label">Total Training Hours Delivered</span>
+        </div>
+        <div class="trust-item">
+          <strong data-i18n="trust.stat2Num">9,200+ hrs</strong>
+          <span data-i18n="trust.stat2Label">In-House Corporate Training Hours</span>
+        </div>
+        <div class="trust-item">
+          <strong data-i18n="trust.stat3Num">5,600+ hrs</strong>
+          <span data-i18n="trust.stat3Label">Corporate &amp; Final-Year Student Workshop Hours</span>
+        </div>
+        <div class="trust-item">
+          <strong data-i18n="trust.stat4Num">100%</strong>
+          <span data-i18n="trust.stat4Label">Slide-Deck Delivery &amp; Certificate Tracking</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 1: Competency Pillars (Upward Editorial Reveal) -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="eyebrow" data-i18n="home.pillarsEyebrow">CORE COMPETENCY PILLARS</span>
+          <h2 class="section-title" data-i18n="home.pillarsTitle">International Standards &amp; Enterprise Technology Mastery</h2>
+          <p class="section-desc" data-i18n="home.pillarsDesc">Structured learning paths engineered for operational quality, cyber resilience, business continuity, and modern management.</p>
+        </div>
+
+        <div id="home-pillars-grid" class="pillars-grid card-grid-container"></div>
+
+        <div style="margin-top:2rem;text-align:center;">
+          <a href="training.html" class="btn btn-primary" data-i18n="home.pillarsCta">View Full Syllabus Catalog</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 1.5: Who We Train & How We Deliver -->
+    <section class="section section-alt" aria-labelledby="home-audience-heading">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="eyebrow" data-i18n="home.audienceEyebrow">WHO WE TRAIN &amp; HOW WE DELIVER</span>
+          <h2 id="home-audience-heading" class="section-title" data-i18n="home.audienceTitle">Tailored Workshops for Every Stage of Leadership &amp; Career Readiness</h2>
+          <p class="section-desc" data-i18n="home.audienceDesc">All training slides and audit toolkits are provided directly during each workshop—no separate student login portal needed. Online course checkout is in planning; reserve cohorts via our inquiry form.</p>
+        </div>
+
+        <div class="audience-grid">
+          <article class="pillar-card reveal-up">
+            <span class="badge" data-i18n="home.aud1Tag">CORPORATE EMPLOYEES</span>
+            <h3 data-i18n="home.aud1Title">Operational &amp; Technical Teams</h3>
+            <p data-i18n="home.aud1Desc">Hands-on SOP, QA/QC, cybersecurity control mapping, and internal auditing skills delivered using practical slide decks and workplace templates.</p>
+            <div>
+              <a href="contact.html?course=In-House+Training#corporate-enquiry-form" class="btn btn-secondary btn-sm" data-i18n="hero.ctaPrimary">Fill Out Inquiry Form</a>
+            </div>
+          </article>
+          <article class="pillar-card reveal-up">
+            <span class="badge" data-i18n="home.aud2Tag">MANAGEMENT TEAMS</span>
+            <h3 data-i18n="home.aud2Title">Executives, HODs &amp; Board Leaders</h3>
+            <p data-i18n="home.aud2Desc">Strategic ISO Clause 5 leadership, enterprise risk oversight, MACC Section 17A defense, and high-impact management review workshops.</p>
+            <div>
+              <a href="contact.html?course=Management+Workshop#corporate-enquiry-form" class="btn btn-secondary btn-sm" data-i18n="hero.ctaPrimary">Fill Out Inquiry Form</a>
+            </div>
+          </article>
+          <article class="pillar-card reveal-up">
+            <span class="badge badge-hrd" data-i18n="home.aud3Tag">FINAL-YEAR STUDENTS</span>
+            <h3 data-i18n="home.aud3Title">Graduating University Cohorts</h3>
+            <p data-i18n="home.aud3Desc">Career-bridging workshops introducing real ISO frameworks, AI governance, and industry audit discipline with verified completion certificates.</p>
+            <div>
+              <a href="contact.html?course=Final-Year+Student+Workshop#corporate-enquiry-form" class="btn btn-secondary btn-sm" data-i18n="hero.ctaPrimary">Fill Out Inquiry Form</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: PDCA Methodology (Left-Right Split + Coherent Reveal) -->
+    <section class="section">
+      <div class="container">
+        <div class="split-grid" style="margin-bottom:2.5rem;">
+          <div class="section-header reveal-left" style="margin-bottom:0;">
+            <span class="eyebrow" data-i18n="home.methodEyebrow">OUR METHODOLOGY</span>
+            <h2 class="section-title" data-i18n="home.methodTitle">The 4-Stage PDCA Mastery Framework</h2>
+            <p class="section-desc" data-i18n="home.methodDesc">Inspired by proven Plan-Do-Check-Act compliance engineering—transforming static ISO clauses into living organizational capability.</p>
+          </div>
+          <div class="about-media-frame reveal-right">
+            <img src="assets/banner-services.jpg" alt="Core Synergy consultants reviewing PDCA compliance architecture" loading="lazy" width="600" height="375">
+          </div>
+        </div>
+
+        <div id="home-pdca-grid" class="pdca-grid"></div>
+      </div>
+    </section>
+
+    <!-- Section 3: Upcoming 2026 Corporate Training Schedule -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="eyebrow" data-i18n="home.calendarEyebrow">UPCOMING INTAKES &amp; COHORTS</span>
+          <h2 id="home-calendar-heading" class="section-title" data-i18n="home.calendarTitle">2026 Corporate Training Schedule</h2>
+          <p class="section-desc" data-i18n="home.calendarDesc">Join scheduled corporate workshops in Kuala Lumpur, Penang, and Johor Bahru—or request a tailored in-house training cohort.</p>
+        </div>
+
+        <div tabindex="0" role="region" aria-labelledby="home-calendar-heading" class="calendar-table-wrap reveal-up">
+          <table class="calendar-table">
+            <thead>
+              <tr>
+                <th scope="col" data-i18n="home.colProgram">Program</th>
+                <th scope="col" data-i18n="modal.nextLabel">Next Intake</th>
+                <th scope="col" data-i18n="training.levelLabel">Competency Tier</th>
+                <th scope="col" data-i18n="modal.durationLabel">Duration</th>
+                <th scope="col" data-i18n="home.colGrant">Grant</th>
+                <th scope="col" data-i18n="home.colActions">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="home-calendar-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3.5: Certificate Number Tracking & Verification -->
+    <section id="certificate-tracker" class="section" aria-labelledby="cert-tracker-heading">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="eyebrow" data-i18n="cert.eyebrow">POST-TRAINING CREDENTIAL VERIFICATION</span>
+          <h2 id="cert-tracker-heading" class="section-title" data-i18n="cert.title">Certificate Tracking &amp; Verification</h2>
+          <p class="section-desc" data-i18n="cert.desc">Every participant receives an official certificate upon completing our training. Enter a Tracking Certificate Number below to verify completion status and logged training hours.</p>
+        </div>
+
+        <div class="cert-tracker-shell reveal-up">
+          <search>
+            <form id="cert-verify-form" action="#certificate-tracker" method="GET">
+              <div class="field" style="margin-block-end:0.75rem;">
+                <label for="cert-number-input" data-i18n="cert.inputLabel">Tracking Certificate Number</label>
+                <span id="cert-number-hint" class="hint" data-i18n="cert.inputHint">Format: CSD-2026-XXXXX (try one of the sample numbers below)</span>
+                <div class="cert-form-row">
+                  <input type="text" id="cert-number-input" name="certificate_number" data-i18n-placeholder="cert.inputPlaceholder" placeholder="Enter Certificate No. e.g. CSD-2026-88412" aria-describedby="cert-number-hint" autocorrect="off" autocapitalize="characters" spellcheck="false" enterkeyhint="search" required>
+                  <button type="submit" class="btn btn-primary" data-i18n="cert.btnVerify">Track Certificate</button>
+                </div>
+              </div>
+
+              <div class="cert-sample-pills">
+                <span style="font-size:0.8rem;color:var(--text-muted);font-weight:600;" data-i18n="cert.sampleLabel">Sample Verified Numbers:</span>
+                <button type="button" class="filter-pill" data-sample-cert="CSD-2026-88412">CSD-2026-88412</button>
+                <button type="button" class="filter-pill" data-sample-cert="CSD-2026-88419">CSD-2026-88419</button>
+                <button type="button" class="filter-pill" data-sample-cert="CSD-2026-88504">CSD-2026-88504</button>
+              </div>
+            </form>
+          </search>
+
+          <div id="cert-verify-result"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Interactive ISO Readiness & Training Estimator -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="eyebrow" data-i18n="home.estimatorEyebrow">INSTANT PLANNING TOOL</span>
+          <h2 class="section-title" data-i18n="home.estimatorTitle">ISO Certification &amp; Training Readiness Estimator</h2>
+          <p class="section-desc" data-i18n="home.estimatorDesc">Select your target standard, team size, and current maturity to generate a tailored training &amp; certification roadmap.</p>
+        </div>
+
+        <div class="estimator-shell reveal-up">
+          <div class="estimator-controls">
+            <div class="field" style="margin-bottom:0;">
+              <label for="est-standard" data-i18n="home.estStdLabel">Target Standard / Domain</label>
+              <select id="est-standard">
+                <option value="iso-27001">ISO/IEC 27001:2022 (Information Security / ISMS)</option>
+                <option value="iso-9001">ISO 9001:2015 (Quality Management / QMS)</option>
+                <option value="iso-22301">ISO 22301:2019 (Business Continuity / BCMS)</option>
+                <option value="iso-37001">ISO 37001:2016 (Anti-Bribery / ABMS Sec 17A)</option>
+              </select>
+            </div>
+            <div class="field" style="margin-bottom:0;">
+              <label for="est-team" data-i18n="home.estTeamLabel">Organization / Team Size</label>
+              <select id="est-team">
+                <option value="small" data-i18n="home.estTeamSmall">10–40 Staff (SME / Focused Unit)</option>
+                <option value="mid" data-i18n="home.estTeamMid" selected>41–150 Staff (Mid-Market)</option>
+                <option value="ent" data-i18n="home.estTeamEnt">151+ Staff (Enterprise / GLC)</option>
+              </select>
+            </div>
+            <div class="field" style="margin-bottom:0;">
+              <label for="est-maturity" data-i18n="home.estMatLabel">Current System Maturity</label>
+              <select id="est-maturity">
+                <option value="new" data-i18n="home.estMatNew">Starting From Scratch (No Existing SOPs)</option>
+                <option value="partial" data-i18n="home.estMatPartial" selected>Partial Policies / Legacy Documentation</option>
+                <option value="mature" data-i18n="home.estMatMature">Certified — Transition or Recertification</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="estimator-result">
+            <div>
+              <span class="eyebrow" data-i18n="home.estResultTitle">Recommended Core Synergy Track</span>
+              <h3 id="est-out-title" style="margin-top:0.5rem;font-size:1.35rem;">ISO/IEC 27001:2022 (ISMS) Training &amp; Certification Track</h3>
+              <p style="margin-top:0.75rem;font-size:0.9rem;color:var(--text-muted);" data-i18n="home.estTimelineLabel">Estimated Timeline</p>
+              <strong id="est-out-timeline" style="font-size:1.1rem;color:var(--accent-primary);">5–6 Months</strong>
+              <p style="margin-top:1rem;margin-bottom:0.45rem;font-size:0.9rem;font-weight:700;" data-i18n="home.estCoursesLabel">Priority Training Modules</p>
+              <ul id="est-out-courses" class="check-list"></ul>
+            </div>
+            <div>
+              <a id="est-out-cta" href="contact.html" class="btn btn-primary" style="width:100%;" data-i18n="home.estCta">Request Custom Proposal With This Scope</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Native Syllabus Modal <dialog> -->
+  <dialog id="syllabus-dialog" class="syllabus-dialog" aria-labelledby="modal-title">
+    <div class="dialog-shell">
+      <div class="dialog-header">
+        <div>
+          <span id="modal-code" class="pillar-code">CS-27001-LI</span>
+          <h2 id="modal-title" style="font-size:1.25rem;margin-top:0.25rem;">Course Title</h2>
+        </div>
+        <button type="button" id="modal-close-btn" class="btn btn-secondary btn-sm" aria-label="Close syllabus modal">✕</button>
+      </div>
+      <div class="dialog-body">
+        <div class="dialog-meta-grid">
+          <div><span data-i18n="modal.durationLabel">Duration</span><strong id="modal-duration"></strong></div>
+          <div><span data-i18n="modal.modeLabel">Delivery</span><strong id="modal-mode"></strong></div>
+          <div><span data-i18n="modal.nextLabel">Next Intake</span><strong id="modal-next"></strong></div>
+        </div>
+        <div>
+          <h3 style="font-size:1rem;margin-bottom:0.5rem;" data-i18n="modal.outcomesTitle">Key Competency Outcomes</h3>
+          <ul id="modal-outcomes" class="check-list"></ul>
+        </div>
+        <div>
+          <h3 style="font-size:1rem;margin-bottom:0.5rem;" data-i18n="modal.syllabusTitle">Day-by-Day Curriculum Outline</h3>
+          <ul id="modal-syllabus" class="check-list"></ul>
+        </div>
+        <div>
+          <h3 style="font-size:1rem;margin-bottom:0.35rem;" data-i18n="modal.audienceTitle">Who Should Attend</h3>
+          <p id="modal-audience" style="color:var(--text-muted);font-size:0.94rem;"></p>
+        </div>
+      </div>
+      <div class="dialog-footer">
+        <a id="modal-book-link" href="contact.html" class="btn btn-primary" data-i18n="modal.bookCourseBtn">Register / Request In-House Quote</a>
+      </div>
+    </div>
+  </dialog>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-brand-showcase">
+            <img src="assets/CoreSynergyDynamic.webp" alt="Core Synergy Dynamics Sdn Bhd Official Logo" class="footer-brand-lockup-img" width="120" height="120" loading="lazy">
+            <div class="brand-text">
+              <span class="brand-title" style="color:#ffffff;">CORE <span>SYNERGY</span></span>
+              <span class="brand-sub" style="color:#b9b4c4;">DYNAMICS SDN. BHD.</span>
+            </div>
+          </div>
+          <p style="font-size:0.9rem;color:#c9c4d3;" data-i18n="footer.desc">
+            Core Synergy Sdn Bhd is a Malaysian ISO management systems, cybersecurity governance, and executive technology training institution empowering compliant, high-performing enterprises.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h3 data-i18n="footer.quickLinks">Navigation</h3>
+          <ul class="footer-links">
+            <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+            <li><a href="services.html" data-i18n="nav.services">Our Services</a></li>
+            <li><a href="about.html" data-i18n="nav.about">About Us</a></li>
+            <li><a href="bulletin.html" data-i18n="nav.bulletin">Bulletin Update</a></li>
+            <li><a href="contact.html" data-i18n="nav.contact">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 data-i18n="footer.standardsTitle">Flagship Standards</h3>
+          <ul class="footer-links">
+            <li><a href="training.html?category=iso-9001">ISO 9001:2015 (QMS)</a></li>
+            <li><a href="training.html?category=iso-27001">ISO/IEC 27001:2022 &amp; 27000</a></li>
+            <li><a href="training.html?category=iso-22301">ISO 22301:2019 (BCMS)</a></li>
+            <li><a href="training.html?category=governance">ISO 37001:2016 (ABMS)</a></li>
+            <li><a href="training.html?category=tech">ISO/IEC 42001 &amp; Cloud</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 data-i18n="footer.contactTitle">Corporate Office</h3>
+          <ul class="footer-links">
+            <li data-i18n="contact.hqAddress">Level 18, Menara Core Synergy, Jalan Tun Razak, 50400 Kuala Lumpur, Malaysia</li>
+            <li><a href="tel:+60327894500">+60 3-2789 4500</a></li>
+            <li><a href="mailto:enquiry@coresynergy.com.my">enquiry@coresynergy.com.my</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span data-i18n="footer.rights">© 2026 Core Synergy Sdn Bhd (201901034812). All rights reserved.</span>
+        <span data-i18n="footer.netlifyReady">HRD Corp Registered Training Provider • ISO &amp; Tech Excellence</span>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
