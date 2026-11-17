@@ -95,7 +95,6 @@ function initSmartNavbar() {
   const header = document.getElementById('site-header');
   if (!header) return;
 
-  let lastScrollY = window.scrollY;
   let ticking = false;
 
   const supportsScrollTimeline =
@@ -113,7 +112,6 @@ function initSmartNavbar() {
       header.style.setProperty('--scroll-progress', ratio.toFixed(4));
     }
 
-    lastScrollY = currentY;
     ticking = false;
   };
 
@@ -130,10 +128,17 @@ function initSmartNavbar() {
     { passive: true }
   );
 
-
   const menuBtn = document.getElementById('mobile-menu-toggle');
   const nav = document.getElementById('primary-nav');
   if (menuBtn && nav) {
+    const closeMobileMenu = (restoreFocus = false) => {
+      if (!header.classList.contains('menu-open')) return;
+      header.classList.remove('menu-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.setAttribute('aria-label', t('nav.menuOpen'));
+      if (restoreFocus) menuBtn.focus();
+    };
+
     menuBtn.addEventListener('click', () => {
       const isOpen = header.classList.toggle('menu-open');
       menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
@@ -141,10 +146,23 @@ function initSmartNavbar() {
     });
 
     nav.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
-        header.classList.remove('menu-open');
-        menuBtn.setAttribute('aria-expanded', 'false');
-      });
+      link.addEventListener('click', () => closeMobileMenu(false));
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && header.classList.contains('menu-open')) {
+        closeMobileMenu(true);
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (header.classList.contains('menu-open') && !header.contains(e.target)) {
+        closeMobileMenu(false);
+      }
+    });
+
+    window.matchMedia('(min-width: 961px)').addEventListener('change', (e) => {
+      if (e.matches) closeMobileMenu(false);
     });
   }
 }
@@ -205,6 +223,21 @@ function applyStaticTranslations() {
       el.setAttribute('placeholder', val);
     }
   });
+
+  document.querySelectorAll('[data-i18n-aria-label]').forEach((el) => {
+    const key = el.getAttribute('data-i18n-aria-label');
+    const val = t(key);
+    if (typeof val === 'string') {
+      el.setAttribute('aria-label', val);
+    }
+  });
+
+  const header = document.getElementById('site-header');
+  const menuBtn = document.getElementById('mobile-menu-toggle');
+  if (menuBtn) {
+    const isOpen = header?.classList.contains('menu-open');
+    menuBtn.setAttribute('aria-label', isOpen ? t('nav.menuClose') : t('nav.menuOpen'));
+  }
 
   document.querySelectorAll('.lang-btn').forEach((btn) => {
     const isCurrent = btn.dataset.lang === currentLang;
@@ -431,9 +464,12 @@ function initReadinessEstimator() {
     }
   };
 
-  stdSelect.addEventListener('change', compute);
-  teamSelect.addEventListener('change', compute);
-  matSelect.addEventListener('change', compute);
+  if (!stdSelect.dataset.bound) {
+    stdSelect.dataset.bound = 'true';
+    stdSelect.addEventListener('change', compute);
+    teamSelect.addEventListener('change', compute);
+    matSelect.addEventListener('change', compute);
+  }
   compute();
 }
 
@@ -603,14 +639,28 @@ function initModalCloseHandlers() {
   const dialog = document.getElementById('syllabus-dialog');
   if (!dialog) return;
 
-  const closeBtn = document.getElementById('modal-close-btn');
-  if (closeBtn) {
-    closeBtn.addEventListener('click', () => dialog.close());
+  if (!('commandForElement' in HTMLButtonElement.prototype)) {
+    import('https://esm.run/invokers-polyfill').catch(() => {
+      document.querySelectorAll('[commandfor="syllabus-dialog"][command="close"]').forEach((btn) => {
+        btn.addEventListener('click', () => dialog.close());
+      });
+    });
   }
 
-  dialog.addEventListener('click', (e) => {
-    if (e.target === dialog) dialog.close();
-  });
+  if (!('closedBy' in HTMLDialogElement.prototype)) {
+    let pointerDownOutside = false;
+    const isOutside = (e) => {
+      const r = dialog.getBoundingClientRect();
+      return e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
+    };
+    dialog.addEventListener('pointerdown', (e) => {
+      pointerDownOutside = isOutside(e);
+    });
+    dialog.addEventListener('pointerup', (e) => {
+      if (pointerDownOutside && isOutside(e)) dialog.close();
+      pointerDownOutside = false;
+    });
+  }
 
   const resetBtn = document.getElementById('training-reset-btn');
   if (resetBtn) {
@@ -654,8 +704,11 @@ function renderServicesSection() {
     tabsWrap.innerHTML = PDCA_ROADMAP.map(
       (st, idx) => `
       <button type="button"
+              id="pdca-tab-${idx}"
               role="tab"
               aria-selected="${idx === activePdcaIndex ? 'true' : 'false'}"
+              aria-controls="pdca-tab-panel"
+              tabindex="${idx === activePdcaIndex ? '0' : '-1'}"
               class="filter-pill"
               data-pdca-idx="${idx}">
         ${st.step}: ${st.phase[currentLang]}
@@ -664,6 +717,7 @@ function renderServicesSection() {
     ).join('');
 
     const active = PDCA_ROADMAP[activePdcaIndex] || PDCA_ROADMAP[0];
+    panelWrap.setAttribute('aria-labelledby', `pdca-tab-${activePdcaIndex}`);
     panelWrap.innerHTML = `
       <div class="pdca-card" style="border-color:var(--border-strong);">
         <span class="pdca-step">${active.step} • ${active.phase[currentLang]}</span>
@@ -675,10 +729,26 @@ function renderServicesSection() {
       </div>
     `;
 
-    tabsWrap.querySelectorAll('[data-pdca-idx]').forEach((btn) => {
+    const tabBtns = Array.from(tabsWrap.querySelectorAll('[data-pdca-idx]'));
+    tabBtns.forEach((btn, idx) => {
       btn.addEventListener('click', () => {
         activePdcaIndex = Number(btn.dataset.pdcaIdx);
         renderServicesSection();
+      });
+
+      btn.addEventListener('keydown', (e) => {
+        const total = PDCA_ROADMAP.length;
+        let nextIdx = null;
+        if (e.key === 'ArrowRight') nextIdx = (idx + 1) % total;
+        else if (e.key === 'ArrowLeft') nextIdx = (idx - 1 + total) % total;
+        else if (e.key === 'Home') nextIdx = 0;
+        else if (e.key === 'End') nextIdx = total - 1;
+        if (nextIdx !== null) {
+          e.preventDefault();
+          activePdcaIndex = nextIdx;
+          renderServicesSection();
+          document.getElementById(`pdca-tab-${nextIdx}`)?.focus();
+        }
       });
     });
   }

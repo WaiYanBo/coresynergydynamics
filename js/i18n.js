@@ -1,9 +1,5 @@
 export const I18N = {
   en: {
-    meta: {
-      brandName: 'Core Synergy Sdn Bhd',
-      tagline: 'ISO Standards, Cybersecurity & Management Training Academy'
-    },
     utility: {
       badge: 'HRD Corp Registered Training Provider • Kuala Lumpur, Malaysia',
       phone: '+60 3-2789 4500',
@@ -14,7 +10,6 @@ export const I18N = {
     },
     nav: {
       home: 'Home',
-      training: 'Training',
       services: 'Our Services',
       about: 'About Us',
       bulletin: 'Bulletin Update',
@@ -100,11 +95,9 @@ export const I18N = {
       btnVerify: 'Track Certificate',
       sampleLabel: 'Sample Verified Numbers:',
       verifiedBadge: 'Verified Official Certificate',
-      certNoLabel: 'Tracking Certificate No.',
       holderLabel: 'Participant Name',
       orgLabel: 'Organization / University',
       audienceLabel: 'Participant Group',
-      courseLabel: 'Completed Program',
       hoursLabel: 'Accredited Training Hours',
       dateLabel: 'Date Issued',
       statusLabel: 'Registry Status',
@@ -179,10 +172,10 @@ export const I18N = {
     about: {
       bannerEyebrow: 'OUR INSTITUTION',
       bannerTitle: 'Where International Standards Meet Modern Technology Execution',
-      bannerDesc: 'Core Synergy Sdn Bhd empowers Malaysian and ASEAN enterprises to transform ISO frameworks into measurable operational resilience.',
+      bannerDesc: 'Core Synergy Dynamics Sdn Bhd empowers Malaysian and ASEAN enterprises to transform ISO frameworks into measurable operational resilience.',
       storyEyebrow: 'WHO WE ARE',
       storyTitle: 'Built for Stakeholders Who Demand Substance Over Checkboxes',
-      storyP1: 'Too many organizations treat ISO certification or technical governance as a paperwork exercise—resulting in bulky binders nobody reads and audit-day panic. Core Synergy Sdn Bhd was established to solve that exact disconnect.',
+      storyP1: 'Too many organizations treat ISO certification or technical governance as a paperwork exercise—resulting in bulky binders nobody reads and audit-day panic. Core Synergy Dynamics Sdn Bhd was established to solve that exact disconnect.',
       storyP2: 'By uniting Principal ISO Lead Auditors with active Cybersecurity, Cloud, and Enterprise Management practitioners, we deliver training and consultancy that works in the real boardroom, server room, and factory floor.',
       ethosEyebrow: 'THE CORE SYNERGY ETHOS',
       ethosTitle: 'Trust. Accountability. Capability.',
@@ -210,16 +203,16 @@ export const I18N = {
       formTitle: 'Corporate & Training Inquiry Form',
       formSubtitle: 'All fields marked with * are required. Online course checkout is currently in planning—submit this inquiry form to book in-house training or workshops directly.',
       nameLabel: 'Full Name *',
-      nameHint: 'Enter your full name as it should appear on official correspondence.',
+      nameHint: 'As shown on certificates & official quotation.',
       nameErr: 'Please enter your full name (minimum 2 characters).',
       emailLabel: 'Corporate Email Address *',
-      emailHint: 'Format: name@company.com.my',
+      emailHint: 'We send your syllabus & quote here.',
       emailErr: 'Please enter a valid corporate email address (e.g. name@company.com).',
       phoneLabel: 'Phone / WhatsApp Number *',
       phoneHint: 'Format: +60 12-345 6789 or 03-2789 4500',
       phoneErr: 'Please enter a valid contact phone number (at least 8 digits).',
-      orgLabel: 'Organization / University / Company Name *',
-      orgHint: 'Used for HRD Corp eligibility, corporate quotation, or university workshop setup.',
+      orgLabel: 'Organization / University *',
+      orgHint: 'For HRD Corp check or campus workshop setup.',
       orgErr: 'Please enter your organization, university, or company name.',
       typeLegend: 'Inquiry Type *',
       typeInhouse: 'In-House Corporate Training (Employees & Management)',
@@ -239,6 +232,8 @@ export const I18N = {
       newEnquiryBtn: 'Submit Another Enquiry',
       hqTitle: 'Kuala Lumpur Corporate Headquarters',
       hqAddress: 'Level 18, Menara Core Synergy, Jalan Tun Razak, 50400 Kuala Lumpur, Malaysia',
+      telLabel: 'Telephone',
+      emailShortLabel: 'Email',
       hoursLabel: 'Operating Hours',
       hoursVal: 'Monday – Friday, 8:30 AM – 6:00 PM (MYT)',
       slaBadge: '4-Hour Proposal Response SLA • HRD Corp Desk Ready',
@@ -247,7 +242,6 @@ export const I18N = {
     },
     modal: {
       close: 'Close syllabus modal',
-      codeLabel: 'Course Code',
       durationLabel: 'Duration',
       modeLabel: 'Delivery',
       nextLabel: 'Next Intake',
@@ -257,19 +251,15 @@ export const I18N = {
       bookCourseBtn: 'Register / Request In-House Quote'
     },
     footer: {
-      desc: 'Core Synergy Sdn Bhd is a Malaysian ISO management systems, cybersecurity governance, and executive technology training institution empowering compliant, high-performing enterprises.',
+      desc: 'Core Synergy Dynamics Sdn Bhd is a Malaysian ISO management systems, cybersecurity governance, and executive technology training institution empowering compliant, high-performing enterprises.',
       quickLinks: 'Navigation',
       standardsTitle: 'Flagship Standards',
       contactTitle: 'Corporate Office',
-      rights: '© 2026 Core Synergy Sdn Bhd (201901034812). All rights reserved.',
+      rights: '© 2026 Core Synergy Dynamics Sdn Bhd (201901034812). All rights reserved.',
       netlifyReady: 'HRD Corp Registered Training Provider • ISO & Tech Excellence'
     }
   },
   ms: {
-    meta: {
-      brandName: 'Core Synergy Sdn Bhd',
-      tagline: 'Akademi Latihan Standard ISO, Keselamatan Siber & Pengurusan'
-    },
     utility: {
       badge: 'Penyedia Latihan Berdaftar HRD Corp • Kuala Lumpur, Malaysia',
       phone: '+60 3-2789 4500',
@@ -280,7 +270,6 @@ export const I18N = {
     },
     nav: {
       home: 'Utama',
-      training: 'Latihan',
       services: 'Perkhidmatan Kami',
       about: 'Tentang Kami',
       bulletin: 'Buletin Terkini',
@@ -366,11 +355,9 @@ export const I18N = {
       btnVerify: 'Semak Sijil',
       sampleLabel: 'Contoh Nombor Disahkan:',
       verifiedBadge: 'Sijil Rasmi Disahkan',
-      certNoLabel: 'No. Penjejakan Sijil',
       holderLabel: 'Nama Peserta',
       orgLabel: 'Organisasi / Universiti',
       audienceLabel: 'Kumpulan Peserta',
-      courseLabel: 'Program Dilengkapkan',
       hoursLabel: 'Jam Latihan Diiktiraf',
       dateLabel: 'Tarikh Dikeluarkan',
       statusLabel: 'Status Pendaftaran',
@@ -445,10 +432,10 @@ export const I18N = {
     about: {
       bannerEyebrow: 'INSTITUSI KAMI',
       bannerTitle: 'Tempat Standard Antarabangsa Bertemu Pelaksanaan Teknologi Moden',
-      bannerDesc: 'Core Synergy Sdn Bhd memperkasa perusahaan Malaysia dan ASEAN menukar rangka kerja ISO menjadi daya tahan operasi yang terukur.',
+      bannerDesc: 'Core Synergy Dynamics Sdn Bhd memperkasa perusahaan Malaysia dan ASEAN menukar rangka kerja ISO menjadi daya tahan operasi yang terukur.',
       storyEyebrow: 'SIAPA KAMI',
       storyTitle: 'Dibina Untuk Pemegang Taruh Yang Mengutamakan Nilai Sebenar',
-      storyP1: 'Terlalu banyak organisasi menganggap pensijilan ISO atau tadbir urus teknikal sekadar kerja kertas—menghasilkan fail tebal yang tidak dibaca dan panik pada hari audit. Core Synergy Sdn Bhd ditubuhkan untuk menyelesaikan jurang tersebut.',
+      storyP1: 'Terlalu banyak organisasi menganggap pensijilan ISO atau tadbir urus teknikal sekadar kerja kertas—menghasilkan fail tebal yang tidak dibaca dan panik pada hari audit. Core Synergy Dynamics Sdn Bhd ditubuhkan untuk menyelesaikan jurang tersebut.',
       storyP2: 'Dengan menggabungkan Juruaudit Utama ISO bersama pengamal aktif Keselamatan Siber, Awan dan Pengurusan Perusahaan, kami menyampaikan latihan dan perundingan yang berfungsi di bilik lembaga, bilik pelayan dan operasi kilang.',
       ethosEyebrow: 'ETOS CORE SYNERGY',
       ethosTitle: 'Kepercayaan. Akauntabiliti. Keupayaan.',
@@ -476,16 +463,16 @@ export const I18N = {
       formTitle: 'Borang Pertanyaan Latihan & Korporat',
       formSubtitle: 'Semua medan bertanda * wajib diisi. Pembelian kursus dalam talian sedang dalam perancangan—hantar borang pertanyaan ini untuk menempah latihan dalaman atau bengkel.',
       nameLabel: 'Nama Penuh *',
-      nameHint: 'Masukkan nama penuh anda untuk surat-menyurat rasmi.',
+      nameHint: 'Seperti tertera pada sijil & sebut harga rasmi.',
       nameErr: 'Sila masukkan nama penuh anda (minimum 2 aksara).',
       emailLabel: 'Alamat E-mel Korporat *',
-      emailHint: 'Format: nama@syarikat.com.my',
+      emailHint: 'Silibus & sebut harga dihantar ke sini.',
       emailErr: 'Sila masukkan alamat e-mel korporat yang sah (cth. nama@syarikat.com).',
       phoneLabel: 'Nombor Telefon / WhatsApp *',
       phoneHint: 'Format: +60 12-345 6789 atau 03-2789 4500',
       phoneErr: 'Sila masukkan nombor telefon yang sah (sekurang-kurangnya 8 digit).',
-      orgLabel: 'Nama Organisasi / Universiti / Syarikat *',
-      orgHint: 'Digunakan untuk semakan kelayakan HRD Corp, sebut harga korporat atau bengkel universiti.',
+      orgLabel: 'Organisasi / Universiti *',
+      orgHint: 'Untuk semakan HRD Corp atau bengkel universiti.',
       orgErr: 'Sila masukkan nama organisasi, universiti atau syarikat anda.',
       typeLegend: 'Jenis Pertanyaan *',
       typeInhouse: 'Latihan Korporat Dalaman (Pekerja & Pengurusan)',
@@ -505,6 +492,8 @@ export const I18N = {
       newEnquiryBtn: 'Hantar Pertanyaan Lain',
       hqTitle: 'Ibu Pejabat Korporat Kuala Lumpur',
       hqAddress: 'Aras 18, Menara Core Synergy, Jalan Tun Razak, 50400 Kuala Lumpur, Malaysia',
+      telLabel: 'Telefon',
+      emailShortLabel: 'E-mel',
       hoursLabel: 'Waktu Operasi',
       hoursVal: 'Isnin – Jumaat, 8:30 Pagi – 6:00 Petang (MYT)',
       slaBadge: 'Jaminan Maklum Balas 4 Jam • Meja HRD Corp Sedia',
@@ -513,7 +502,6 @@ export const I18N = {
     },
     modal: {
       close: 'Tutup modal silibus',
-      codeLabel: 'Kod Kursus',
       durationLabel: 'Tempoh',
       modeLabel: 'Penyampaian',
       nextLabel: 'Sesi Seterusnya',
@@ -523,11 +511,11 @@ export const I18N = {
       bookCourseBtn: 'Daftar / Mohon Sebut Harga Dalaman'
     },
     footer: {
-      desc: 'Core Synergy Sdn Bhd ialah institusi latihan sistem pengurusan ISO, tadbir urus keselamatan siber dan teknologi eksekutif Malaysia yang memperkasa organisasi berprestasi tinggi.',
+      desc: 'Core Synergy Dynamics Sdn Bhd ialah institusi latihan sistem pengurusan ISO, tadbir urus keselamatan siber dan teknologi eksekutif Malaysia yang memperkasa organisasi berprestasi tinggi.',
       quickLinks: 'Navigasi',
       standardsTitle: 'Standard Utama',
       contactTitle: 'Pejabat Korporat',
-      rights: '© 2026 Core Synergy Sdn Bhd (201901034812). Hak cipta terpelihara.',
+      rights: '© 2026 Core Synergy Dynamics Sdn Bhd (201901034812). Hak cipta terpelihara.',
       netlifyReady: 'Penyedia Latihan Berdaftar HRD Corp • Kecemerlangan ISO & Teknologi'
     }
   }

@@ -13,8 +13,8 @@
       }
     } catch (e) {}
   </script>
-  <title>Contact Us | Core Synergy Sdn Bhd — Corporate Proposals &amp; HRD Corp Desk</title>
-  <meta name="description" content="Request a corporate ISO training quotation, HRD Corp SBL-Khas documentation, or ISO consultancy proposal from Core Synergy Sdn Bhd.">
+  <title>Contact Us | Core Synergy Dynamics Sdn Bhd — Corporate Proposals &amp; HRD Corp Desk</title>
+  <meta name="description" content="Request a corporate ISO training quotation, HRD Corp SBL-Khas documentation, or ISO consultancy proposal from Core Synergy Dynamics Sdn Bhd.">
   <link rel="icon" type="image/webp" href="assets/CoreSynergyDynamic(logo).webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,7 +48,7 @@
     </div>
 
     <div class="container navbar-inner">
-      <a href="index.html" class="brand-link" aria-label="Core Synergy Sdn Bhd Home">
+      <a href="index.html" class="brand-link" aria-label="Core Synergy Dynamics Sdn Bhd Home">
         <span class="brand-emblem-frame">
           <img src="assets/CoreSynergyDynamic(logo).webp" alt="Core Synergy Dynamics Sdn Bhd Emblem" width="46" height="46">
         </span>
@@ -122,8 +122,8 @@
             <div class="form-row-2">
               <div class="field">
                 <label for="enquiry-name" data-i18n="contact.nameLabel">Full Name *</label>
-                <span id="name-hint" class="hint" data-i18n="contact.nameHint">Enter your full name as it should appear on official correspondence.</span>
-                <input type="text" id="enquiry-name" name="full_name" required minlength="2" autocomplete="name" aria-describedby="name-hint" data-error="name-error" enterkeyhint="next">
+                <input type="text" id="enquiry-name" name="full_name" placeholder="e.g. Ahmad Faiz" required minlength="2" autocomplete="name" aria-describedby="name-hint" data-error="name-error" enterkeyhint="next">
+                <span id="name-hint" class="hint" data-i18n="contact.nameHint">As shown on certificates &amp; official quotation.</span>
                 <div id="name-error" class="error-msg">
                   <span role="img" aria-label="Error">⚠</span>
                   <span data-i18n="contact.nameErr">Please enter your full name (minimum 2 characters).</span>
@@ -132,8 +132,8 @@
 
               <div class="field">
                 <label for="enquiry-email" data-i18n="contact.emailLabel">Corporate Email Address *</label>
-                <span id="email-hint" class="hint" data-i18n="contact.emailHint">Format: name@company.com.my</span>
-                <input type="email" id="enquiry-email" name="email" required autocomplete="email" autocorrect="off" autocapitalize="none" spellcheck="false" aria-describedby="email-hint" data-error="email-error" enterkeyhint="next">
+                <input type="email" id="enquiry-email" name="email" placeholder="name@company.com.my" required autocomplete="email" autocorrect="off" autocapitalize="none" spellcheck="false" aria-describedby="email-hint" data-error="email-error" enterkeyhint="next">
+                <span id="email-hint" class="hint" data-i18n="contact.emailHint">We send your syllabus &amp; quote here.</span>
                 <div id="email-error" class="error-msg">
                   <span role="img" aria-label="Error">⚠</span>
                   <span data-i18n="contact.emailErr">Please enter a valid corporate email address (e.g. name@company.com).</span>
@@ -144,8 +144,8 @@
             <div class="form-row-2">
               <div class="field">
                 <label for="enquiry-phone" data-i18n="contact.phoneLabel">Phone / WhatsApp Number *</label>
+                <input type="tel" id="enquiry-phone" name="phone" placeholder="+60 12-345 6789" required pattern="[\+\d\s\-\(\)]{8,20}" autocomplete="tel" aria-describedby="phone-hint" data-error="phone-error" enterkeyhint="next">
                 <span id="phone-hint" class="hint" data-i18n="contact.phoneHint">Format: +60 12-345 6789 or 03-2789 4500</span>
-                <input type="tel" id="enquiry-phone" name="phone" required pattern="[\+\d\s\-\(\)]{8,20}" autocomplete="tel" aria-describedby="phone-hint" data-error="phone-error" enterkeyhint="next">
                 <div id="phone-error" class="error-msg">
                   <span role="img" aria-label="Error">⚠</span>
                   <span data-i18n="contact.phoneErr">Please enter a valid contact phone number (at least 8 digits).</span>
@@ -153,12 +153,12 @@
               </div>
 
               <div class="field">
-                <label for="enquiry-org" data-i18n="contact.orgLabel">Organization / Company Name *</label>
-                <span id="org-hint" class="hint" data-i18n="contact.orgHint">Used for HRD Corp eligibility &amp; corporate quotation preparation.</span>
-                <input type="text" id="enquiry-org" name="organization" required minlength="2" autocomplete="organization" aria-describedby="org-hint" data-error="org-error" enterkeyhint="next">
+                <label for="enquiry-org" data-i18n="contact.orgLabel">Organization / University *</label>
+                <input type="text" id="enquiry-org" name="organization" placeholder="Company or University Name" required minlength="2" autocomplete="organization" aria-describedby="org-hint" data-error="org-error" enterkeyhint="next">
+                <span id="org-hint" class="hint" data-i18n="contact.orgHint">For HRD Corp check or campus workshop setup.</span>
                 <div id="org-error" class="error-msg">
                   <span role="img" aria-label="Error">⚠</span>
-                  <span data-i18n="contact.orgErr">Please enter your organization or company name.</span>
+                  <span data-i18n="contact.orgErr">Please enter your organization, university, or company name.</span>
                 </div>
               </div>
             </div>
@@ -183,36 +183,34 @@
               </label>
             </fieldset>
 
-            <div class="form-row-2">
-              <div class="field">
-                <label for="enquiry-standard" data-i18n="contact.stdLabel">Primary Standard or Program of Interest *</label>
-                <select id="enquiry-standard" name="standard" required data-error="std-error">
-                  <option value="" data-i18n="contact.stdPlaceholder">Select a standard or training track...</option>
-                  <option value="ISO/IEC 27001:2022 & ISO 27000 (ISMS)">ISO/IEC 27001:2022 &amp; ISO 27000 (ISMS)</option>
-                  <option value="ISO 9001:2015 (QMS)">ISO 9001:2015 (Quality Management)</option>
-                  <option value="ISO 22301:2019 (BCMS)">ISO 22301:2019 (Business Continuity)</option>
-                  <option value="ISO 37001:2016 (ABMS / Sec 17A)">ISO 37001:2016 (Anti-Bribery)</option>
-                  <option value="ISO 14001 & 45001 (IMS)">ISO 14001 &amp; ISO 45001 (HSE / ESG)</option>
-                  <option value="ISO/IEC 42001 & ISO/IEC 20000 (Tech & AI)">ISO/IEC 42001 &amp; ISO/IEC 20000 (Tech &amp; AI)</option>
-                  <option value="Executive & Agile Management">Executive &amp; Agile Management</option>
-                  <option value="Final-Year Student Workshop">Final-Year Student Career &amp; ISO Workshop</option>
-                </select>
-                <div id="std-error" class="error-msg">
-                  <span role="img" aria-label="Error">⚠</span>
-                  <span data-i18n="contact.stdErr">Please select a standard or training program.</span>
-                </div>
-              </div>
-
-              <div class="field">
-                <label for="enquiry-pax" data-i18n="contact.paxLabel">Estimated Participants / Team Size</label>
-                <input type="text" id="enquiry-pax" name="participants" inputmode="numeric" placeholder="e.g. 15" enterkeyhint="next">
+            <div class="field">
+              <label for="enquiry-standard" data-i18n="contact.stdLabel">Primary Standard or Program of Interest *</label>
+              <select id="enquiry-standard" name="standard" required data-error="std-error">
+                <option value="" data-i18n="contact.stdPlaceholder">Select a standard or training track...</option>
+                <option value="ISO/IEC 27001:2022 & ISO 27000 (ISMS)">ISO/IEC 27001:2022 &amp; ISO 27000 (ISMS)</option>
+                <option value="ISO 9001:2015 (QMS)">ISO 9001:2015 (Quality Management)</option>
+                <option value="ISO 22301:2019 (BCMS)">ISO 22301:2019 (Business Continuity)</option>
+                <option value="ISO 37001:2016 (ABMS / Sec 17A)">ISO 37001:2016 (Anti-Bribery)</option>
+                <option value="ISO 14001 & 45001 (IMS)">ISO 14001 &amp; ISO 45001 (HSE / ESG)</option>
+                <option value="ISO/IEC 42001 & ISO/IEC 20000 (Tech & AI)">ISO/IEC 42001 &amp; ISO/IEC 20000 (Tech &amp; AI)</option>
+                <option value="Executive & Agile Management">Executive &amp; Agile Management</option>
+                <option value="Final-Year Student Workshop">Final-Year Student Career &amp; ISO Workshop</option>
+              </select>
+              <div id="std-error" class="error-msg">
+                <span role="img" aria-label="Error">⚠</span>
+                <span data-i18n="contact.stdErr">Please select a standard or training program.</span>
               </div>
             </div>
 
             <div class="field">
+              <label for="enquiry-pax" data-i18n="contact.paxLabel">Estimated Participants / Team Size</label>
+              <input type="text" id="enquiry-pax" name="participants" inputmode="numeric" placeholder="e.g. 15" enterkeyhint="next">
+            </div>
+
+            <div class="field">
               <label for="enquiry-msg" data-i18n="contact.msgLabel">Training Objectives, Preferred Dates or Audit Deadline</label>
-              <span id="msg-hint" class="hint" data-i18n="contact.msgHint">Optional: mention preferred city (KL / Penang / JB), slide deck customization, or target training dates.</span>
               <textarea id="enquiry-msg" name="message" aria-describedby="msg-hint" enterkeyhint="done"></textarea>
+              <span id="msg-hint" class="hint" data-i18n="contact.msgHint">Optional: preferred city (KL / Penang / JB), slide deck customization, or target dates.</span>
             </div>
 
             <button type="submit" id="enquiry-submit-btn" class="btn btn-primary" style="width:100%;" data-i18n="contact.submitBtn">Submit Inquiry Form</button>
@@ -234,11 +232,11 @@
             <p data-i18n="contact.hqAddress">Level 18, Menara Core Synergy, Jalan Tun Razak, 50400 Kuala Lumpur, Malaysia</p>
             <div class="course-meta-list" style="grid-template-columns:1fr;">
               <div>
-                <span>Telephone</span>
+                <span data-i18n="contact.telLabel">Telephone</span>
                 <strong><a href="tel:+60327894500">+60 3-2789 4500</a></strong>
               </div>
               <div>
-                <span>Email</span>
+                <span data-i18n="contact.emailShortLabel">Email</span>
                 <strong><a href="mailto:enquiry@coresynergy.com.my">enquiry@coresynergy.com.my</a></strong>
               </div>
               <div>
@@ -280,7 +278,7 @@
             </div>
           </div>
           <p style="font-size:0.9rem;color:#c9c4d3;" data-i18n="footer.desc">
-            Core Synergy Sdn Bhd is a Malaysian ISO management systems, cybersecurity governance, and executive technology training institution empowering compliant, high-performing enterprises.
+            Core Synergy Dynamics Sdn Bhd is a Malaysian ISO management systems, cybersecurity governance, and executive technology training institution empowering compliant, high-performing enterprises.
           </p>
         </div>
         <div class="footer-col">
@@ -313,7 +311,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span data-i18n="footer.rights">© 2026 Core Synergy Sdn Bhd (201901034812). All rights reserved.</span>
+        <span data-i18n="footer.rights">© 2026 Core Synergy Dynamics Sdn Bhd (201901034812). All rights reserved.</span>
         <span data-i18n="footer.netlifyReady">HRD Corp Registered Training Provider • ISO &amp; Tech Excellence</span>
       </div>
     </div>

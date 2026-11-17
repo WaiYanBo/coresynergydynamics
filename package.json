@@ -1,7 +1,8 @@
 {
   "name": "core-synergy-web",
   "version": "1.0.0",
-  "description": "Core Synergy Sdn Bhd — Corporate ISO Standards, Technology & Management Training Institution Website (Netlify-ready)",
+  "type": "module",
+  "description": "Core Synergy Dynamics Sdn Bhd — Corporate ISO Standards, Technology & Management Training Institution Website (Netlify-ready)",
   "private": true,
   "scripts": {
     "dev": "npx serve . -l 8080",

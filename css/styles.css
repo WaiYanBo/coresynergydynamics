@@ -15,7 +15,6 @@
   --brand-purple-soft: #c58cd5;
   --brand-purple-dark: #622b72;
   --brand-purple-deep: #481d54;
-  --brand-grey: #989898;
   --brand-grey-dark: #393a3c;
 
   /* Light Theme Tokens */
@@ -30,8 +29,6 @@
   --border-subtle-light: rgba(57, 58, 60, 0.16);
   --border-strong-light: rgba(98, 43, 114, 0.34);
   --accent-primary-light: #622b72;
-  --accent-secondary-light: #8e46a3;
-  --accent-text-light: #ffffff;
   --badge-bg-light: rgba(98, 43, 114, 0.1);
   --badge-text-light: #562366;
   --shadow-card-light: 0 10px 30px -12px rgba(30, 31, 34, 0.12);
@@ -48,8 +45,6 @@
   --border-subtle-dark: rgba(152, 152, 152, 0.24);
   --border-strong-dark: rgba(162, 90, 182, 0.5);
   --accent-primary-dark: #a25ab6;
-  --accent-secondary-dark: #c58cd5;
-  --accent-text-dark: #131216;
   --badge-bg-dark: rgba(162, 90, 182, 0.18);
   --badge-text-dark: #dfb8eb;
   --shadow-card-dark: 0 14px 36px -12px rgba(0, 0, 0, 0.55);
@@ -66,8 +61,6 @@
   --border-subtle: var(--border-subtle-light);
   --border-strong: var(--border-strong-light);
   --accent-primary: var(--accent-primary-light);
-  --accent-secondary: var(--accent-secondary-light);
-  --accent-text: var(--accent-text-light);
   --badge-bg: var(--badge-bg-light);
   --badge-text: var(--badge-text-light);
   --shadow-card: var(--shadow-card-light);
@@ -120,8 +113,6 @@
     --border-subtle: var(--border-subtle-dark);
     --border-strong: var(--border-strong-dark);
     --accent-primary: var(--accent-primary-dark);
-    --accent-secondary: var(--accent-secondary-dark);
-    --accent-text: var(--accent-text-dark);
     --badge-bg: var(--badge-bg-dark);
     --badge-text: var(--badge-text-dark);
     --shadow-card: var(--shadow-card-dark);
@@ -147,8 +138,6 @@
     --border-subtle: light-dark(var(--border-subtle-light), var(--border-subtle-dark));
     --border-strong: light-dark(var(--border-strong-light), var(--border-strong-dark));
     --accent-primary: light-dark(var(--accent-primary-light), var(--accent-primary-dark));
-    --accent-secondary: light-dark(var(--accent-secondary-light), var(--accent-secondary-dark));
-    --accent-text: light-dark(var(--accent-text-light), var(--accent-text-dark));
     --badge-bg: light-dark(var(--badge-bg-light), var(--badge-bg-dark));
     --badge-text: light-dark(var(--badge-text-light), var(--badge-text-dark));
     --shadow-card: light-dark(var(--shadow-card-light), var(--shadow-card-dark));
@@ -174,8 +163,6 @@
   --border-subtle: var(--border-subtle-light);
   --border-strong: var(--border-strong-light);
   --accent-primary: var(--accent-primary-light);
-  --accent-secondary: var(--accent-secondary-light);
-  --accent-text: var(--accent-text-light);
   --badge-bg: var(--badge-bg-light);
   --badge-text: var(--badge-text-light);
   --shadow-card: var(--shadow-card-light);
@@ -194,8 +181,6 @@
   --border-subtle: var(--border-subtle-dark);
   --border-strong: var(--border-strong-dark);
   --accent-primary: var(--accent-primary-dark);
-  --accent-secondary: var(--accent-secondary-dark);
-  --accent-text: var(--accent-text-dark);
   --badge-bg: var(--badge-bg-dark);
   --badge-text: var(--badge-text-dark);
   --shadow-card: var(--shadow-card-dark);
@@ -230,6 +215,10 @@
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
 }
 
 html {
@@ -386,12 +375,6 @@ a {
   margin-block-end: clamp(2rem, 4vw, 3rem);
   display: grid;
   gap: 0.75rem;
-}
-
-.section-header.centered {
-  margin-inline: auto;
-  text-align: center;
-  justify-items: center;
 }
 
 .eyebrow {
@@ -1681,7 +1664,7 @@ a {
   border-color: var(--accent-primary);
 }
 
-.filter-pill[aria-pressed="true"] {
+.filter-pill:is([aria-pressed="true"], [aria-selected="true"]) {
   background-color: var(--brand-purple-dark);
   border-color: var(--brand-purple-dark);
   color: #ffffff;
@@ -1883,27 +1866,39 @@ a {
 .form-row-2 {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
+  gap: 1.15rem;
+  align-items: start;
+}
+
+.form-row-2 > .field {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  align-content: start;
+}
+
+.form-row-2 > .field > label {
+  align-self: end;
 }
 
 .field {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 0.35rem;
+  gap: 0.4rem;
   margin-block-end: 1.25rem;
 }
 
 .field label,
 .field legend {
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-weight: 700;
   color: var(--text-primary);
 }
 
 .hint {
   display: block;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
   color: var(--text-muted);
 }
 
@@ -1917,13 +1912,20 @@ textarea {
   font: inherit;
   font-size: max(1rem, 1em);
   color: var(--text-primary);
-  background-color: var(--bg-page);
-  border: 1.5px solid var(--border-strong);
+  background-color: var(--bg-elevated);
+  border: 1.5px solid var(--border-subtle);
   border-radius: var(--radius-sm);
-  padding: 0.7rem 0.9rem;
+  padding: 0.72rem 0.95rem;
   inline-size: 100%;
   min-block-size: 48px;
-  transition: border-color 0.18s ease, background-color 0.18s ease;
+  transition: border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+:is(input[type="text"], input[type="email"], input[type="tel"], input[type="search"], input[type="number"], select, textarea):focus {
+  border-color: var(--accent-primary);
+  background-color: var(--bg-surface);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--badge-bg);
 }
 
 textarea {
@@ -1942,28 +1944,48 @@ textarea {
 }
 
 .radio-group {
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: 1rem 1.1rem;
-  margin: 0 0 1.25rem 0;
+  border: 0;
+  padding: 0;
+  margin: 0 0 1.35rem 0;
   display: grid;
-  gap: 0.6rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
 }
 
 .radio-group legend {
-  padding-inline: 0.35rem;
+  grid-column: 1 / -1;
+  padding: 0;
+  margin-block-end: 0.45rem;
   font-weight: 700;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   color: var(--text-primary);
 }
 
 .radio-option {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 0.65rem;
+  padding: 0.78rem 0.95rem;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border-subtle);
+  background-color: var(--bg-elevated);
   cursor: pointer;
-  font-weight: 500;
-  font-size: 0.93rem;
+  font-weight: 600;
+  font-size: 0.87rem;
+  line-height: 1.35;
+  color: var(--text-body);
+  transition: border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.radio-option:hover {
+  border-color: var(--accent-primary);
+}
+
+.radio-option:has(input:checked) {
+  border-color: var(--accent-primary);
+  background-color: var(--badge-bg);
+  color: var(--text-primary);
+  box-shadow: 0 0 0 1px var(--accent-primary);
 }
 
 .radio-option input[type="radio"] {
@@ -1988,7 +2010,7 @@ textarea {
   background-color: var(--status-error-bg);
 }
 
-:is(input, select, textarea):is(:user-invalid, .user-invalid-fallback) + .error-msg {
+:is(input, select, textarea):is(:user-invalid, .user-invalid-fallback) ~ .error-msg {
   display: flex;
 }
 
@@ -2066,9 +2088,15 @@ dialog.syllabus-dialog {
   overflow: hidden;
 }
 
+dialog.syllabus-dialog:modal {
+  overscroll-behavior: contain;
+}
+
 dialog.syllabus-dialog::backdrop {
   background: rgba(15, 13, 20, 0.72);
   backdrop-filter: blur(5px);
+  overflow: hidden;
+  overscroll-behavior: contain;
 }
 
 .dialog-shell {
@@ -2113,8 +2141,7 @@ dialog.syllabus-dialog::backdrop {
   background-color: #18161d;
   color: #dcd8e4;
   border-block-start: 2px solid var(--brand-purple-dark);
-  padding-block: 3.5rem 2rem;
-  padding-bottom: max(2rem, env(safe-area-inset-bottom, 0px));
+  padding-block: 3.5rem max(2rem, env(safe-area-inset-bottom, 0px));
 }
 
 .footer-grid {
@@ -2270,7 +2297,8 @@ dialog.syllabus-dialog::backdrop {
 }
 
 @media (max-width: 640px) {
-  .form-row-2 {
+  .form-row-2,
+  .radio-group {
     grid-template-columns: 1fr;
   }
   .services-grid,
@@ -2321,7 +2349,7 @@ dialog.syllabus-dialog::backdrop {
   .service-card,
   .pdca-card,
   .form-card,
-  .filter-pill[aria-pressed="true"],
+  .filter-pill:is([aria-pressed="true"], [aria-selected="true"]),
   .std-pill[aria-pressed="true"] {
     border: 2px solid ButtonText;
   }
