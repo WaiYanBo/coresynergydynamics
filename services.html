@@ -6,8 +6,8 @@
   <meta name="color-scheme" content="light dark">
   <script>
     try {
-      var savedScheme = localStorage.getItem("color-scheme");
-      document.querySelector('meta[name="color-scheme"]').content = savedScheme || "light dark";
+      var savedScheme = localStorage.getItem("color-scheme") || "light";
+      document.querySelector('meta[name="color-scheme"]').content = savedScheme;
       if (savedScheme === "light" || savedScheme === "dark") {
         document.documentElement.dataset.theme = savedScheme;
       }

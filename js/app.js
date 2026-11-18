@@ -64,16 +64,10 @@ function applyThemeToDocument(storedValue) {
 function toggleTheme() {
   const currentlyRendered = getEffectiveTheme();
   const target = currentlyRendered === 'dark' ? 'light' : 'dark';
-  const systemPref = getSystemTheme();
 
   try {
-    if (target === systemPref) {
-      localStorage.removeItem(STORAGE_THEME_KEY);
-      applyThemeToDocument(null);
-    } else {
-      localStorage.setItem(STORAGE_THEME_KEY, target);
-      applyThemeToDocument(target);
-    }
+    localStorage.setItem(STORAGE_THEME_KEY, target);
+    applyThemeToDocument(target);
   } catch {
     applyThemeToDocument(target);
   }
