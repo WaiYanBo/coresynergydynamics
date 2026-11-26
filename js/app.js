@@ -1,5 +1,5 @@
 import { I18N } from './i18n.js';
-import { HERO_STANDARDS, COURSES, SERVICES, PDCA_ROADMAP, CERTIFICATES, BULLETINS, FAQS } from './data.js';
+import { TRAINING_CATALOGUE_2026, CORE_PILLARS, HERO_STANDARDS, COURSES, SERVICES, PDCA_ROADMAP, BULLETINS, TEAM_MEMBERS, FAQS } from './data.js';
 
 const STORAGE_LANG_KEY = 'cs_lang';
 const STORAGE_THEME_KEY = 'color-scheme';
@@ -11,8 +11,18 @@ let activeLevel = 'all';
 let searchQuery = '';
 let activePdcaIndex = 0;
 let activeBulletinCategory = 'all';
-let activeCertCode = CERTIFICATES[0]?.certNo || '';
+let activeBulletinTopic = getInitialBulletinTopic();
+let activeTeamMemberId = null;
 let activeModalCourseId = null;
+
+function getInitialBulletinTopic() {
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('topic') || '';
+  } catch {
+    return '';
+  }
+}
 
 function getInitialLang() {
   try {
@@ -292,23 +302,79 @@ function renderHomePillars() {
   const container = document.getElementById('home-pillars-grid');
   if (!container) return;
 
-  container.innerHTML = HERO_STANDARDS.map(
-    (item) => `
-      <article class="pillar-card reveal-up">
-        <div class="course-card-top">
-          <span class="pillar-code">${item.code}</span>
-          <span class="badge">${item.badge[currentLang]}</span>
-        </div>
-        <h3>${item.title[currentLang]}</h3>
-        <p>${item.summary[currentLang]}</p>
-        <div>
-          <a href="training.html?category=${encodeURIComponent(item.targetCategory)}" class="btn btn-secondary btn-sm">
-            ${t('hero.previewBtn')} →
+  container.innerHTML = CORE_PILLARS.map((pillar) => {
+    const visibleItems =
+      pillar.id === 'training-services' ? pillar.items.slice(0, 3) : pillar.items;
+
+    let extraBody = '';
+    if (pillar.id === 'digitalization') {
+      extraBody = `
+        <ul class="check-list pillar-digital-highlights">
+          <li>${t('home.digitalHighlight1')}</li>
+          <li>${t('home.digitalHighlight2')}</li>
+        </ul>
+      `;
+    }
+
+    let footerHtml = '';
+    if (pillar.id === 'training-services') {
+      footerHtml = `
+        <footer class="pillar-card-footer">
+          <a href="training.html" class="btn btn-primary btn-sm" style="inline-size:100%;">
+            ${t('home.showMoreTrainingBtn')} →
           </a>
+        </footer>
+      `;
+    } else if (pillar.id === 'consultancy') {
+      footerHtml = `
+        <footer class="pillar-card-footer">
+          <a href="bulletin.html?topic=iso-management-system#bulletin-updates" class="btn btn-secondary btn-sm" style="inline-size:100%;">
+            ${t('home.consultancyFooterLink')} →
+          </a>
+        </footer>
+      `;
+    } else if (pillar.id === 'digitalization') {
+      footerHtml = `
+        <footer class="pillar-card-footer">
+          <a href="bulletin.html?topic=business-process-digitalization#bulletin-updates" class="btn btn-secondary btn-sm" style="inline-size:100%;">
+            ${t('home.digitalFooterLink')} →
+          </a>
+        </footer>
+      `;
+    }
+
+    return `
+      <article class="pillar-card pillar-card-${pillar.id} reveal-up">
+        <header class="pillar-card-header">
+          <div class="course-card-top">
+            <span class="pillar-code">${pillar.code}</span>
+            <span class="badge">${pillar.badge[currentLang]}</span>
+          </div>
+          <h3>${pillar.title[currentLang]}</h3>
+        </header>
+        <div class="pillar-card-content">
+          <p>${pillar.summary[currentLang]}</p>
+          <ol class="pillar-topics-list">
+            ${visibleItems
+              .map(
+                (item) => `
+              <li>
+                <a href="${item.href}" class="pillar-topic-link">
+                  <span class="pillar-topic-num">${item.num}.</span>
+                  <span class="pillar-topic-title">${item.title[currentLang]}</span>
+                  <span class="pillar-topic-arrow" aria-hidden="true">→</span>
+                </a>
+              </li>
+            `
+              )
+              .join('')}
+          </ol>
+          ${extraBody}
         </div>
+        ${footerHtml}
       </article>
-    `
-  ).join('');
+    `;
+  }).join('');
 }
 
 function renderHomeMethodology() {
@@ -446,8 +512,8 @@ function initReadinessEstimator() {
     if (outTimeline) {
       outTimeline.textContent =
         currentLang === 'ms'
-          ? `${total}–${total + 1} Bulan (Termasuk Latihan HRD Corp & Pra-Audit)`
-          : `${total}–${total + 1} Months (Includes HRD Corp Training & Mock Audit)`;
+          ? `Fasa 1–4 (${total}–${total + 1} Peringkat Pelaksanaan • Termasuk Latihan HRD Corp & Pra-Audit)`
+          : `Phases 1–4 (${total}–${total + 1} Implementation Stages • Includes HRD Corp Training & Mock Audit)`;
     }
     if (outCourses) {
       const list = courseMap[std]?.[currentLang] || [];
@@ -470,23 +536,63 @@ function initReadinessEstimator() {
 function initTrainingCatalogFromUrl() {
   const params = new URLSearchParams(window.location.search);
   const cat = params.get('category');
-  if (cat) activeCategory = cat;
+  if (!cat) return;
+
+  const legacyMap = {
+    'iso-9001': 'iso-training',
+    'iso-27001': 'iso-training',
+    'iso-22301': 'iso-training',
+    governance: 'iso-training',
+    tech: 'cybersecurity-training',
+    management: 'corporate-leadership'
+  };
+
+  activeCategory = legacyMap[cat] || cat;
+}
+
+function matchesDurationFilter(durationStr, filterVal) {
+  if (filterVal === 'all') return true;
+  const d = (durationStr || '').toLowerCase();
+  if (filterVal === '1-day') return d === '1 day';
+  if (filterVal === '2-days') return d === '2 days';
+  if (filterVal === '3-plus-days') return d === '3 days' || d === '6 days';
+  if (filterVal === 'custom') return d.includes('custom');
+  return true;
 }
 
 function renderTrainingFilters() {
   const catWrap = document.getElementById('training-cat-pills');
   const levelSelect = document.getElementById('training-level-select');
   const searchInput = document.getElementById('training-search-input');
+  const tracksWrap = document.getElementById('training-tracks-directory');
+
+  if (tracksWrap) {
+    const trainingPillar = CORE_PILLARS.find((p) => p.id === 'training-services');
+    if (trainingPillar) {
+      tracksWrap.innerHTML = trainingPillar.items
+        .map(
+          (item) => `
+          <li>
+            <a href="${item.href}" class="pillar-topic-link ${item.featured ? 'pillar-topic-featured' : ''}">
+              <span class="pillar-topic-num">${item.num}.</span>
+              <span class="pillar-topic-title">${item.title[currentLang]}</span>
+              <span class="pillar-topic-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+        `
+        )
+        .join('');
+    }
+  }
+
   if (!catWrap) return;
 
   const categories = [
     { id: 'all', label: t('training.catAll') },
-    { id: 'iso-27001', label: t('training.cat27001') },
-    { id: 'iso-9001', label: t('training.cat9001') },
-    { id: 'iso-22301', label: t('training.cat22301') },
-    { id: 'governance', label: t('training.catGov') },
-    { id: 'tech', label: t('training.catTech') },
-    { id: 'management', label: t('training.catMgmt') }
+    ...TRAINING_CATALOGUE_2026.map((cat) => ({
+      id: cat.id,
+      label: `${cat.num}. ${cat.shortTitle[currentLang]} (${cat.totalListings})`
+    }))
   ];
 
   catWrap.innerHTML = categories
@@ -533,19 +639,39 @@ function renderTrainingCatalog() {
   const emptyEl = document.getElementById('training-empty-state');
   if (!grid) return;
 
-  const filtered = COURSES.filter((c) => {
-    const matchCat = activeCategory === 'all' || c.category === activeCategory;
-    const matchLevel = activeLevel === 'all' || c.level === activeLevel;
-    const textBlob = `${c.code} ${c.standard} ${c.title.en} ${c.title.ms} ${c.summary.en} ${c.summary.ms}`.toLowerCase();
-    const matchSearch = !searchQuery || textBlob.includes(searchQuery);
-    return matchCat && matchLevel && matchSearch;
-  });
+  let totalMatched = 0;
+  const renderedBlocks = [];
 
-  if (countEl) {
-    countEl.textContent = `${filtered.length} ${t('training.countLabel')}`;
+  for (const cat of TRAINING_CATALOGUE_2026) {
+    if (activeCategory !== 'all' && cat.id !== activeCategory) continue;
+
+    const matchedSubcategories = [];
+
+    for (const sub of cat.subcategories) {
+      const matchedCourses = sub.courses.filter((course) => {
+        const matchDur = matchesDurationFilter(course.duration, activeLevel);
+        const blob = `${cat.title.en} ${cat.title.ms} ${sub.title.en} ${sub.title.ms} ${course.title} ${course.duration} ${course.scope || ''}`.toLowerCase();
+        const matchSearch = !searchQuery || blob.includes(searchQuery);
+        return matchDur && matchSearch;
+      });
+
+      if (matchedCourses.length > 0) {
+        totalMatched += matchedCourses.length;
+        matchedSubcategories.push({ sub, matchedCourses });
+      }
+    }
+
+    if (matchedSubcategories.length > 0) {
+      const catCourseCount = matchedSubcategories.reduce((acc, s) => acc + s.matchedCourses.length, 0);
+      renderedBlocks.push({ cat, matchedSubcategories, catCourseCount });
+    }
   }
 
-  if (!filtered.length) {
+  if (countEl) {
+    countEl.textContent = `${totalMatched} ${t('training.countLabel')}`;
+  }
+
+  if (!renderedBlocks.length) {
     grid.innerHTML = '';
     if (emptyEl) emptyEl.hidden = false;
     return;
@@ -553,42 +679,65 @@ function renderTrainingCatalog() {
 
   if (emptyEl) emptyEl.hidden = true;
 
-  grid.innerHTML = filtered
+  grid.innerHTML = renderedBlocks
     .map(
-      (c) => `
-      <article class="course-card">
-        <div class="course-card-top">
-          <span class="pillar-code">${c.code} • ${c.standard}</span>
-          <span class="badge badge-hrd">${t('training.hrdBadge')}</span>
-        </div>
-        <div>
-          <span class="badge" style="margin-bottom:0.5rem;">${c.levelLabel[currentLang]}</span>
-          <h3 class="course-title">${c.title[currentLang]}</h3>
-        </div>
-        <div style="display:grid;gap:0.75rem;align-content:start;">
-          <p>${c.summary[currentLang]}</p>
-          <div class="course-meta-list">
-            <div><span>${t('modal.durationLabel')}</span><strong>${c.duration[currentLang]}</strong></div>
-            <div><span>${t('modal.nextLabel')}</span><strong>${c.nextDate[currentLang]}</strong></div>
+      ({ cat, matchedSubcategories, catCourseCount }, idx) => `
+      <section class="catalog-category-block ${idx > 0 ? 'catalog-category-deferred' : ''}" aria-labelledby="cat-heading-${cat.id}">
+        <header class="catalog-category-header">
+          <div>
+            <span class="pillar-code">CATEGORY 0${cat.num} • PEOPLE.PROCESSES.PROGRESS.</span>
+            <h2 id="cat-heading-${cat.id}" class="catalog-category-title">${cat.title[currentLang]}</h2>
           </div>
-          <p style="font-size:0.84rem;color:var(--text-muted);">
-            <strong>${t('training.audienceLabel')}</strong> ${c.audience[currentLang]}
-          </p>
+          <div class="catalog-category-badges">
+            <span class="badge">${catCourseCount} ${t('training.listingsWord')}</span>
+            <a href="bulletin.html?topic=${encodeURIComponent(cat.topicId)}#bulletin-updates" class="btn btn-secondary btn-sm">
+              ${t('training.bulletinBtn')} →
+            </a>
+          </div>
+        </header>
+
+        <div class="catalog-subcategories-stack">
+          ${matchedSubcategories
+            .map(
+              ({ sub, matchedCourses }) => `
+            <div class="catalog-subcategory-group">
+              <h3 class="catalog-subcategory-title">${sub.title[currentLang]}</h3>
+              <ol class="catalog-courses-list">
+                ${matchedCourses
+                  .map(
+                    (c) => `
+                  <li class="catalog-course-item">
+                    <div class="catalog-course-main">
+                      <span class="catalog-course-no">${String(c.no).padStart(2, '0')}</span>
+                      <div class="catalog-course-info">
+                        <strong class="catalog-course-title">${c.title}</strong>
+                        ${
+                          c.scope
+                            ? `<p class="catalog-course-scope"><strong>${t('training.scopeLabel')}</strong> ${c.scope}</p>`
+                            : ''
+                        }
+                      </div>
+                    </div>
+                    <div class="catalog-course-meta">
+                      <span class="badge">${c.duration}</span>
+                      <a href="contact.html?course=${encodeURIComponent(c.title)}#corporate-enquiry-form" class="btn btn-primary btn-sm">
+                        ${t('training.bookBtn')}
+                      </a>
+                    </div>
+                  </li>
+                `
+                  )
+                  .join('')}
+              </ol>
+            </div>
+          `
+            )
+            .join('')}
         </div>
-        <div class="course-actions">
-          <button type="button" class="btn btn-secondary btn-sm" data-open-syllabus="${c.id}">
-            ${t('training.syllabusBtn')}
-          </button>
-          <a href="contact.html?course=${encodeURIComponent(c.code + ' — ' + c.title[currentLang])}" class="btn btn-primary btn-sm">
-            ${t('training.bookBtn')}
-          </a>
-        </div>
-      </article>
+      </section>
     `
     )
     .join('');
-
-  bindSyllabusTriggers(grid);
 }
 
 function bindSyllabusTriggers(scope) {
@@ -746,6 +895,124 @@ function renderServicesSection() {
       });
     });
   }
+}
+
+function renderAboutTeam() {
+  const grid = document.getElementById('about-team-grid');
+  if (!grid || !TEAM_MEMBERS.length) return;
+
+  const selected = TEAM_MEMBERS.find((m) => m.id === activeTeamMemberId) || null;
+  grid.classList.toggle('has-expanded-member', Boolean(selected));
+
+  // When a profile is clicked, place the expanded profile first so it spreads the whole top row
+  // while the other 3 profiles move smoothly onto the row below.
+  const orderedMembers = selected
+    ? [selected, ...TEAM_MEMBERS.filter((m) => m.id !== selected.id)]
+    : TEAM_MEMBERS;
+
+  grid.innerHTML = orderedMembers
+    .map((member) => {
+      const isExpanded = selected?.id === member.id;
+      return `
+        <article class="team-member-card ${isExpanded ? 'is-expanded' : ''}"
+                 style="view-transition-name: team-card-${member.id};">
+          <div class="team-card-visual">
+            <div class="team-card-meta" style="view-transition-name: team-meta-${member.id};">
+              <strong class="team-member-name">${member.name}</strong>
+              <span class="team-member-role">${member.role[currentLang]}</span>
+            </div>
+            <div class="team-portrait-stage" style="view-transition-name: team-photo-${member.id};">
+              <img src="${member.image}"
+                   alt="${member.name} — ${member.role[currentLang]}"
+                   class="team-portrait-img"
+                   loading="lazy"
+                   width="360"
+                   height="450">
+            </div>
+          </div>
+
+          ${
+            isExpanded
+              ? `
+            <div class="team-card-details">
+              <div class="team-details-header">
+                <span class="team-spotlight-cred">${member.credential[currentLang]}</span>
+                <button type="button"
+                        class="team-collapse-btn"
+                        data-team-close="${member.id}"
+                        aria-label="Collapse ${member.name} profile">
+                  ✕
+                </button>
+              </div>
+              <h3 class="team-spotlight-name">${member.name}</h3>
+              <p class="team-spotlight-role-sub">${member.role[currentLang]}</p>
+              <p class="team-spotlight-bio">${member.bio[currentLang]}</p>
+              <div class="team-spotlight-tags">
+                ${member.specialties[currentLang].map((sp) => `<span class="team-spec-chip">${sp}</span>`).join('')}
+              </div>
+              <div class="team-spotlight-actions">
+                <a href="${member.catalogLink}" class="btn btn-secondary btn-sm">
+                  ${t('about.teamCoursesCta')}
+                </a>
+                <a href="contact.html?course=${encodeURIComponent('Consultation with ' + member.name)}#corporate-enquiry-form" class="btn btn-primary btn-sm">
+                  ${t('about.teamConsultCta')} →
+                </a>
+              </div>
+            </div>
+          `
+              : ''
+          }
+
+          <button type="button"
+                  class="team-card-trigger"
+                  data-team-id="${member.id}"
+                  aria-expanded="${isExpanded ? 'true' : 'false'}"
+                  aria-label="${member.name} — ${member.role[currentLang]}">
+          </button>
+        </article>
+      `;
+    })
+    .join('');
+
+  const toggleMember = (targetId) => {
+    const nextId = activeTeamMemberId === targetId ? null : targetId;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const updateDOM = () => {
+      activeTeamMemberId = nextId;
+      renderAboutTeam();
+      if (nextId) {
+        const expandedCard = grid.querySelector('.team-member-card.is-expanded');
+        if (expandedCard) {
+          const rect = expandedCard.getBoundingClientRect();
+          if (rect.top < 110 || rect.top > window.innerHeight * 0.65) {
+            expandedCard.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest' });
+          }
+        }
+      }
+    };
+
+    if (typeof document.startViewTransition === 'function' && !reduceMotion) {
+      document.startViewTransition(() => {
+        updateDOM();
+      });
+    } else {
+      updateDOM();
+    }
+  };
+
+  grid.querySelectorAll('[data-team-id]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      toggleMember(btn.dataset.teamId);
+    });
+  });
+
+  grid.querySelectorAll('[data-team-close]').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMember(btn.dataset.teamClose);
+    });
+  });
 }
 
 function renderAboutSectors() {
@@ -966,76 +1233,15 @@ function initContactForm() {
   }
 }
 
-function renderCertificateResult(code) {
-  const resultEl = document.getElementById('cert-verify-result');
-  if (!resultEl) return;
-
-  const cleanCode = (code || '').trim().toUpperCase();
-  if (!cleanCode) {
-    resultEl.innerHTML = '';
-    return;
+function findTopicDetails(topicId) {
+  if (!topicId) return null;
+  for (const pillar of CORE_PILLARS) {
+    const found = pillar.items.find((it) => it.topicId === topicId);
+    if (found) {
+      return { pillar, item: found };
+    }
   }
-
-  const found = CERTIFICATES.find((item) => item.certNo.toUpperCase() === cleanCode);
-  if (!found) {
-    resultEl.innerHTML = `
-      <div class="cert-result-card cert-result-missing" role="status" aria-live="polite">
-        <span class="badge" style="background:var(--status-error-bg);color:var(--status-error);border-color:currentColor;">
-          ${t('cert.statusLabel')}: Not Found
-        </span>
-        <p>${t('cert.notFoundMsg').replace('{code}', cleanCode.replace(/[<>&"']/g, ''))}</p>
-      </div>
-    `;
-    return;
-  }
-
-  resultEl.innerHTML = `
-    <div class="cert-result-card" role="status" aria-live="polite">
-      <div class="course-card-top">
-        <span class="pillar-code">${found.certNo} • ${found.courseCode}</span>
-        <span class="badge badge-hrd">✓ ${t('cert.verifiedBadge')}</span>
-      </div>
-      <h3 style="font-size:1.15rem;">${found.courseTitle[currentLang]}</h3>
-      <div class="cert-meta-grid">
-        <div><span>${t('cert.holderLabel')}</span><strong>${found.holder}</strong></div>
-        <div><span>${t('cert.orgLabel')}</span><strong>${found.organization}</strong></div>
-        <div><span>${t('cert.audienceLabel')}</span><strong>${found.audienceType[currentLang]}</strong></div>
-        <div><span>${t('cert.hoursLabel')}</span><strong>${found.hours[currentLang]}</strong></div>
-        <div><span>${t('cert.dateLabel')}</span><strong>${found.issueDate[currentLang]}</strong></div>
-        <div><span>${t('cert.statusLabel')}</span><strong style="color:var(--status-success);">${found.status[currentLang]}</strong></div>
-      </div>
-    </div>
-  `;
-}
-
-function initCertificateTracker() {
-  const form = document.getElementById('cert-verify-form');
-  const input = document.getElementById('cert-number-input');
-  const sampleBtns = document.querySelectorAll('[data-sample-cert]');
-  if (!form || !input) return;
-
-  if (!input.value && activeCertCode) {
-    input.value = activeCertCode;
-  }
-  renderCertificateResult(input.value || activeCertCode);
-
-  if (!form.dataset.bound) {
-    form.dataset.bound = 'true';
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      activeCertCode = input.value.trim().toUpperCase();
-      renderCertificateResult(activeCertCode);
-    });
-
-    sampleBtns.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const sample = btn.dataset.sampleCert || '';
-        input.value = sample;
-        activeCertCode = sample;
-        renderCertificateResult(sample);
-      });
-    });
-  }
+  return null;
 }
 
 function renderBulletins() {
@@ -1047,10 +1253,10 @@ function renderBulletins() {
   if (pillsWrap) {
     const categories = [
       { id: 'all', label: t('bulletin.filterAll') },
-      { id: 'in-house', label: t('bulletin.filterInhouse') },
-      { id: 'workshop', label: t('bulletin.filterWorkshop') },
-      { id: 'student', label: t('bulletin.filterStudent') },
-      { id: 'certificate', label: t('bulletin.filterCert') }
+      { id: 'consultancy', label: t('bulletin.filterConsultancy') },
+      { id: 'digitalization', label: t('bulletin.filterDigitalization') },
+      { id: 'training', label: t('bulletin.filterTraining') },
+      { id: 'csr', label: t('bulletin.filterCsr') }
     ];
 
     pillsWrap.innerHTML = categories
@@ -1059,7 +1265,7 @@ function renderBulletins() {
         <button type="button"
                 class="filter-pill"
                 data-bulletin-cat="${cat.id}"
-                aria-pressed="${cat.id === activeBulletinCategory ? 'true' : 'false'}">
+                aria-pressed="${!activeBulletinTopic && cat.id === activeBulletinCategory ? 'true' : 'false'}">
           ${cat.label}
         </button>
       `
@@ -1068,21 +1274,42 @@ function renderBulletins() {
 
     pillsWrap.querySelectorAll('[data-bulletin-cat]').forEach((btn) => {
       btn.addEventListener('click', () => {
+        activeBulletinTopic = '';
         activeBulletinCategory = btn.dataset.bulletinCat;
         renderBulletins();
       });
     });
   }
 
-  const filtered = BULLETINS.filter(
-    (item) => activeBulletinCategory === 'all' || item.category === activeBulletinCategory
-  );
+  const topicDetails = findTopicDetails(activeBulletinTopic);
+
+  const filtered = BULLETINS.filter((item) => {
+    if (topicDetails) {
+      return Array.isArray(item.topics) && item.topics.includes(activeBulletinTopic);
+    }
+    return activeBulletinCategory === 'all' || item.category === activeBulletinCategory;
+  });
+
+  const displayList = filtered.length ? filtered : BULLETINS;
 
   if (countEl) {
-    countEl.textContent = `${filtered.length} ${t('bulletin.countLabel')}`;
+    if (topicDetails) {
+      countEl.innerHTML = `
+        <strong>${t('bulletin.topicActivePrefix')} ${topicDetails.item.title[currentLang]}</strong>
+        <button type="button" id="clear-topic-filter-btn" class="btn btn-secondary btn-sm" style="margin-inline-start:0.65rem;">
+          ${t('bulletin.topicClearBtn')}
+        </button>
+      `;
+      document.getElementById('clear-topic-filter-btn')?.addEventListener('click', () => {
+        activeBulletinTopic = '';
+        renderBulletins();
+      });
+    } else {
+      countEl.textContent = `${displayList.length} ${t('bulletin.countLabel')}`;
+    }
   }
 
-  grid.innerHTML = filtered
+  grid.innerHTML = displayList
     .map(
       (item) => `
       <article class="service-card reveal-up">
@@ -1091,7 +1318,7 @@ function renderBulletins() {
           <span class="pillar-code">${item.date[currentLang]}</span>
         </div>
         <h3>${item.title[currentLang]}</h3>
-        <span class="badge badge-hrd">${item.hoursLogged[currentLang]}</span>
+        <span class="badge badge-hrd">${topicDetails ? topicDetails.item.title[currentLang] : item.highlightBadge[currentLang]}</span>
         <p>${item.summary[currentLang]}</p>
         <div style="padding-block-start:0.5rem;border-block-start:1px solid var(--border-subtle);">
           <a href="${item.ctaHref}" class="btn btn-secondary btn-sm">${item.ctaText[currentLang]} →</a>
@@ -1108,11 +1335,11 @@ function renderDynamicSections() {
   renderHomeMethodology();
   renderHomeCalendar();
   initReadinessEstimator();
-  initCertificateTracker();
   renderBulletins();
   renderTrainingFilters();
   renderTrainingCatalog();
   renderServicesSection();
+  renderAboutTeam();
   renderAboutSectors();
   renderFaqs();
 

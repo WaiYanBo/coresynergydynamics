@@ -1,3 +1,535 @@
+export const TRAINING_CATALOGUE_2026 = [
+  {
+    id: 'personal-effectiveness',
+    num: 1,
+    topicId: 'personal-effectiveness',
+    title: { en: '1. Personal Effectiveness', ms: '1. Keberkesanan Diri (Personal Effectiveness)' },
+    shortTitle: { en: 'Personal Effectiveness', ms: 'Keberkesanan Diri' },
+    totalListings: 24,
+    subcategories: [
+      {
+        title: { en: 'Self Improvement & Motivation', ms: 'Peningkatan Diri & Motivasi' },
+        courses: [
+          { no: 1, title: 'Emotional Intelligence (EQ) & MindMapping Skills', duration: '2 days' },
+          { no: 2, title: 'Achieving Results with Time Management', duration: '2 days' },
+          { no: 3, title: 'The Power of Body Language Success', duration: '2 days' },
+          { no: 4, title: 'What Your Handwriting Style Reveals About You', duration: '1 day' },
+          { no: 5, title: 'Speed Reading & Memory Skills', duration: '2 days' },
+          { no: 6, title: 'The Buzan Technique "Effective Thinking for Higher Performance"', duration: '2 days' },
+          { no: 7, title: 'Counselling Skills for Leaders', duration: '2 days' },
+          { no: 8, title: 'Influencing Skills', duration: '2 days' },
+          { no: 9, title: 'Emotional Intelligence at Workplace', duration: '2 days' }
+        ]
+      },
+      {
+        title: { en: 'Creativity & Innovation', ms: 'Kreativiti & Inovasi' },
+        courses: [
+          { no: 10, title: 'Synergized Problem Solving using Analytical & Creative Thinking "Swing to Solution Consciousness"', duration: '2 days' },
+          { no: 11, title: 'Critical Thinking Process Critical & Creative Thought Systems', duration: '2 days' },
+          { no: 12, title: 'Creativity & Innovation at the Verge', duration: '2 days' },
+          { no: 13, title: 'Rewiring The Brain via The 7 Secrets Rhythm', duration: '2 days' },
+          { no: 14, title: 'Design Thinking Workshop "Acculturate Innovation Through Collaboration"', duration: '3 days' }
+        ]
+      },
+      {
+        title: { en: 'Time & Stress Management', ms: 'Pengurusan Masa & Tekanan' },
+        courses: [
+          { no: 15, title: 'Anger Management & Managing your Stress with Color Therapy', duration: '2 days' },
+          { no: 16, title: 'Effective Time Management for Maximum Effectiveness', duration: '2 days' },
+          { no: 17, title: 'The Psychology of Excellence & Work Life Balance', duration: '2 days' },
+          { no: 18, title: 'Effective Executives Managing Expectations, Stress & Time', duration: '2 days' },
+          { no: 19, title: 'Time Management Essentials: Achieve Results Thru', duration: '2 days' },
+          { no: 20, title: 'Action-Oriented Time Management', duration: '2 days' }
+        ]
+      },
+      {
+        title: { en: 'Others', ms: 'Lain-Lain' },
+        courses: [
+          { no: 21, title: 'Assertiveness Skills for Women in Business [Code 221]', duration: '2 days' },
+          { no: 22, title: 'Psychology of Charismatic Influencing & Persuasion [Code 222]', duration: '2 days' },
+          { no: 23, title: 'Understanding Sleep Deprivation & Stress Response by Clini Hypnotherapist +', duration: '1 day' },
+          { no: 24, title: 'Brain Wellness [Code 224]', duration: '1 day' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'organizational-effectiveness',
+    num: 2,
+    topicId: 'management-and-supervisory',
+    title: { en: '2. Organizational Effectiveness', ms: '2. Keberkesanan Organisasi (Organizational Effectiveness)' },
+    shortTitle: { en: 'Organizational Effectiveness', ms: 'Keberkesanan Organisasi' },
+    totalListings: 21,
+    subcategories: [
+      {
+        title: { en: 'Problem Solving & Decision Making', ms: 'Penyelesaian Masalah & Membuat Keputusan' },
+        courses: [
+          { no: 1, title: 'Problem Solving & Decision Making', duration: '2 days' },
+          { no: 2, title: 'The Analytical Thinker & Problem-Solver', duration: '2 days' },
+          { no: 3, title: 'Creative Thinking & Innovative Decision Making', duration: '2 days' },
+          { no: 4, title: 'The C.U.T.E Principle of Problem Solving & Decision Making', duration: '2 days' },
+          { no: 5, title: 'Engaging your Imagination for Business Workshop using Lego Serious Play Methodology', duration: '2 days' }
+        ]
+      },
+      {
+        title: { en: 'Problem Management', ms: 'Pengurusan Masalah' },
+        courses: [
+          { no: 6, title: 'DISC at the Workplace', duration: '1 day' },
+          { no: 7, title: 'How to Manage Subordinates for Higher Productivity', duration: '2 days' },
+          { no: 8, title: 'Bridging & Managing the Generation Gap at Workplace', duration: '2 days' },
+          { no: 9, title: 'Influencing Executives for Peak Performance & Managing Difficult Employees', duration: '2 days' },
+          { no: 10, title: 'Cultivating Positive Attitude in Workplace: A Guide to Managing People Effectively', duration: '2 days' }
+        ]
+      },
+      {
+        title: { en: 'Crisis & Conflict Management', ms: 'Pengurusan Krisis & Konflik' },
+        courses: [
+          { no: 11, title: 'Corporate Crisis Management', duration: '2 days' },
+          { no: 12, title: 'Crisis Management "The Holistic Approach"', duration: '3 days' },
+          { no: 13, title: 'Effective Conflict Management Techniques in Promoting Workplace Harmony', duration: '2 days' }
+        ]
+      },
+      {
+        title: { en: 'Goal Setting', ms: 'Penetapan Matlamat' },
+        courses: [
+          { no: 14, title: 'Achieving Results with Time Management', duration: '2 days' },
+          { no: 15, title: 'Towards Organizational Effectiveness via "Winning KPIs"', duration: '2 days' }
+        ]
+      },
+      {
+        title: { en: 'Delegation', ms: 'Delegasi Tugas' },
+        courses: [
+          { no: 16, title: 'The Art of Delegation: Effective Guidance for Your Direct Reports', duration: '2 days' },
+          { no: 17, title: 'Psychological Techniques for Effective Delegation & Giving Feedback', duration: '2 days' }
+        ]
+      },
+      {
+        title: { en: 'Self & Team Motivation', ms: 'Motivasi Diri & Pasukan' },
+        courses: [
+          { no: 18, title: 'Dare to be Great', duration: '2 days' },
+          { no: 19, title: 'Value Proposition', duration: '2 days' },
+          { no: 20, title: 'The Man on The Mountain "Motivation Workshop"', duration: '2 days' },
+          { no: 21, title: 'Developing, Managing & Enhancing Skills for High Performance Team Collaboration', duration: '2 days' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'communication-skills',
+    num: 3,
+    topicId: 'communication-skills',
+    title: { en: '3. Communication Skills', ms: '3. Kemahiran Komunikasi (Communication Skills)' },
+    shortTitle: { en: 'Communication Skills', ms: 'Kemahiran Komunikasi' },
+    totalListings: 24,
+    subcategories: [
+      {
+        title: { en: 'Business Communication', ms: 'Komunikasi Perniagaan' },
+        courses: [
+          { no: 1, title: 'Communication & Rapport Building', duration: '2 days' },
+          { no: 2, title: 'Intermediate English Communication', duration: '2 days' },
+          { no: 3, title: 'Communication & Writing Skills in English', duration: '2 days' },
+          { no: 4, title: 'Effective Communication for Supervisor & Executives', duration: '2 days' },
+          { no: 5, title: 'Connecting People with Powerful Communication Skills', duration: '2 days' },
+          { no: 6, title: 'Communicate! Learn Powerful Communication Skills to Connect & to Influence - People', duration: '1 day' }
+        ]
+      },
+      {
+        title: { en: 'Interpersonal Communication', ms: 'Komunikasi Interpersonal' },
+        courses: [
+          { no: 7, title: 'Assertive Influencing Communication', duration: '2 days' },
+          { no: 8, title: 'The "Colour Brain" Communication Strategy', duration: '2 days' },
+          { no: 9, title: 'Effective Communication Interpersonal Skills', duration: '2 days' },
+          { no: 10, title: 'Building Trust & Cooperation to Cultivate a Positive Workplace', duration: '2 days' },
+          { no: 11, title: 'Celebrating The Vital Role of The Administrative Professional - This Course is "All About & For You!"', duration: '2 days' }
+        ]
+      },
+      {
+        title: { en: 'Written Skills', ms: 'Kemahiran Penulisan' },
+        courses: [
+          { no: 12, title: 'On-The-Job Business Writing', duration: '2 days' },
+          { no: 13, title: 'Writing Clear & Effective Emails', duration: '1 day' },
+          { no: 14, title: 'Effective Technical Communication & Writing Skills', duration: '2 days' },
+          { no: 15, title: 'Speak & Write Functional English at the Workplace', duration: '2 days' }
+        ]
+      },
+      {
+        title: { en: 'Presentation Skills', ms: 'Kemahiran Pembentangan' },
+        courses: [
+          { no: 16, title: 'Business Storytelling Workshop', duration: '2 days' },
+          { no: 17, title: 'Public Speaking & Presentation Skills', duration: '3 days' },
+          { no: 18, title: 'High Impact Business Presentation Skills', duration: '2 days' },
+          { no: 19, title: 'Presenting Skills for Technical Professional Achieving Excellence', duration: '2 days' },
+          { no: 20, title: 'P.O.W.E.R Pack Presentation Skill "Presenting Your Way to Success"', duration: '2 days' },
+          { no: 21, title: 'Masterclass Presentation - Design & Deliver Presentation that Sizzle & Sell', duration: '2 days' }
+        ]
+      },
+      {
+        title: { en: 'Neuro-Linguistic Programming (NLP)', ms: 'Neuro-Linguistic Programming (NLP)' },
+        courses: [
+          { no: 22, title: 'NLP Basic Practitioner Certification +', duration: '6 days' },
+          { no: 23, title: 'Connect! Effectively Building Instant Rapport with NLP', duration: '2 days' },
+          { no: 24, title: 'High Impact Communication Skills - Connect & Engage with Influence using Effective NLP Skills', duration: '2 days' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'corporate-leadership',
+    num: 4,
+    topicId: 'corporate-leadership',
+    title: { en: '4. Corporate Leadership', ms: '4. Kepimpinan Korporat (Corporate Leadership)' },
+    shortTitle: { en: 'Corporate Leadership', ms: 'Kepimpinan Korporat' },
+    totalListings: 23,
+    subcategories: [
+      {
+        title: { en: 'Leadership', ms: 'Kepimpinan' },
+        courses: [
+          { no: 1, title: 'The Intensive Enlightened Leadership Workshop', duration: '3 days' },
+          { no: 2, title: 'Critical Leadership Attributes & Work Skills for Supervisors', duration: '2 days' },
+          { no: 3, title: 'Achieving Business Goals through Effective Leadership', duration: '2 days' },
+          { no: 4, title: 'Modern Management for Organization Excellence', duration: '2 days' },
+          { no: 5, title: 'Leadership Essentials - Leadership Basic', duration: '2 days' }
+        ]
+      },
+      {
+        title: { en: 'Strategic Management', ms: 'Pengurusan Strategik' },
+        courses: [
+          { no: 6, title: 'Business Continuity Management', duration: '2 days' },
+          { no: 7, title: 'Strategic Management', duration: '2 days' },
+          { no: 8, title: "Sun Tzu's Art of War Winning Strategies in Management for Manager & Executives", duration: '2 days' },
+          { no: 9, title: 'Leadership & Communication Skills for Managers', duration: '2 days' },
+          { no: 10, title: 'Key Traits of Communication Skills to Make or Break a Leader', duration: '2 days' },
+          { no: 11, title: 'Leadership & Management Skills Training', duration: '2 days' },
+          { no: 12, title: 'Adaptive Leadership "You Can\'t be in Business Tomorrow with Yesterday\'s Mindset"', duration: '2 days' }
+        ]
+      },
+      {
+        title: { en: 'Coaching & Mentoring', ms: 'Bimbingan & Pementoran (Coaching & Mentoring)' },
+        courses: [
+          { no: 13, title: 'Leading & Coaching Generation Y & Z', duration: '2 days' },
+          { no: 14, title: 'Coaching for Peak Performance using NLP', duration: '2 days' },
+          { no: 15, title: 'Managing Performance through Active Coaching', duration: '2 days' },
+          { no: 16, title: 'Fundamentals of Coaching', duration: '3 days' },
+          { no: 17, title: 'Effective Coaching Technique for Managers', duration: '2 days' },
+          { no: 18, title: 'Coaching & Mentoring for Quantum Success "Creating Quantum Success Through Coaching"', duration: '3 days' }
+        ]
+      },
+      {
+        title: { en: 'Change Management', ms: 'Pengurusan Perubahan' },
+        courses: [
+          { no: 19, title: 'Empowering Workforce towards Strategic Business Transformation', duration: '1 day' },
+          { no: 20, title: 'The Change Accelerator', duration: '2 days' },
+          { no: 21, title: 'Effective Change Management', duration: '2 days' },
+          { no: 22, title: 'In a World of Constant Change: Only the Nimble Survive', duration: '2 days' },
+          { no: 23, title: 'Leading Others through Change', duration: '2 days' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'cybersecurity-training',
+    num: 5,
+    topicId: 'cyber-security-training',
+    title: { en: '5. Cybersecurity Training', ms: '5. Latihan Keselamatan Siber (Cybersecurity Training)' },
+    shortTitle: { en: 'Cybersecurity Training', ms: 'Latihan Keselamatan Siber' },
+    totalListings: 7,
+    subcategories: [
+      {
+        title: { en: 'Cybersecurity', ms: 'Keselamatan Siber' },
+        courses: [
+          { no: 1, title: 'Cybersecurity Awareness Training', duration: '1 day' },
+          { no: 2, title: 'Fundamental of Ethical Hacking Training', duration: '1 day' },
+          { no: 3, title: 'Network Penetration Testing Training', duration: '3 days' },
+          { no: 4, title: 'Web Application Penetration Testing Training', duration: '3 days' },
+          { no: 5, title: 'Mobile Application Penetration Testing Training', duration: '3 days' },
+          { no: 6, title: 'Digital Forensic Training', duration: '3 days' },
+          { no: 7, title: 'Incident Response Training', duration: '3 days' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'iso-training',
+    num: 6,
+    topicId: 'safety-and-health',
+    title: { en: '6. ISO Training', ms: '6. Latihan ISO (ISO Training)' },
+    shortTitle: { en: 'ISO Training', ms: 'Latihan ISO' },
+    totalListings: 27,
+    subcategories: [
+      {
+        title: { en: 'Awareness Training', ms: 'Latihan Kesedaran (Awareness Training)' },
+        courses: [
+          { no: 1, title: 'ISO 9001: Quality Management System Awareness Training', duration: 'Custom to organization needs' },
+          { no: 2, title: 'ISO 13485: Medical Device Quality System Awareness Training', duration: 'Custom to organization needs' },
+          { no: 3, title: 'ISO 14001: Environmental Management Awareness Training', duration: 'Custom to organization needs' },
+          { no: 4, title: 'ISO 45001: Occupational Health and Safety Management System Awareness Training', duration: 'Custom to organization needs' },
+          { no: 5, title: 'ISO 20000: IT Management System Awareness Training', duration: 'Custom to organization needs' },
+          { no: 6, title: 'ISO/IEC 27001: Information Security Management System Awareness Training', duration: 'Custom to organization needs' },
+          { no: 7, title: 'ISO 22000: Food Safety Management System Awareness Training', duration: 'Custom to organization needs' },
+          { no: 8, title: 'FSSC 22000: Food Safety System Certification Awareness Training', duration: 'Custom to organization needs' },
+          { no: 9, title: 'ISO 22301: Business Continuity Management System Awareness Training', duration: 'Custom to organization needs' },
+          { no: 10, title: 'ISO 37001: Anti-Bribery Management System Awareness Training', duration: 'Custom to organization needs' }
+        ]
+      },
+      {
+        title: { en: 'Internal Audit Training', ms: 'Latihan Audit Dalaman (Internal Audit Training)' },
+        courses: [
+          { no: 11, title: 'ISO 9001: Quality Management System Internal Audit Training', duration: 'Custom to organization needs' },
+          { no: 12, title: 'ISO 13485: Medical Device Quality System Internal Audit Training', duration: 'Custom to organization needs' },
+          { no: 13, title: 'ISO 14001: Environmental Management Internal Audit Training', duration: 'Custom to organization needs' },
+          { no: 14, title: 'ISO 45001: Occupational Health and Safety Management System Internal Audit Training', duration: 'Custom to organization needs' },
+          { no: 15, title: 'ISO 20000: IT Management System Internal Audit Training', duration: 'Custom to organization needs' },
+          { no: 16, title: 'ISO/IEC 27001: Information Security Management System Internal Audit Training', duration: 'Custom to organization needs' },
+          { no: 17, title: 'ISO 22000: Food Safety Management System Internal Audit Training', duration: 'Custom to organization needs' },
+          { no: 18, title: 'FSSC 22000: Food Safety System Certification Internal Audit Training', duration: 'Custom to organization needs' },
+          { no: 19, title: 'ISO 22301: Business Continuity Management System Internal Audit Training', duration: 'Custom to organization needs' },
+          { no: 20, title: 'ISO 37001: Anti-Bribery Management System Internal Audit Training', duration: 'Custom to organization needs' }
+        ]
+      },
+      {
+        title: { en: 'Others (Safety, Risk & OSHA)', ms: 'Lain-Lain (Keselamatan, Risiko & OSHA)' },
+        courses: [
+          { no: 21, title: 'Risk Assessment Training', duration: 'Custom to organization needs' },
+          { no: 22, title: 'Business Continuity Plan Training', duration: 'Custom to organization needs' },
+          { no: 23, title: 'HIRARC Training', duration: 'Custom to organization needs' },
+          { no: 24, title: 'Safety Committee Training', duration: 'Custom to organization needs' },
+          { no: 25, title: 'OSHA Awareness Training', duration: 'Custom to organization needs' },
+          { no: 26, title: 'Chemical Handling Training', duration: 'Custom to organization needs' },
+          { no: 27, title: 'First Aid Training', duration: 'Custom to organization needs' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'quantity-surveyor-training',
+    num: 7,
+    topicId: 'engineering-technical-and-maintenance',
+    title: { en: '7. Quantity Surveyor Training', ms: '7. Latihan Juruukur Bahan (Quantity Surveyor Training)' },
+    shortTitle: { en: 'Quantity Surveyor Training', ms: 'Latihan Juruukur Bahan' },
+    totalListings: 7,
+    subcategories: [
+      {
+        title: { en: 'Quantity Surveying & Commercial Construction', ms: 'Ukur Bahan & Pembinaan Komersial' },
+        courses: [
+          {
+            no: 1,
+            title: 'Cost Estimation & Budgeting',
+            duration: 'Custom to organization needs',
+            scope: 'Training on how to prepare preliminary cost estimates, project budgets, and cost plans from early design stages through completion.'
+          },
+          {
+            no: 2,
+            title: 'Bill of Quantities (BOQ) Preparation',
+            duration: 'Custom to organization needs',
+            scope: 'Instruction on how to measure, take off quantities, and draft accurate Bills of Quantities using standard measurement rules (such as SMM, CESMM, or NRM).'
+          },
+          {
+            no: 3,
+            title: 'Contract Administration & Law',
+            duration: 'Custom to organization needs',
+            scope: 'Guidance on construction contracts (such as JCT, NEC, FIDIC, or local PAM/CIDIC forms), contractor obligations, interim valuations, and payment certificates.'
+          },
+          {
+            no: 4,
+            title: 'Tendering & Procurement Strategy',
+            duration: 'Custom to organization needs',
+            scope: 'Workshops on evaluating tender bids, drafting tender documents, analyzing pricing, and advising clients on the best procurement routes.'
+          },
+          {
+            no: 5,
+            title: 'Cost Control & Financial Reporting',
+            duration: 'Custom to organization needs',
+            scope: 'Training on managing project cash flows, forecasting final accounts, tracking variations/change orders, and risk management.'
+          },
+          {
+            no: 6,
+            title: 'Specialized Software & Digital Tools',
+            duration: 'Custom to organization needs',
+            scope: 'Hands-on instruction in industry-specific software like CostX, WinQS, Candy, Buildsoft, Trimble, AutoCAD, and Building Information Modeling (BIM) quantity extraction.'
+          },
+          {
+            no: 7,
+            title: 'Dispute Resolution & Claims Management',
+            duration: 'Custom to organization needs',
+            scope: 'Training on avoiding commercial disputes, preparing loss-and-expense claims, and understanding final account settlement.'
+          }
+        ]
+      }
+    ]
+  }
+];
+
+export const CORE_PILLARS = [
+  {
+    id: 'consultancy',
+    roman: 'I',
+    code: 'I. CONSULTANCY',
+    badge: { en: 'Strategic Advisory', ms: 'Penasihat Strategik' },
+    title: { en: 'CONSULTANCY', ms: 'PERUNDINGAN (CONSULTANCY)' },
+    summary: {
+      en: 'End-to-end management system architecture, human capital advisory, and corporate growth strategy.',
+      ms: 'Seni bina sistem pengurusan menyeluruh, penasihat modal insan, dan strategi pertumbuhan korporat.'
+    },
+    items: [
+      {
+        num: 1,
+        topicId: 'iso-management-system',
+        title: { en: 'ISO MANAGEMENT SYSTEM', ms: 'SISTEM PENGURUSAN ISO' },
+        href: 'bulletin.html?topic=iso-management-system#bulletin-updates'
+      },
+      {
+        num: 2,
+        topicId: 'hr-management-customer-service',
+        title: { en: 'HR MANAGEMENT AND CUSTOMER SERVICE', ms: 'PENGURUSAN HR DAN KHIDMAT PELANGGAN' },
+        href: 'bulletin.html?topic=hr-management-customer-service#bulletin-updates'
+      },
+      {
+        num: 3,
+        topicId: 'corporate-branding-business-strategy',
+        title: { en: 'CORPORATE BRANDING AND BUSINESS STRATEGY', ms: 'PENJENAMAAN KORPORAT DAN STRATEGI PERNIAGAAN' },
+        href: 'bulletin.html?topic=corporate-branding-business-strategy#bulletin-updates'
+      }
+    ]
+  },
+  {
+    id: 'digitalization',
+    roman: 'II',
+    code: 'II. DIGITALIZATION',
+    badge: { en: 'Process Automation', ms: 'Automasi Proses' },
+    title: { en: 'DIGITALIZATION', ms: 'PENDIGITALAN (DIGITALIZATION)' },
+    summary: {
+      en: 'Modernize enterprise workflows, eliminate manual bottlenecks, and build scalable digital process governance.',
+      ms: 'Modenkan aliran kerja perusahaan, hapuskan kekangan manual, dan bina tadbir urus proses digital berskala.'
+    },
+    items: [
+      {
+        num: 1,
+        topicId: 'business-process-digitalization',
+        title: { en: 'BUSINESS PROCESS DIGITALIZATION', ms: 'PENDIGITALAN PROSES PERNIAGAAN' },
+        href: 'bulletin.html?topic=business-process-digitalization#bulletin-updates'
+      }
+    ]
+  },
+  {
+    id: 'training-services',
+    roman: 'III',
+    code: 'III. TRAINING SERVICES',
+    badge: { en: 'HRD Corp Claimable', ms: 'Boleh Dituntut HRD Corp' },
+    title: { en: 'TRAINING SERVICES', ms: 'PERKHIDMATAN LATIHAN' },
+    summary: {
+      en: 'Practitioner-led corporate training tracks across 17 specialized disciplines—each linked directly to our Bulletin Updates.',
+      ms: 'Laluan latihan korporat berteraskan pengamal merentasi 17 disiplin khusus—setiap satu dipautkan terus ke Buletin Terkini.'
+    },
+    items: [
+      {
+        num: 1,
+        featured: true,
+        topicId: 'safety-and-health',
+        title: { en: 'Safety and Health', ms: 'Keselamatan dan Kesihatan' },
+        href: 'bulletin.html?topic=safety-and-health#bulletin-updates'
+      },
+      {
+        num: 2,
+        featured: true,
+        topicId: 'communication-skills',
+        title: { en: 'Communication Skills', ms: 'Kemahiran Komunikasi' },
+        href: 'bulletin.html?topic=communication-skills#bulletin-updates'
+      },
+      {
+        num: 3,
+        featured: true,
+        topicId: 'cyber-security-training',
+        title: { en: 'Cyber Security Training', ms: 'Latihan Keselamatan Siber' },
+        href: 'bulletin.html?topic=cyber-security-training#bulletin-updates'
+      },
+      {
+        num: 4,
+        topicId: 'grooming',
+        title: { en: 'Grooming', ms: 'Penampilan Diri (Grooming)' },
+        href: 'bulletin.html?topic=grooming#bulletin-updates'
+      },
+      {
+        num: 5,
+        topicId: 'team-building',
+        title: { en: 'Team Building', ms: 'Pembinaan Pasukan (Team Building)' },
+        href: 'bulletin.html?topic=team-building#bulletin-updates'
+      },
+      {
+        num: 6,
+        topicId: 'customer-service',
+        title: { en: 'Customer Service', ms: 'Khidmat Pelanggan' },
+        href: 'bulletin.html?topic=customer-service#bulletin-updates'
+      },
+      {
+        num: 7,
+        topicId: 'project-management',
+        title: { en: 'Project Management', ms: 'Pengurusan Projek' },
+        href: 'bulletin.html?topic=project-management#bulletin-updates'
+      },
+      {
+        num: 8,
+        topicId: 'sales-and-marketing',
+        title: { en: 'Sales and Marketing', ms: 'Jualan dan Pemasaran' },
+        href: 'bulletin.html?topic=sales-and-marketing#bulletin-updates'
+      },
+      {
+        num: 9,
+        topicId: 'personal-effectiveness',
+        title: { en: 'Personal Effectiveness', ms: 'Keberkesanan Diri' },
+        href: 'bulletin.html?topic=personal-effectiveness#bulletin-updates'
+      },
+      {
+        num: 10,
+        topicId: 'corporate-leadership',
+        title: { en: 'Corporate Leadership', ms: 'Kepimpinan Korporat' },
+        href: 'bulletin.html?topic=corporate-leadership#bulletin-updates'
+      },
+      {
+        num: 11,
+        topicId: 'microsoft-application',
+        title: { en: 'Microsoft Application', ms: 'Aplikasi Microsoft' },
+        href: 'bulletin.html?topic=microsoft-application#bulletin-updates'
+      },
+      {
+        num: 12,
+        topicId: 'finance-and-accounting',
+        title: { en: 'Finance and Accounting', ms: 'Kewangan dan Perakaunan' },
+        href: 'bulletin.html?topic=finance-and-accounting#bulletin-updates'
+      },
+      {
+        num: 13,
+        topicId: 'human-resource-and-legal',
+        title: { en: 'Human Resource and Legal', ms: 'Sumber Manusia dan Perundangan' },
+        href: 'bulletin.html?topic=human-resource-and-legal#bulletin-updates'
+      },
+      {
+        num: 14,
+        topicId: 'certification-program-series',
+        title: { en: 'Certification Program Series', ms: 'Siri Program Pensijilan' },
+        href: 'bulletin.html?topic=certification-program-series#bulletin-updates'
+      },
+      {
+        num: 15,
+        topicId: 'supply-chain-management',
+        title: { en: 'Supply Chain Management', ms: 'Pengurusan Rantaian Bekalan' },
+        href: 'bulletin.html?topic=supply-chain-management#bulletin-updates'
+      },
+      {
+        num: 16,
+        topicId: 'management-and-supervisory',
+        title: { en: 'Management and Supervisory', ms: 'Pengurusan dan Penyeliaan' },
+        href: 'bulletin.html?topic=management-and-supervisory#bulletin-updates'
+      },
+      {
+        num: 17,
+        topicId: 'engineering-technical-and-maintenance',
+        title: { en: 'Engineering, Technical and Maintenance', ms: 'Kejuruteraan, Teknikal dan Penyelenggaraan' },
+        href: 'bulletin.html?topic=engineering-technical-and-maintenance#bulletin-updates'
+      }
+    ]
+  }
+];
+
 export const HERO_STANDARDS = [
   {
     id: 'iso-9001',
@@ -12,8 +544,8 @@ export const HERO_STANDARDS = [
       ms: 'Perkemas aliran kerja operasi, kurangkan ketidakakuran, dan capai pensijilan QMS sedia audit SIRIM.'
     },
     outcome: {
-      en: '3–5 Month Certification Track • HRD Corp Claimable',
-      ms: 'Laluan Pensijilan 3–5 Bulan • Boleh Dituntut HRD Corp'
+      en: '4-Phase Certification Track • HRD Corp Claimable',
+      ms: 'Laluan Pensijilan 4-Fasa • Boleh Dituntut HRD Corp'
     },
     targetCategory: 'iso-9001'
   },
@@ -230,8 +762,8 @@ export const COURSES = [
       ms: 'Melangkaui audit senarai semak. Pelajari pengauditan proses berasaskan risiko menggunakan rajah penyu, kebolehkesanan KPI, dan pengesahan penambahbaikan berterusan.'
     },
     audience: {
-      en: 'Corporate Employees, Management Teams, QA Executives & Final-Year Engineering/IT Students',
-      ms: 'Pekerja Korporat, Pasukan Pengurusan, Eksekutif QA & Pelajar Tahun Akhir Kejuruteraan/IT'
+      en: 'Corporate Employees, Management Teams, QA Executives & CSR University Workshop Cohorts',
+      ms: 'Pekerja Korporat, Pasukan Pengurusan, Eksekutif QA & Kohort Bengkel CSR Universiti'
     },
     outcomes: {
       en: [
@@ -518,8 +1050,8 @@ export const COURSES = [
       ms: 'Wujudkan tadbir urus risiko AI perusahaan, ketelusan model, perlindungan privasi data, serta penjajaran bersama kawalan ISO/IEC 27001.'
     },
     audience: {
-      en: 'Management Teams, Corporate Tech Employees & Final-Year CS/AI Students',
-      ms: 'Pasukan Pengurusan, Pekerja Teknologi Korporat & Pelajar Tahun Akhir Sains Komputer/AI'
+      en: 'Management Teams, Corporate Tech Employees & CSR University Workshop Cohorts',
+      ms: 'Pasukan Pengurusan, Pekerja Teknologi Korporat & Kohort Bengkel CSR Universiti'
     },
     outcomes: {
       en: [
@@ -564,8 +1096,8 @@ export const COURSES = [
       ms: 'Integrasikan pengurusan SLA selaras ITIL, kawalan insiden/perubahan, dan kawalan keselamatan awan ISO 27017 untuk meja perkhidmatan IT dan MSP.'
     },
     audience: {
-      en: 'Corporate IT Employees, Service Managers, Cloud Engineers & Final-Year IT Students',
-      ms: 'Pekerja IT Korporat, Pengurus Perkhidmatan, Jurutera Awan & Pelajar Tahun Akhir IT'
+      en: 'Corporate IT Employees, Service Managers, Cloud Engineers & CSR University Workshop Cohorts',
+      ms: 'Pekerja IT Korporat, Pengurus Perkhidmatan, Jurutera Awan & Kohort Bengkel CSR Universiti'
     },
     outcomes: {
       en: [
@@ -612,8 +1144,8 @@ export const COURSES = [
       ms: 'Lengkapkan ketua teknikal dan pengurus untuk menyampaikan projek transformasi kompleks mengikut masa, bajet, dan patuh jejak audit ISO.'
     },
     audience: {
-      en: 'Management Teams, Project Leads, Corporate Employees & Final-Year University Cohorts',
-      ms: 'Pasukan Pengurusan, Ketua Projek, Pekerja Korporat & Kohort Universiti Tahun Akhir'
+      en: 'Management Teams, Project Leads, Corporate Employees & CSR University Workshop Cohorts',
+      ms: 'Pasukan Pengurusan, Ketua Projek, Pekerja Korporat & Kohort Bengkel CSR Universiti'
     },
     outcomes: {
       en: [
@@ -800,14 +1332,14 @@ export const SERVICES = [
 export const PDCA_ROADMAP = [
   {
     step: '01',
-    phase: { en: 'PLAN • Month 1', ms: 'RANCANG • Bulan 1' },
+    phase: { en: 'PLAN • Phase 1', ms: 'RANCANG • Fasa 1' },
     title: {
       en: 'Diagnostic Gap Analysis & Executive Charter',
       ms: 'Analisis Jurang Diagnostik & Piagam Eksekutif'
     },
     summary: {
-      en: 'We benchmark your current operations, IT infrastructure, and policies against exact ISO clauses, establishing a clear project scope, risk appetite, and certification timeline.',
-      ms: 'Kami menanda aras operasi semasa, infrastruktur IT, dan polisi anda berbanding klausa ISO yang tepat, menetapkan skop projek dan garis masa pensijilan yang jelas.'
+      en: 'We benchmark your current operations, IT infrastructure, and policies against exact ISO clauses, establishing a clear project scope, risk appetite, and certification roadmap.',
+      ms: 'Kami menanda aras operasi semasa, infrastruktur IT, dan polisi anda berbanding klausa ISO yang tepat, menetapkan skop projek dan pelan fasa pensijilan yang jelas.'
     },
     deliverables: {
       en: ['Baseline Gap Matrix', 'ISMS/QMS Scope Statement', 'Executive Steering Kickoff'],
@@ -816,7 +1348,7 @@ export const PDCA_ROADMAP = [
   },
   {
     step: '02',
-    phase: { en: 'DO • Months 2–3', ms: 'LAKSANAKAN • Bulan 2–3' },
+    phase: { en: 'DO • Phase 2', ms: 'LAKSANAKAN • Fasa 2' },
     title: {
       en: 'Capability Training & System Architecture',
       ms: 'Latihan Keupayaan & Seni Bina Sistem'
@@ -832,7 +1364,7 @@ export const PDCA_ROADMAP = [
   },
   {
     step: '03',
-    phase: { en: 'CHECK • Month 4', ms: 'SEMAK • Bulan 4' },
+    phase: { en: 'CHECK • Phase 3', ms: 'SEMAK • Fasa 3' },
     title: {
       en: 'Internal Audit, Stress Testing & Management Review',
       ms: 'Audit Dalaman, Ujian Tekanan & Semakan Pengurusan'
@@ -848,7 +1380,7 @@ export const PDCA_ROADMAP = [
   },
   {
     step: '04',
-    phase: { en: 'ACT • Month 5+', ms: 'TINDAKAN • Bulan 5+' },
+    phase: { en: 'ACT • Phase 4', ms: 'TINDAKAN • Fasa 4' },
     title: {
       en: 'External Certification Audit & Continuous Mastery',
       ms: 'Audit Pensijilan Luaran & Penguasaan Berterusan'
@@ -858,173 +1390,233 @@ export const PDCA_ROADMAP = [
       ms: 'Sokongan nasihat penuh semasa audit Badan Pensijilan Peringkat 1 & 2, diikuti kesediaan pengawasan tahunan dan peningkatan kemahiran tenaga kerja berterusan.'
     },
     deliverables: {
-      en: ['Stage 1 & 2 Audit Support', 'ISO Certificate Attainment', 'Annual Surveillance Roadmap'],
-      ms: ['Sokongan Audit Peringkat 1 & 2', 'Pencapaian Sijil ISO', 'Pelan Pengawasan Tahunan']
+      en: ['Stage 1 & 2 Audit Support', 'ISO Certification Sign-Off', 'Annual Surveillance Roadmap'],
+      ms: ['Sokongan Audit Peringkat 1 & 2', 'Kelulusan Pensijilan ISO', 'Pelan Pengawasan Tahunan']
     }
   }
 ];
 
-export const CERTIFICATES = [
-  {
-    certNo: 'CSD-2026-88412',
-    holder: 'Nurul Huda binti Razak',
-    organization: 'Aegis FinTech Malaysia Sdn Bhd',
-    audienceType: { en: 'Corporate Employee', ms: 'Pekerja Korporat' },
-    courseCode: 'CS-27001-LI',
-    courseTitle: {
-      en: 'ISO/IEC 27001:2022 ISMS Lead Implementer Workshop',
-      ms: 'Bengkel Pelaksana Utama ISMS ISO/IEC 27001:2022'
-    },
-    hours: { en: '28 Training Hours', ms: '28 Jam Latihan' },
-    issueDate: { en: '16 Oct 2026', ms: '16 Okt 2026' },
-    status: { en: 'Verified Active', ms: 'Disahkan Aktif' }
-  },
-  {
-    certNo: 'CSD-2026-88419',
-    holder: 'Daniel Tan Wei Ming',
-    organization: 'Meridian Precision Manufacturing Bhd',
-    audienceType: { en: 'Management Team', ms: 'Pasukan Pengurusan' },
-    courseCode: 'CS-9001-IA',
-    courseTitle: {
-      en: 'ISO 9001:2015 QMS Process-Based Internal Auditor',
-      ms: 'Juruaudit Dalaman Berasaskan Proses QMS ISO 9001:2015'
-    },
-    hours: { en: '14 Training Hours', ms: '14 Jam Latihan' },
-    issueDate: { en: '23 Oct 2026', ms: '23 Okt 2026' },
-    status: { en: 'Verified Active', ms: 'Disahkan Aktif' }
-  },
-  {
-    certNo: 'CSD-2026-88504',
-    holder: 'Aina Sofea binti Kamaruddin',
-    organization: 'Universiti Teknologi Malaysia (Final-Year Cohort)',
-    audienceType: { en: 'Final-Year Student', ms: 'Pelajar Tahun Akhir' },
-    courseCode: 'CS-42001-AI',
-    courseTitle: {
-      en: 'ISO/IEC 42001 AI & Cyber Governance Readiness Workshop',
-      ms: 'Bengkel Kesediaan Tadbir Urus AI & Siber ISO/IEC 42001'
-    },
-    hours: { en: '14 Training Hours', ms: '14 Jam Latihan' },
-    issueDate: { en: '04 Nov 2026', ms: '04 Nov 2026' },
-    status: { en: 'Verified Active', ms: 'Disahkan Aktif' }
-  },
-  {
-    certNo: 'CSD-2026-88601',
-    holder: 'Arvindran s/o Subramaniam',
-    organization: 'Klang Valley Logistics & Energy Group',
-    audienceType: { en: 'Management Team', ms: 'Pasukan Pengurusan' },
-    courseCode: 'CS-22301-LI',
-    courseTitle: {
-      en: 'ISO 22301:2019 BCMS & Crisis Simulation Workshop',
-      ms: 'Bengkel BCMS ISO 22301:2019 & Simulasi Krisis'
-    },
-    hours: { en: '21 Training Hours', ms: '21 Jam Latihan' },
-    issueDate: { en: '11 Nov 2026', ms: '11 Nov 2026' },
-    status: { en: 'Verified Active', ms: 'Disahkan Aktif' }
-  }
-];
-//export const bullentins = [what does it do ]
 export const BULLETINS = [
   {
-    id: 'bul-2026-11-kl',
-    date: { en: '12 Nov 2026', ms: '12 Nov 2026' },
-    category: 'in-house',
-    categoryLabel: { en: 'In-House Training', ms: 'Latihan Dalaman' },
-    hoursLogged: { en: '+420 Training Hours Logged', ms: '+420 Jam Latihan Direkodkan' },
+    id: 'bul-2026-11-consultancy',
+    date: { en: '14 Nov 2026', ms: '14 Nov 2026' },
+    category: 'consultancy',
+    topics: ['iso-management-system', 'hr-management-customer-service', 'corporate-branding-business-strategy'],
+    categoryLabel: { en: 'Consultancy', ms: 'Perundingan' },
+    highlightBadge: { en: 'Consultancy & Advisory', ms: 'Perundingan & Penasihat' },
     title: {
-      en: 'In-House ISO/IEC 27001:2022 Cohort Completed for Kuala Lumpur FinTech Group',
-      ms: 'Kohort Latihan Dalaman ISO/IEC 27001:2022 Selesai untuk Kumpulan FinTech Kuala Lumpur'
+      en: 'ISO Management System, HR Management & Corporate Strategy Advisory Rollout',
+      ms: 'Pelancaran Perundingan Sistem Pengurusan ISO, Pengurusan HR & Strategi Korporat'
     },
     summary: {
-      en: '15 corporate employees and IT security leads completed 28 hours of hands-on SoA mapping using Core Synergy provided slide decks, with all participants receiving tracked completion certificates.',
-      ms: '15 pekerja korporat dan ketua keselamatan IT melengkapkan 28 jam pemetaan SoA praktikal menggunakan slaid latihan Core Synergy, bersama sijil penjejakan rasmi.'
+      en: 'COSYNERGY DYNAMICS SDN. BHD. completed Phase 1–4 advisory blueprints covering ISO Management Systems, HR Management and Customer Service frameworks, and Corporate Branding and Business Strategy for Malaysian enterprises.',
+      ms: 'COSYNERGY DYNAMICS SDN. BHD. melengkapkan pelan perundingan Fasa 1–4 merangkumi Sistem Pengurusan ISO, Pengurusan HR dan Khidmat Pelanggan, serta Penjenamaan Korporat dan Strategi Perniagaan.'
+    },
+    ctaText: { en: 'Inquire About Consultancy', ms: 'Mohon Sesi Perundingan' },
+    ctaHref: 'contact.html?course=Consultancy+Services#corporate-enquiry-form'
+  },
+  {
+    id: 'bul-2026-11-digitalization',
+    date: { en: '12 Nov 2026', ms: '12 Nov 2026' },
+    category: 'digitalization',
+    topics: ['business-process-digitalization', 'microsoft-application', 'supply-chain-management'],
+    categoryLabel: { en: 'Digitalization', ms: 'Pendigitalan' },
+    highlightBadge: { en: 'Business Process Digitalization', ms: 'Pendigitalan Proses Perniagaan' },
+    title: {
+      en: 'Business Process Digitalization & Automated PDCA Workflow Architecture',
+      ms: 'Pendigitalan Proses Perniagaan & Seni Bina Aliran Kerja PDCA Automatik'
+    },
+    summary: {
+      en: 'Enterprise teams transitioned from manual binders and fragmented spreadsheets to cloud-ready Business Process Digitalization—streamlining SOP governance, KPI reporting, and cross-department approval workflows.',
+      ms: 'Pasukan korporat beralih daripada fail manual kepada Pendigitalan Proses Perniagaan sedia awan—menyelaraskan tadbir urus SOP, pelaporan KPI, dan kelulusan rentas jabatan.'
+    },
+    ctaText: { en: 'Explore Digitalization Scope', ms: 'Terokai Skop Pendigitalan' },
+    ctaHref: 'contact.html?course=Business+Process+Digitalization#corporate-enquiry-form'
+  },
+  {
+    id: 'bul-2026-11-kl',
+    date: { en: '09 Nov 2026', ms: '09 Nov 2026' },
+    category: 'training',
+    topics: ['cyber-security-training', 'certification-program-series', 'project-management', 'engineering-technical-and-maintenance', 'safety-and-health'],
+    categoryLabel: { en: 'Training Services', ms: 'Perkhidmatan Latihan' },
+    highlightBadge: { en: 'Technical & Certification Series', ms: 'Siri Teknikal & Pensijilan' },
+    title: {
+      en: 'Cyber Security, Project Management, Safety & Engineering Technical Training Cohorts',
+      ms: 'Kohort Latihan Keselamatan Siber, Pengurusan Projek, Keselamatan & Teknikal Kejuruteraan'
+    },
+    summary: {
+      en: 'Corporate employees and technical leads completed intensive hands-on sessions across Cyber Security Training, Certification Program Series, Safety and Health, and Engineering, Technical and Maintenance using COSYNERGY DYNAMICS SDN. BHD. toolkits.',
+      ms: 'Pekerja korporat dan ketua teknikal melengkapkan sesi intensif merangkumi Latihan Keselamatan Siber, Siri Program Pensijilan, Keselamatan dan Kesihatan, serta Kejuruteraan, Teknikal dan Penyelenggaraan.'
     },
     ctaText: { en: 'Request In-House Cohort', ms: 'Mohon Kohort Dalaman' },
-    ctaHref: 'contact.html?course=ISO%2FIEC%2027001%3A2022#corporate-enquiry-form'
+    ctaHref: 'contact.html?course=Training+Services#corporate-enquiry-form'
   },
   {
     id: 'bul-2026-11-student',
     date: { en: '06 Nov 2026', ms: '06 Nov 2026' },
-    category: 'student',
-    categoryLabel: { en: 'Final-Year Students', ms: 'Pelajar Tahun Akhir' },
-    hoursLogged: { en: '+630 Training Hours Logged', ms: '+630 Jam Latihan Direkodkan' },
+    category: 'csr',
+    topics: ['grooming', 'communication-skills', 'personal-effectiveness', 'team-building'],
+    categoryLabel: { en: 'CSR University Workshops', ms: 'Bengkel CSR Universiti' },
+    highlightBadge: { en: 'University CSR Collaboration', ms: 'Kerjasama CSR Universiti' },
     title: {
-      en: 'Final-Year Engineering & IT Career Readiness Workshop Across Johor Bahru Campuses',
-      ms: 'Bengkel Kesediaan Kerjaya Pelajar Tahun Akhir Kejuruteraan & IT di Kampus Johor Bahru'
+      en: 'CSR Workshops - Collaborating With Universities on Career, Grooming & ISO Readiness',
+      ms: 'Bengkel CSR - Kerjasama Dengan Universiti untuk Kesediaan Kerjaya, Penampilan & ISO'
     },
     summary: {
-      en: '45 final-year students completed our industry ISO 9001 & AI governance workshop with complete take-home slide decks and verified tracking certificate numbers (CSD-2026-885xx).',
-      ms: '45 pelajar tahun akhir melengkapkan bengkel industri ISO 9001 & tadbir urus AI lengkap dengan slaid rujukan dan nombor penjejakan sijil disahkan.'
+      en: 'Through our CSR Workshops collaborating with universities, graduating cohorts completed industry-bridging workshops covering Grooming, Communication Skills, Personal Effectiveness, and ISO quality systems.',
+      ms: 'Melalui Bengkel CSR kerjasama dengan universiti, kohort universiti melengkapkan bengkel persediaan industri merangkumi Penampilan Diri, Kemahiran Komunikasi, Keberkesanan Diri, dan sistem kualiti ISO.'
     },
-    ctaText: { en: 'Book Campus Workshop', ms: 'Tempah Bengkel Kampus' },
-    ctaHref: 'contact.html?course=Final-Year+Student+Workshop#corporate-enquiry-form'
+    ctaText: { en: 'Collaborate on CSR Workshop', ms: 'Kerjasama Bengkel CSR' },
+    ctaHref: 'contact.html?course=CSR+Workshops+-+Collaborating+With+Universities#corporate-enquiry-form'
   },
   {
     id: 'bul-2026-10-workshop',
     date: { en: '28 Oct 2026', ms: '28 Okt 2026' },
-    category: 'workshop',
-    categoryLabel: { en: 'Corporate Workshop', ms: 'Bengkel Korporat' },
-    hoursLogged: { en: '+350 Training Hours Logged', ms: '+350 Jam Latihan Direkodkan' },
+    category: 'training',
+    topics: ['corporate-leadership', 'management-and-supervisory', 'human-resource-and-legal', 'finance-and-accounting'],
+    categoryLabel: { en: 'Training Services', ms: 'Perkhidmatan Latihan' },
+    highlightBadge: { en: 'Leadership & Governance', ms: 'Kepimpinan & Tadbir Urus' },
     title: {
-      en: 'Penang & KL Executive Management Workshop: Clause 5 Leadership & Risk Governance',
-      ms: 'Bengkel Pengurusan Eksekutif Pulau Pinang & KL: Kepimpinan Klausa 5 & Tadbir Urus Risiko'
+      en: 'Corporate Leadership, Management & Supervisory, HR Legal and Finance Workshops',
+      ms: 'Bengkel Kepimpinan Korporat, Pengurusan & Penyeliaan, HR Perundangan dan Kewangan'
     },
     summary: {
-      en: '25 department heads and management team members completed our 14-hour corporate workshop covering Management Review KPIs, MACC Section 17A, and practical audit defense.',
-      ms: '25 ketua jabatan dan pasukan pengurusan melengkapkan bengkel korporat 14 jam merangkumi KPI Semakan Pengurusan, Seksyen 17A SPRM, dan pertahanan audit.'
+      en: 'Department heads and management teams completed our multi-track executive series covering Corporate Leadership, Management and Supervisory excellence, Human Resource and Legal compliance, and Finance and Accounting governance.',
+      ms: 'Ketua jabatan dan pasukan pengurusan melengkapkan siri eksekutif merangkumi Kepimpinan Korporat, Pengurusan dan Penyeliaan, Sumber Manusia dan Perundangan, serta Kewangan dan Perakaunan.'
     },
     ctaText: { en: 'Fill Out Inquiry Form', ms: 'Isi Borang Pertanyaan' },
     ctaHref: 'contact.html#corporate-enquiry-form'
   },
   {
-    id: 'bul-2026-10-cert',
+    id: 'bul-2026-10-commercial',
     date: { en: '18 Oct 2026', ms: '18 Okt 2026' },
-    category: 'certificate',
-    categoryLabel: { en: 'Certificate Registry', ms: 'Pendaftaran Sijil' },
-    hoursLogged: { en: '14,800+ Cumulative Hours', ms: '14,800+ Jam Kumulatif' },
+    category: 'training',
+    topics: ['customer-service', 'sales-and-marketing', 'team-building', 'grooming', 'communication-skills'],
+    categoryLabel: { en: 'Training Services', ms: 'Perkhidmatan Latihan' },
+    highlightBadge: { en: 'Commercial & People Excellence', ms: 'Kecemerlangan Komersial & Insan' },
     title: {
-      en: 'Q4 2026 Certificate Tracking Batch Published & Slide Deck Edition 4.2 Released',
-      ms: 'Kumpulan Penjejakan Sijil Suku 4 2026 Diterbitkan & Slaid Latihan Edisi 4.2 Dilancarkan'
+      en: 'Customer Service, Sales & Marketing, Team Building and Professional Grooming Tracks',
+      ms: 'Laluan Khidmat Pelanggan, Jualan & Pemasaran, Pembinaan Pasukan dan Penampilan Profesional'
     },
     summary: {
-      en: 'All Q4 corporate workshop and in-house graduates can now verify their CSD-2026 tracking certificate numbers online. Updated printed & digital slide decks are included for upcoming cohorts.',
-      ms: 'Semua peserta bengkel korporat dan dalaman Suku 4 kini boleh menyemak nombor sijil CSD-2026 secara dalam talian. Slaid latihan terkini disertakan untuk kohort seterusnya.'
-    },
-    ctaText: { en: 'Verify Certificate Number', ms: 'Semak Nombor Sijil' },
-    ctaHref: '#certificate-tracker'
-  },
-  {
-    id: 'bul-2026-09-bcms',
-    date: { en: '22 Sep 2026', ms: '22 Sep 2026' },
-    category: 'in-house',
-    categoryLabel: { en: 'In-House Training', ms: 'Latihan Dalaman' },
-    hoursLogged: { en: '+378 Training Hours Logged', ms: '+378 Jam Latihan Direkodkan' },
-    title: {
-      en: 'Logistics & Energy Crisis Simulation In-House Training Surpasses 99% Audit Readiness',
-      ms: 'Latihan Dalaman Simulasi Krisis Logistik & Tenaga Mencapai 99% Kesediaan Audit'
-    },
-    summary: {
-      en: '18 management and operations employees completed 21 hours of ISO 22301 Business Continuity tabletop drills on-site with tailored slide playbooks.',
-      ms: '18 pekerja operasi dan pengurusan melengkapkan 21 jam latihan meja Kesinambungan Perniagaan ISO 22301 di premis bersama buku panduan slaid khusus.'
+      en: 'Frontline and commercial divisions across Kuala Lumpur, Penang, and Johor Bahru completed interactive workshops in Customer Service excellence, high-conversion Sales and Marketing, Team Building, and executive Grooming.',
+      ms: 'Bahagian barisan hadapan dan komersial di Kuala Lumpur, Pulau Pinang, dan Johor Bahru melengkapkan bengkel interaktif Khidmat Pelanggan, Jualan dan Pemasaran, Pembinaan Pasukan, serta Penampilan Diri.'
     },
     ctaText: { en: 'Inquire for Your Team', ms: 'Mohon Untuk Pasukan Anda' },
-    ctaHref: 'contact.html?course=ISO%2022301%3A2019#corporate-enquiry-form'
+    ctaHref: 'contact.html?course=Training+Services#corporate-enquiry-form'
+  }
+];
+
+export const TEAM_MEMBERS = [
+  {
+    id: 'ceo',
+    name: 'CEO',
+    role: {
+      en: 'Chief Executive Officer',
+      ms: 'Ketua Pegawai Eksekutif'
+    },
+    credential: {
+      en: 'Executive Leadership • Corporate Strategy & ISO Governance',
+      ms: 'Kepimpinan Eksekutif • Strategi Korporat & Tadbir Urus ISO'
+    },
+    image: 'assets/CEO.webp',
+    bio: {
+      en: 'Leads COSYNERGY DYNAMICS SDN. BHD.’s strategic vision across ISO management system consultancy, business process digitalization, and nationwide corporate training programmes.',
+      ms: 'Menerajui visi strategik COSYNERGY DYNAMICS SDN. BHD. merentasi perundingan sistem pengurusan ISO, pendigitalan proses perniagaan, dan program latihan korporat seluruh negara.'
+    },
+    specialties: {
+      en: ['Corporate Branding & Business Strategy', 'ISO Management Systems', 'Corporate Leadership'],
+      ms: ['Penjenamaan Korporat & Strategi Perniagaan', 'Sistem Pengurusan ISO', 'Kepimpinan Korporat']
+    },
+    catalogLink: 'training.html?category=corporate-leadership'
   },
   {
-    id: 'bul-2026-09-roadmap',
-    date: { en: '10 Sep 2026', ms: '10 Sep 2026' },
-    category: 'workshop',
-    categoryLabel: { en: '2026 Schedule & Advisory', ms: 'Jadual 2026 & Penasihat' },
-    hoursLogged: { en: 'Direct Corporate Booking', ms: 'Tempahan Korporat Terus' },
-    title: {
-      en: '2026 In-House & Corporate Workshop Slots Open — Direct Inquiry Desk Active',
-      ms: 'Slot Latihan Dalaman & Bengkel Korporat 2026 Dibuka — Meja Pertanyaan Terus Aktif'
+    id: 'cfo',
+    name: 'CFO',
+    role: {
+      en: 'Chief Financial Officer',
+      ms: 'Ketua Pegawai Kewangan'
     },
-    summary: {
-      en: 'While self-serve online course checkout is currently in planning, organizations and universities can reserve all 2026 cohorts directly through our corporate inquiry form.',
-      ms: 'Sementara pembelian kursus dalam talian sedang dalam perancangan, organisasi dan universiti boleh menempah kesemua kohort 2026 terus melalui borang pertanyaan kami.'
+    credential: {
+      en: 'Corporate Finance • Risk Governance & Commercial Advisory',
+      ms: 'Kewangan Korporat • Tadbir Urus Risiko & Penasihat Komersial'
     },
-    ctaText: { en: 'Go to Inquiry Form', ms: 'Ke Borang Pertanyaan' },
-    ctaHref: 'contact.html#corporate-enquiry-form'
+    image: 'assets/CFO.webp',
+    bio: {
+      en: 'Oversees financial governance, enterprise risk management, commercial budgeting, and financial compliance training frameworks for corporate and public-sector clients.',
+      ms: 'Menyelia tadbir urus kewangan, pengurusan risiko perusahaan, belanjawan komersial, dan rangka kerja latihan pematuhan kewangan untuk pelanggan korporat dan sektor awam.'
+    },
+    specialties: {
+      en: ['Finance & Accounting', 'Cost Control & Financial Reporting', 'Risk Governance'],
+      ms: ['Kewangan & Perakaunan', 'Kawalan Kos & Pelaporan Kewangan', 'Tadbir Urus Risiko']
+    },
+    catalogLink: 'training.html?category=organizational-effectiveness'
+  },
+  {
+    id: 'coo',
+    name: 'COO',
+    role: {
+      en: 'Chief Operating Officer',
+      ms: 'Ketua Pegawai Operasi'
+    },
+    credential: {
+      en: 'Operational Excellence • Process Digitalization & Quality Systems',
+      ms: 'Kecemerlangan Operasi • Pendigitalan Proses & Sistem Kualiti'
+    },
+    image: 'assets/COO.webp',
+    bio: {
+      en: 'Directs end-to-end operational delivery, business process digitalization, PDCA implementation roadmaps, and quality management execution across client engagements.',
+      ms: 'Mengarahkan penyampaian operasi menyeluruh, pendigitalan proses perniagaan, pelan pelaksanaan PDCA, dan pelaksanaan pengurusan kualiti merentasi projek pelanggan.'
+    },
+    specialties: {
+      en: ['Business Process Digitalization', 'Organizational Effectiveness', 'ISO Training & Audits'],
+      ms: ['Pendigitalan Proses Perniagaan', 'Keberkesanan Organisasi', 'Latihan & Audit ISO']
+    },
+    catalogLink: 'training.html?category=iso-training'
+  },
+  {
+    id: 'cpo',
+    name: 'CPO',
+    role: {
+      en: 'Chief People Officer',
+      ms: 'Ketua Pegawai Modal Insan'
+    },
+    credential: {
+      en: 'Human Capital Strategy • HR Consultancy & Communication Mastery',
+      ms: 'Strategi Modal Insan • Perundingan HR & Penguasaan Komunikasi'
+    },
+    image: 'assets/CPO.webp',
+    bio: {
+      en: 'Spearheads HR management and customer service consultancy, leadership coaching, interpersonal communication skills, and personal effectiveness transformations.',
+      ms: 'Menerajui perundingan pengurusan HR dan khidmat pelanggan, bimbingan kepimpinan, kemahiran komunikasi interpersonal, serta transformasi keberkesanan diri.'
+    },
+    specialties: {
+      en: ['HR Management & Customer Service', 'Communication Skills', 'Personal Effectiveness'],
+      ms: ['Pengurusan HR & Khidmat Pelanggan', 'Kemahiran Komunikasi', 'Keberkesanan Diri']
+    },
+    catalogLink: 'training.html?category=personal-effectiveness'
+  },
+  {
+    id: 'bdm',
+    name: 'BDM',
+    role: {
+      en: 'Business Development Manager',
+      ms: 'Pengurus Pembangunan Perniagaan'
+    },
+    credential: {
+      en: 'Client Partnerships • HRD Corp Advisory & CSR University Collaborations',
+      ms: 'Kerjasama Pelanggan • Penasihat HRD Corp & Kerjasama CSR Universiti'
+    },
+    image: 'assets/BDM.jpg',
+    bio: {
+      en: 'Drives strategic corporate partnerships, tailored in-house training scoping, HRD Corp grant facilitation, and CSR workshops collaborating with universities across Malaysia.',
+      ms: 'Memacu kerjasama korporat strategik, penyesuaian skop latihan dalaman, fasilitasi geran HRD Corp, serta bengkel CSR kerjasama dengan universiti di seluruh Malaysia.'
+    },
+    specialties: {
+      en: ['Sales & Marketing', 'Customer Service Excellence', 'CSR University Workshops'],
+      ms: ['Jualan & Pemasaran', 'Kecemerlangan Khidmat Pelanggan', 'Bengkel CSR Universiti']
+    },
+    catalogLink: 'training.html?category=communication-skills'
   }
 ];
 
@@ -1035,18 +1627,8 @@ export const FAQS = [
       ms: 'Bagaimanakah peserta mengakses nota, slaid dan bahan latihan?'
     },
     a: {
-      en: 'No external LMS or student portal login is required. Core Synergy provides curated presentation slide decks, audit checklists, and practical workshop templates directly to every participant during the in-house training or corporate workshop.',
-      ms: 'Tiada log masuk LMS atau portal pelajar diperlukan. Core Synergy menyediakan slaid pembentangan tersusun, senarai semak audit, dan templat bengkel praktikal secara terus kepada setiap peserta semasa latihan dalaman atau bengkel korporat.'
-    }
-  },
-  {
-    q: {
-      en: 'Do participants receive a certificate and how can the certificate number be tracked?',
-      ms: 'Adakah peserta menerima sijil dan bagaimanakah nombor sijil boleh dijejaki?'
-    },
-    a: {
-      en: 'Yes. Every graduate of our in-house trainings and corporate or final-year student workshops receives an official completion certificate bearing a unique Tracking Certificate Number (e.g., CSD-2026-88412) and logged training hours, verifiable on our Certificate Tracker.',
-      ms: 'Ya. Setiap graduan latihan dalaman serta bengkel korporat atau pelajar tahun akhir menerima sijil tamat latihan rasmi dengan Nombor Penjejakan Sijil unik (cth. CSD-2026-88412) dan jumlah jam latihan yang boleh disahkan melalui Penjejak Sijil kami.'
+      en: 'No external LMS or student portal login is required. COSYNERGY DYNAMICS SDN. BHD. provides curated presentation slide decks, audit checklists, and practical workshop templates directly to every participant during the in-house training or corporate workshop.',
+      ms: 'Tiada log masuk LMS atau portal pelajar diperlukan. COSYNERGY DYNAMICS SDN. BHD. menyediakan slaid pembentangan tersusun, senarai semak audit, dan templat bengkel praktikal secara terus kepada setiap peserta semasa latihan dalaman atau bengkel korporat.'
     }
   },
   {
@@ -1055,19 +1637,20 @@ export const FAQS = [
       ms: 'Bolehkah kami membeli kursus terus secara dalam talian atau melalui borang pertanyaan?'
     },
     a: {
-      en: 'Direct online e-commerce checkout is in planning for future rollout. Currently, all corporate employee cohorts, management workshops, and final-year student programs are scheduled through our quick Corporate Inquiry Form—with quotations and HRD Corp SBL-Khas documentation sent within 4 business hours.',
-      ms: 'Pembelian dalam talian secara terus sedang dalam perancangan masa hadapan. Buat masa ini, semua kohort pekerja korporat, bengkel pengurusan, dan program pelajar tahun akhir ditempah melalui Borang Pertanyaan kami—dengan sebut harga dan dokumentasi HRD Corp SBL-Khas dihantar dalam 4 jam bekerja.'
+      en: 'Direct online e-commerce checkout is in planning for future rollout. Currently, all corporate employee cohorts, management workshops, consultancy engagements, and CSR university programs are scheduled through our quick Corporate Inquiry Form—with quotations and HRD Corp SBL-Khas documentation sent within 4 business hours.',
+      ms: 'Pembelian dalam talian secara terus sedang dalam perancangan masa hadapan. Buat masa ini, semua kohort pekerja korporat, bengkel pengurusan, perundingan, dan program CSR universiti ditempah melalui Borang Pertanyaan kami—dengan sebut harga dan dokumentasi HRD Corp SBL-Khas dihantar dalam 4 jam bekerja.'
     }
   },
   {
     q: {
-      en: 'Who are your programs designed for—corporate staff, management, or final-year students?',
-      ms: 'Untuk siapakah program latihan anda direka—pekerja korporat, pengurusan atau pelajar tahun akhir?'
+      en: 'Who are your programs designed for—corporate staff, management, or university CSR collaborations?',
+      ms: 'Untuk siapakah program latihan anda direka—pekerja korporat, pengurusan atau kerjasama CSR universiti?'
     },
     a: {
-      en: 'We tailor each session across three core groups: Corporate Employees (operational SOPs, QA, cybersecurity & internal audit), Management Teams (ISO leadership, risk & Section 17A governance), and Final-Year Students (industry-ready ISO, quality & AI career transition workshops).',
-      ms: 'Kami menyesuaikan setiap sesi untuk tiga kumpulan utama: Pekerja Korporat (SOP operasi, QA, keselamatan siber & audit dalaman), Pasukan Pengurusan (kepimpinan ISO, risiko & tadbir urus Seksyen 17A), serta Pelajar Tahun Akhir (bengkel kesediaan kerjaya ISO, kualiti & AI).'
+      en: 'We tailor each session across three core groups: Corporate Employees (operational SOPs, QA, cybersecurity & internal audit), Management Teams (ISO leadership, risk & Section 17A governance), and CSR Workshops - Collaborating With Universities (industry-ready career, leadership, and ISO transition workshops).',
+      ms: 'Kami menyesuaikan setiap sesi untuk tiga kumpulan utama: Pekerja Korporat (SOP operasi, QA, keselamatan siber & audit dalaman), Pasukan Pengurusan (kepimpinan ISO, risiko & tadbir urus Seksyen 17A), serta Bengkel CSR - Kerjasama Dengan Universiti (bengkel kesediaan kerjaya, kepimpinan & ISO).'
     }
   }
 ];
+
 

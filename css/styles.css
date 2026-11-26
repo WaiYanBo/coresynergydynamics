@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Core Synergy Sdn Bhd — Design System & Responsive Stylesheet
+   COSYNERGY DYNAMICS SDN. BHD. — Design System & Responsive Stylesheet
    Brand Palette:
      Light Purple: #a25ab6
      Dark Purple:  #622b72
@@ -238,7 +238,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 7rem;
+  scroll-padding-top: calc(7.5rem + env(safe-area-inset-top, 0px));
   font-size: 16px;
 }
 
@@ -365,8 +365,15 @@ a {
    Layout Container & Utilities
    ========================================================================== */
 
+:where(a, code) {
+  overflow-wrap: anywhere;
+}
+
 .container {
-  inline-size: min(100% - 2rem, var(--container-max));
+  inline-size: min(
+    100% - max(2rem, env(safe-area-inset-left, 0px) + env(safe-area-inset-right, 0px) + 1.5rem),
+    var(--container-max)
+  );
   margin-inline: auto;
 }
 
@@ -412,12 +419,12 @@ a {
 }
 
 .section-title {
-  font-size: clamp(1.65rem, 3.2vw, 2.5rem);
+  font-size: clamp(1.55rem, 1.1rem + 1.8vw, 2.5rem);
   font-weight: 800;
 }
 
 .section-desc {
-  font-size: clamp(0.975rem, 1.3vw, 1.1rem);
+  font-size: clamp(0.95rem, 0.85rem + 0.4vw, 1.1rem);
   color: var(--text-muted);
 }
 
@@ -805,21 +812,31 @@ a {
   justify-content: center;
 }
 
+@media (max-width: 1160px) {
+  .nav-cta-desktop {
+    display: none;
+  }
+  .nav-link {
+    padding: 0.4rem 0.62rem;
+    font-size: 0.86rem;
+  }
+}
+
 @media (max-width: 960px) {
   .menu-toggle {
     display: inline-flex;
-  }
-  .nav-cta-desktop {
-    display: none;
   }
   .primary-nav {
     display: none;
     position: absolute;
     inset-block-start: 100%;
     inset-inline: 0;
+    max-block-size: calc(100dvh - 4.5rem - env(safe-area-inset-top, 0px));
+    overflow-y: auto;
+    overscroll-behavior: contain;
     background-color: var(--bg-surface);
     border-block-end: 1px solid var(--border-strong);
-    padding: 1rem;
+    padding: 1rem max(1rem, env(safe-area-inset-left, 0px)) max(1rem, env(safe-area-inset-bottom, 0px)) max(1rem, env(safe-area-inset-right, 0px));
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
   }
   .site-header.menu-open .primary-nav {
@@ -832,6 +849,7 @@ a {
   .nav-link {
     justify-content: flex-start;
     padding: 0.75rem 1rem;
+    font-size: 0.95rem;
     inline-size: 100%;
   }
 }
@@ -847,10 +865,11 @@ a {
 
 .hero-banner {
   position: relative;
-  min-block-size: clamp(38rem, 84dvh, 53rem);
+  min-block-size: 100vh;
+  min-block-size: 100dvh;
   display: grid;
   align-items: center;
-  padding-block: calc(6.75rem + clamp(2rem, 4vw, 3.5rem)) clamp(2.5rem, 5vw, 4.25rem);
+  padding-block: calc(6.75rem + clamp(2rem, 4vw, 3.5rem)) clamp(2.5rem, 5vw, 4rem);
   overflow: hidden;
   background-color: #241b2b;
   color: #f7f5f9;
@@ -874,8 +893,8 @@ a {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 82% 24%, rgba(255, 255, 255, 0.14), rgba(174, 108, 192, 0.28) 45%, transparent 68%),
-    linear-gradient(100deg, rgba(32, 23, 40, 0.88) 0%, rgba(50, 35, 62, 0.78) 54%, rgba(72, 58, 82, 0.64) 100%);
+    radial-gradient(circle at 22% 32%, rgba(210, 198, 224, 0.28), rgba(162, 90, 182, 0.22) 45%, transparent 72%),
+    linear-gradient(105deg, rgba(44, 34, 54, 0.84) 0%, rgba(58, 46, 70, 0.76) 54%, rgba(42, 43, 46, 0.72) 100%);
 }
 
 .hero-grid {
@@ -898,25 +917,73 @@ a {
   align-items: center;
   gap: 0.5rem;
   inline-size: fit-content;
-  padding: 0.38rem 0.85rem;
+  padding: 0.42rem 0.95rem;
   border-radius: var(--radius-pill);
   background: rgba(255, 255, 255, 0.14);
   border: 1px solid rgba(255, 255, 255, 0.32);
   color: #ffffff;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+/* Motto Bar: People (Purple) ○ Processes (White) ○ Progress (Dark Grey) */
+.hero-motto-bar {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: clamp(0.42rem, 0.25rem + 1vw, 1rem);
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  padding: 0.52rem clamp(0.85rem, 0.5rem + 1.5vw, 1.4rem);
+  border-radius: var(--radius-pill);
+  background: rgba(196, 188, 208, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  box-shadow: 0 10px 28px -10px rgba(14, 10, 20, 0.38);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.motto-word {
+  font-family: var(--font-display);
+  font-size: clamp(0.92rem, 0.65rem + 1.2vw, 1.5rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.motto-people {
+  color: #5b1e6e;
+}
+
+.motto-processes {
+  color: #ffffff;
+  text-shadow: 0 1px 6px rgba(24, 18, 32, 0.38);
+}
+
+.motto-progress {
+  color: #262729;
+}
+
+.motto-sep {
+  inline-size: 0.5rem;
+  block-size: 0.5rem;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  background-color: transparent;
+  flex-shrink: 0;
 }
 
 .hero-title {
   color: #ffffff;
-  font-size: clamp(1.9rem, 4.1vw, 3.35rem);
+  font-size: clamp(1.75rem, 1.15rem + 2.4vw, 3.25rem);
   font-weight: 800;
   line-height: 1.12;
 }
 
 .hero-subtitle {
-  font-size: clamp(1rem, 1.4vw, 1.18rem);
+  font-size: clamp(0.96rem, 0.85rem + 0.45vw, 1.18rem);
   color: #ddd9e4;
   max-inline-size: 40rem;
 }
@@ -928,50 +995,50 @@ a {
   margin-block-start: 0.25rem;
 }
 
-/* Interactive Standard Selector Pills inside Hero */
+/* Interactive Standard Selector Pills */
 .hero-selector-box {
-  margin-block-start: 0.5rem;
-  padding: 1rem 1.15rem;
+  padding: 1.25rem 1.4rem;
   border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.11);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(14px);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-card);
   display: grid;
-  gap: 0.75rem;
+  gap: 0.85rem;
 }
 
 .hero-selector-label {
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: #ece8f2;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--text-primary);
 }
 
 .hero-pills {
   display: flex;
   flex-wrap: wrap;
+  flex-wrap: balance;
   gap: 0.45rem;
 }
 
 .std-pill {
-  padding: 0.38rem 0.78rem;
+  padding: 0.42rem 0.85rem;
   border-radius: var(--radius-pill);
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  background: rgba(255, 255, 255, 0.1);
-  color: #f6f4f9;
-  font-size: 0.8rem;
+  border: 1px solid var(--border-subtle);
+  background-color: var(--bg-elevated);
+  color: var(--text-body);
+  font-size: 0.82rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.18s ease, border-color 0.18s ease;
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
 }
 
 .std-pill:hover {
-  border-color: var(--brand-purple-soft);
-  background: rgba(162, 90, 182, 0.22);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
 }
 
 .std-pill[aria-pressed="true"] {
   background: linear-gradient(135deg, var(--brand-purple-dark), var(--brand-purple-light));
-  border-color: #dfb8eb;
+  border-color: var(--brand-purple-dark);
   color: #ffffff;
 }
 
@@ -981,8 +1048,8 @@ a {
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem 1rem;
-  padding-block-start: 0.65rem;
-  border-block-start: 1px solid rgba(255, 255, 255, 0.12);
+  padding-block-start: 0.85rem;
+  border-block-start: 1px solid var(--border-subtle);
 }
 
 .hero-preview-info {
@@ -991,22 +1058,22 @@ a {
 }
 
 .hero-preview-info h2 {
-  font-size: 0.98rem;
-  color: #ffffff;
+  font-size: 1.05rem;
+  color: var(--text-primary);
   margin-block-end: 0.25rem;
 }
 
 .hero-preview-info p {
-  font-size: 0.86rem;
-  color: #d2cedb;
+  font-size: 0.9rem;
+  color: var(--text-muted);
 }
 
 .hero-preview-meta {
   display: inline-block;
   margin-block-start: 0.35rem;
-  font-size: 0.76rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  color: #dfb8eb;
+  color: var(--accent-primary);
 }
 
 /* Right Hero Visual Showcase Card */
@@ -1084,16 +1151,16 @@ a {
   color: #ece8f3;
 }
 
-/* Subpage Real Visual Banners (Training, Services, About, Contact) */
+/* Subpage Real Visual Banners (Training, Services, About, Bulletin, Contact) */
 .page-banner {
   position: relative;
-  min-block-size: clamp(22rem, 40dvh, 29rem);
+  min-block-size: 25.5rem;
   display: grid;
-  align-items: center;
-  padding-block: calc(6.75rem + clamp(1.75rem, 3.5vw, 2.75rem)) clamp(2.5rem, 5vw, 3.75rem);
+  align-items: end;
+  padding-block: calc(7.25rem + env(safe-area-inset-top, 0px)) 2.75rem;
   background-color: #251c2c;
   color: #ffffff;
-  overflow: hidden;
+  overflow: clip;
   border-block-end: 1px solid var(--border-strong);
 }
 
@@ -1122,27 +1189,31 @@ a {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(0, 1.3fr) auto;
+  grid-template-columns: minmax(0, 1fr) 17.5rem;
+  min-block-size: 13.5rem;
   gap: 1.5rem;
   align-items: end;
 }
 
 .page-banner h1 {
   color: #ffffff;
-  font-size: clamp(1.75rem, 3.4vw, 2.75rem);
-  margin-block: 0.5rem 0.75rem;
+  font-size: clamp(1.55rem, 1.1rem + 1.7vw, 2.35rem);
+  line-height: 1.18;
+  margin-block: 0.5rem 0.65rem;
 }
 
 .page-banner p {
   color: #dcd8e3;
   max-inline-size: 44rem;
-  font-size: 1.05rem;
+  font-size: 1rem;
+  line-height: 1.55;
 }
 
 .banner-emblem-card {
   display: flex;
   align-items: center;
   gap: 0.85rem;
+  inline-size: 100%;
   padding: 0.85rem 1.1rem;
   border-radius: var(--radius-md);
   background: rgba(255, 255, 255, 0.12);
@@ -1158,41 +1229,6 @@ a {
 }
 
 /* ==========================================================================
-   Trust Metrics Strip
-   ========================================================================== */
-
-.trust-strip {
-  background-color: var(--bg-surface);
-  border-block-end: 1px solid var(--border-subtle);
-  padding-block: 1.65rem;
-}
-
-.trust-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  gap: 1.25rem;
-}
-
-.trust-item {
-  display: grid;
-  gap: 0.25rem;
-  padding-inline-start: 1rem;
-  border-inline-start: 3px solid var(--accent-primary);
-}
-
-.trust-item strong {
-  font-size: clamp(1.45rem, 2.5vw, 2rem);
-  font-weight: 800;
-  color: var(--text-primary);
-  line-height: 1.1;
-}
-
-.trust-item span {
-  font-size: 0.875rem;
-  color: var(--text-muted);
-}
-
-/* ==========================================================================
    Container-Query & Subgrid Card Systems
    ========================================================================== */
 
@@ -1203,24 +1239,148 @@ a {
 .pillars-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
-  gap: 1.35rem;
+  gap: 1.5rem;
+  align-items: stretch;
 }
 
 .pillar-card {
   display: grid;
-  grid-template-rows: auto auto 1fr auto;
-  gap: 0.75rem;
-  padding: 1.5rem;
+  grid-template-rows: auto 1fr auto;
+  gap: 1rem;
+  padding: 1.65rem;
   border-radius: var(--radius-md);
   background-color: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   box-shadow: var(--shadow-card);
+  min-inline-size: 0;
   transition: border-color 0.22s ease, transform 0.22s ease;
 }
 
 .pillar-card:hover {
   border-color: var(--accent-primary);
   transform: translateY(-2px);
+}
+
+.pillar-card-header {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.pillar-card-content {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.pillar-digital-highlights {
+  margin-block-start: 0.25rem;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-elevated);
+  border: 1px dashed var(--border-strong);
+}
+
+.pillar-card-footer {
+  padding-block-start: 0.85rem;
+  border-block-start: 1px solid var(--border-subtle);
+  margin-block-start: auto;
+}
+
+.all-training-drawer {
+  margin-block-start: 1.5rem;
+}
+
+.all-training-drawer-inner {
+  padding: clamp(1.35rem, 3vw, 2rem);
+  border-radius: var(--radius-lg);
+  background-color: var(--bg-surface);
+  border: 1.5px solid var(--accent-primary);
+  box-shadow: var(--shadow-card);
+  display: grid;
+  gap: 1.25rem;
+}
+
+.all-training-drawer-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block-end: 1rem;
+  border-block-end: 1px solid var(--border-subtle);
+}
+
+.all-training-drawer-header h3 {
+  font-size: 1.3rem;
+  margin-block: 0.25rem;
+}
+
+.all-training-drawer-header p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.pillar-topic-featured {
+  border-color: var(--border-strong);
+  background-color: var(--badge-bg);
+}
+
+.pillar-topics-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.pillar-topics-grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: 0.65rem;
+}
+
+.pillar-topic-link {
+  display: flex;
+  align-items: safe center;
+  gap: 0.65rem;
+  padding: 0.65rem 0.9rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  min-block-size: max(var(--target-size), 2.65rem);
+  min-inline-size: 0;
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+
+.pillar-topic-link:hover,
+.pillar-topic-link:focus-visible {
+  background-color: var(--badge-bg);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  transform: translateX(2px);
+}
+
+.pillar-topic-num {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  flex-shrink: 0;
+  min-inline-size: 1.55rem;
+}
+
+.pillar-topic-title {
+  min-inline-size: 0;
+  line-height: 1.3;
+}
+
+.pillar-topic-arrow {
+  margin-inline-start: auto;
+  font-size: 0.85rem;
+  color: var(--accent-primary);
+  flex-shrink: 0;
 }
 
 .badge {
@@ -1249,6 +1409,163 @@ a {
   font-size: 0.8rem;
   font-weight: 700;
   color: var(--accent-primary);
+}
+
+/* ==========================================================================
+   Training Services Catalogue (2026 Edition — 133 Courses Across 7 Categories)
+   ========================================================================== */
+
+.catalog-categories-stack {
+  display: grid;
+  gap: 2.25rem;
+}
+
+.catalog-category-block {
+  container: catalogblock / inline-size;
+  padding: clamp(1.25rem, 0.9rem + 1.8vw, 2.15rem);
+  border-radius: var(--radius-lg);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
+  display: grid;
+  gap: 1.5rem;
+}
+
+.catalog-category-deferred {
+  content-visibility: auto;
+  contain-intrinsic-size: auto none auto 640px;
+}
+
+.catalog-category-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block-end: 1.15rem;
+  border-block-end: 2px solid var(--border-strong);
+}
+
+.catalog-category-title {
+  font-size: clamp(1.35rem, 2.3vw, 1.8rem);
+  margin-block-start: 0.25rem;
+}
+
+.catalog-category-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.catalog-subcategories-stack {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.catalog-subcategory-group {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.catalog-subcategory-title {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.catalog-subcategory-title::before {
+  content: "";
+  inline-size: 0.5rem;
+  block-size: 0.5rem;
+  border-radius: 50%;
+  background-color: var(--accent-primary);
+  flex-shrink: 0;
+}
+
+.catalog-courses-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.catalog-course-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: safe center;
+  justify-content: space-between;
+  gap: 0.75rem 1.25rem;
+  padding: 0.85rem 1.05rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  transition: border-color 0.18s ease, background-color 0.18s ease;
+}
+
+.catalog-course-item:hover {
+  border-color: var(--accent-primary);
+  background-color: var(--bg-subtle);
+}
+
+.catalog-course-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  flex: 1 1 280px;
+  min-inline-size: 0;
+}
+
+.catalog-course-no {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  padding: 0.18rem 0.48rem;
+  border-radius: 6px;
+  background-color: var(--badge-bg);
+  border: 1px solid var(--border-strong);
+  flex-shrink: 0;
+}
+
+.catalog-course-info {
+  display: grid;
+  gap: 0.3rem;
+  min-inline-size: 0;
+}
+
+.catalog-course-title {
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.35;
+}
+
+.catalog-course-scope {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.catalog-course-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+@container catalogblock (inline-size <= 540px) {
+  .catalog-course-meta {
+    inline-size: 100%;
+    justify-content: space-between;
+    padding-block-start: 0.55rem;
+    border-block-start: 1px solid var(--border-subtle);
+  }
 }
 
 /* Course Cards with Subgrid alignment inside wide containers */
@@ -1661,6 +1978,7 @@ a {
 .filter-pills {
   display: flex;
   flex-wrap: wrap;
+  flex-wrap: balance;
   gap: 0.5rem;
 }
 
@@ -1701,82 +2019,6 @@ a {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: 1.35rem;
-}
-
-/* ==========================================================================
-   Certificate Number Tracking & Verification
-   ========================================================================== */
-
-.cert-tracker-shell {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
-  gap: 1.75rem;
-  padding: clamp(1.35rem, 3vw, 2.25rem);
-  border-radius: var(--radius-lg);
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-strong);
-  box-shadow: var(--shadow-card);
-  align-items: start;
-}
-
-.cert-form-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem;
-  align-items: stretch;
-}
-
-.cert-form-row input {
-  flex: 1 1 220px;
-  font-family: var(--font-mono);
-  text-transform: uppercase;
-}
-
-.cert-sample-pills {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.45rem;
-  margin-block-start: 0.85rem;
-}
-
-.cert-result-card {
-  padding: 1.35rem;
-  border-radius: var(--radius-md);
-  background: linear-gradient(145deg, rgba(22, 121, 76, 0.06), var(--bg-surface) 72%);
-  border: 1px solid var(--border-strong);
-  display: grid;
-  gap: 0.9rem;
-}
-
-.cert-result-card.cert-result-missing {
-  background: var(--status-error-bg);
-  border-color: var(--status-error);
-}
-
-.cert-meta-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 165px), 1fr));
-  gap: 0.75rem 1rem;
-  padding: 0.9rem;
-  border-radius: var(--radius-sm);
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  font-size: 0.86rem;
-}
-
-.cert-meta-grid span {
-  display: block;
-  font-size: 0.72rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-block-end: 0.15rem;
-}
-
-.cert-meta-grid strong {
-  color: var(--text-primary);
-  font-weight: 700;
 }
 
 .service-card {
@@ -1831,6 +2073,547 @@ a {
   block-size: auto;
   object-fit: contain;
   border-radius: var(--radius-md);
+}
+
+/* ==========================================================================
+   About Us — "The minds behind COSYNERGY" Interactive Dark Purple & Dark Grey Stage
+   ========================================================================== */
+
+.team-stage-shell {
+  container: teamstage / inline-size;
+  position: relative;
+  padding: clamp(1.5rem, 1rem + 3vw, 3.5rem) clamp(1.15rem, 0.8rem + 2.5vw, 3rem) clamp(1.5rem, 1rem + 2.5vw, 3rem);
+  border-radius: 24px;
+  /* Dark Grey (#18171e / #23212c) stage with Dark Purple (#622B72 / #743D84) ambient lighting */
+  background:
+    radial-gradient(ellipse 68% 35% at 50% 100%, rgba(116, 61, 132, 0.52), rgba(98, 43, 114, 0.18) 55%, transparent 80%),
+    radial-gradient(circle at 88% 8%, rgba(162, 90, 182, 0.22), transparent 45%),
+    linear-gradient(180deg, #1a1921 0%, #14131a 68%, #1d1626 100%);
+  border: 1px solid rgba(174, 108, 192, 0.28);
+  box-shadow:
+    0 28px 64px -18px rgba(12, 10, 18, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  color: #f7f5f9;
+  overflow: clip;
+  display: grid;
+  gap: clamp(1.5rem, 1rem + 2.2vw, 3rem);
+}
+
+.team-stage-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
+  gap: 1.5rem 2.5rem;
+  align-items: end;
+}
+
+.team-stage-title-col {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.team-eyebrow-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: #d2cedb;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+.team-line-seg {
+  display: inline-block;
+  inline-size: 2.25rem;
+  block-size: 1px;
+  background: linear-gradient(90deg, transparent, rgba(210, 168, 223, 0.65));
+}
+
+.team-line-seg:last-child {
+  background: linear-gradient(90deg, rgba(210, 168, 223, 0.65), transparent);
+}
+
+.team-line-dot {
+  inline-size: 5px;
+  block-size: 5px;
+  border-radius: 50%;
+  background-color: #d2a8df;
+  box-shadow: 0 0 8px #a25ab6;
+}
+
+.team-stage-heading {
+  color: #ffffff;
+  font-size: clamp(1.85rem, 1.25rem + 2.4vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.team-stage-desc {
+  color: #c6c1d1;
+  font-size: clamp(0.92rem, 1.15vw, 1.02rem);
+  line-height: 1.55;
+  max-inline-size: 22rem;
+  justify-self: end;
+}
+
+/* View Transition configuration for smooth multi-card row rearrangement */
+:root {
+  view-transition-name: none;
+}
+
+::view-transition {
+  pointer-events: none;
+}
+
+.team-cards-grid {
+  display: grid;
+  /* 60-column grid (LCM of 1, 2, 3, 4, 5) for zero-orphan symmetry across all devices:
+     - Desktop (> 1040px): 5 cards in 1 row (span 12 each -> 5 x 12 = 60); when 1 expands (1 / -1), remaining 4 sit in 1 row (span 15 each -> 4 x 15 = 60).
+     - Unfolded Foldables & Tablets (Honor Magic V6, Galaxy Z Fold, iPad 641px–1040px):
+       Default 5 cards -> top 3 span 20 each (3 x 20 = 60), bottom 2 span 30 each (2 x 30 = 60).
+       Expanded -> 1 full-row card (1 / -1) + 4 remaining cards in a 2x2 grid (span 30 each) or 4-across row.
+     - Phones & Cover Displays (iPhone, Magic V6 cover 360px–640px):
+       Default 5 cards -> 2-column grid (span 30 each, 5th card centered/full);
+       Expanded -> 1 full-row card (1 / -1) + 4 remaining cards in a 2x2 grid (span 30 each). */
+  grid-template-columns: repeat(60, minmax(0, 1fr));
+  gap: 1.05rem;
+  align-items: stretch;
+}
+
+.team-member-card {
+  grid-column: span 12;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  background-color: #111017;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  text-align: start;
+  color: #ffffff;
+  overflow: hidden;
+  view-transition-class: team-card;
+  transition:
+    border-color 220ms ease-out,
+    box-shadow 220ms ease-out,
+    transform 220ms ease-out,
+    scale 150ms ease-out;
+}
+
+/* When one card is expanded, it spreads across the whole top row (60 cols),
+   and the remaining 4 cards move to the next line spanning 15 cols each (4 per row). */
+.team-cards-grid.has-expanded-member .team-member-card:not(.is-expanded) {
+  grid-column: span 15;
+}
+
+.team-member-card.is-expanded {
+  grid-column: 1 / -1;
+  grid-template-columns: minmax(250px, 310px) minmax(0, 1fr);
+  border-color: #a25ab6;
+  background:
+    radial-gradient(circle at 85% 20%, rgba(162, 90, 182, 0.22), transparent 55%),
+    linear-gradient(135deg, #111017 0%, #1c1625 100%);
+  box-shadow:
+    0 24px 52px -14px rgba(98, 43, 114, 0.72),
+    inset 0 0 0 1px rgba(210, 168, 223, 0.35);
+}
+
+.team-member-card:hover {
+  border-color: rgba(174, 108, 192, 0.62);
+  box-shadow:
+    0 18px 40px -12px rgba(98, 43, 114, 0.62),
+    0 0 26px -6px rgba(162, 90, 182, 0.38);
+  transform: translateY(-4px);
+}
+
+.team-member-card.is-expanded:hover {
+  transform: none;
+}
+
+.team-member-card:active:not(.is-expanded) {
+  scale: 0.985;
+}
+
+.team-member-card:has(.team-card-trigger:focus-visible) {
+  outline: 2px solid #d2a8df;
+  outline-offset: 3px;
+}
+
+/* Stretched button overlay so clicking anywhere on a card expands/collapses it */
+.team-card-trigger {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.team-card-trigger:focus-visible {
+  outline: none;
+}
+
+/* Single unified studio frame:
+   - Text is pinned at the top-left (never pushes the portrait down)
+   - Portrait is anchored 100% flush to the bottom edge (never floats in mid-air!) */
+.team-card-visual {
+  position: relative;
+  min-block-size: 21.5rem;
+  padding: 1.25rem 1.2rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  /* Pure CSS Dark Obsidian top + Dark Purple studio backlight behind transparent cutouts */
+  background:
+    radial-gradient(
+      72% 52% at 50% 80%,
+      rgba(148, 72, 172, 0.85) 0%,
+      rgba(98, 43, 114, 0.62) 48%,
+      rgba(44, 20, 56, 0.28) 76%,
+      transparent 100%
+    ),
+    linear-gradient(
+      180deg,
+      #100f15 0%,
+      #100f15 36%,
+      #251330 66%,
+      #481d5a 90%,
+      #381647 100%
+    );
+}
+
+.team-member-card.is-expanded .team-card-visual {
+  min-block-size: 22.5rem;
+  border-inline-end: 1px solid rgba(174, 108, 192, 0.22);
+}
+
+.team-card-meta {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  gap: 0.18rem;
+  view-transition-class: team-meta;
+}
+
+.team-member-name {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.team-member-role {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #b8b3c4;
+  line-height: 1.3;
+}
+
+.team-portrait-stage {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  block-size: 79%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  view-transition-class: team-photo;
+}
+
+.team-portrait-img {
+  position: relative;
+  z-index: 1;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  display: block;
+  transition: transform 280ms ease-out;
+}
+
+.team-portrait-img[src$=".jpg"] {
+  object-fit: cover;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 14%, #000 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 14%, #000 100%);
+}
+
+.team-member-card:is(:hover, :focus-within, .is-expanded) .team-portrait-img {
+  transform: scale(1.035);
+  transform-origin: center bottom;
+}
+
+/* Expanded Full-Row Description Panel inside the Clicked Card */
+.team-card-details {
+  position: relative;
+  z-index: 2;
+  padding: clamp(1.5rem, 3vw, 2.35rem);
+  display: grid;
+  align-content: center;
+  gap: 0.85rem;
+  animation: team-details-in 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes team-details-in {
+  from {
+    opacity: 0;
+    translate: 24px 0;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+.team-details-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.team-collapse-btn {
+  position: relative;
+  z-index: 3;
+  inline-size: 2.25rem;
+  block-size: 2.25rem;
+  border-radius: 50%;
+  border: 1px solid rgba(210, 168, 223, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background-color 160ms ease, border-color 160ms ease, scale 150ms ease;
+}
+
+.team-collapse-btn::after {
+  content: "";
+  position: absolute;
+  inset: -10px;
+}
+
+.team-collapse-btn:hover {
+  background: rgba(162, 90, 182, 0.35);
+  border-color: #d2a8df;
+}
+
+.team-collapse-btn:active {
+  scale: 0.94;
+}
+
+.team-spotlight-cred {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #d2a8df;
+}
+
+.team-spotlight-name {
+  font-size: clamp(1.45rem, 2.4vw, 1.95rem);
+  color: #ffffff;
+  line-height: 1.15;
+}
+
+.team-spotlight-role-sub {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #c59fd2;
+  margin-block-start: -0.35rem;
+}
+
+.team-spotlight-bio {
+  font-size: 0.98rem;
+  color: #dedae8;
+  line-height: 1.65;
+  max-inline-size: 54rem;
+}
+
+.team-spotlight-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-block-start: 0.25rem;
+}
+
+.team-spec-chip {
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-pill);
+  background: rgba(116, 61, 132, 0.34);
+  border: 1px solid rgba(210, 168, 223, 0.38);
+  color: #f3edf8;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.team-spotlight-actions {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-block-start: 0.5rem;
+}
+
+/* Smooth View Transition Group Timing for All Moving Cards, Photos & Headers */
+::view-transition-group(.team-card),
+::view-transition-group(.team-photo),
+::view-transition-group(.team-meta) {
+  animation-duration: 520ms;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  .team-card-details {
+    animation: none !important;
+  }
+}
+
+/* Unfolded Book-Style Foldables (Honor Magic V6, Galaxy Z Fold, Pixel Fold ~670px–920px) & Tablets (<= 1040px):
+   - Default (5 cards): Top 3 cards span 20 cols each (3 across), bottom 2 cards span 30 cols each (2 across) — zero empty orphan slot!
+   - Expanded (1 expanded + 4 remaining): Clicked card spans 1 / -1 (full top row), remaining 4 cards sit in a clean 2x2 grid (span 30 each). */
+@media (max-width: 1040px) {
+  .team-stage-header {
+    grid-template-columns: 1fr;
+  }
+  .team-stage-desc {
+    justify-self: start;
+    max-inline-size: 38rem;
+  }
+  .team-cards-grid:not(.has-expanded-member) .team-member-card:nth-child(-n + 3) {
+    grid-column: span 20;
+  }
+  .team-cards-grid:not(.has-expanded-member) .team-member-card:nth-child(n + 4) {
+    grid-column: span 30;
+  }
+  .team-cards-grid.has-expanded-member .team-member-card:not(.is-expanded) {
+    grid-column: span 30;
+  }
+  .team-member-card.is-expanded {
+    grid-column: 1 / -1;
+    grid-template-columns: minmax(210px, 260px) minmax(0, 1fr);
+  }
+}
+
+@container teamstage (inline-size <= 960px) {
+  .team-stage-header {
+    grid-template-columns: 1fr;
+  }
+  .team-stage-desc {
+    justify-self: start;
+    max-inline-size: 38rem;
+  }
+  .team-cards-grid:not(.has-expanded-member) .team-member-card:nth-child(-n + 3) {
+    grid-column: span 20;
+  }
+  .team-cards-grid:not(.has-expanded-member) .team-member-card:nth-child(n + 4) {
+    grid-column: span 30;
+  }
+  .team-cards-grid.has-expanded-member .team-member-card:not(.is-expanded) {
+    grid-column: span 30;
+  }
+  .team-member-card.is-expanded {
+    grid-column: 1 / -1;
+    grid-template-columns: minmax(200px, 250px) minmax(0, 1fr);
+  }
+}
+
+/* Standard Phones & Folded Cover Displays (iPhone, Honor Magic V6 Cover Screen 360px–640px):
+   - Default (5 cards): 2-column grid (span 30 each; 5th card spans 1 / -1) so users see the team at a glance without excessive vertical scrolling.
+   - Expanded (1 expanded + 4 remaining): Clicked card spreads across the full row (1 / -1) with stacked portrait + bio, while the remaining 4 cards animate into a symmetrical 2x2 grid (span 30 each) below! */
+@media (max-width: 640px) {
+  .team-cards-grid {
+    gap: 0.75rem;
+  }
+  .team-cards-grid:not(.has-expanded-member) .team-member-card {
+    grid-column: span 30;
+  }
+  .team-cards-grid:not(.has-expanded-member) .team-member-card:last-child {
+    grid-column: 1 / -1;
+  }
+  .team-cards-grid.has-expanded-member .team-member-card:not(.is-expanded) {
+    grid-column: span 30;
+  }
+  .team-card-visual {
+    min-block-size: 16.75rem;
+    padding: 0.95rem 0.9rem 0;
+  }
+  .team-member-name {
+    font-size: 0.96rem;
+  }
+  .team-member-role {
+    font-size: 0.72rem;
+  }
+  .team-member-card.is-expanded {
+    grid-column: 1 / -1;
+    grid-template-columns: 1fr;
+  }
+  .team-member-card.is-expanded .team-card-visual {
+    min-block-size: 19.5rem;
+    border-inline-end: 0;
+    border-block-end: 1px solid rgba(174, 108, 192, 0.22);
+  }
+  .team-spotlight-actions .btn {
+    flex: 1 1 100%;
+  }
+}
+
+@container teamstage (inline-size <= 580px) {
+  .team-cards-grid {
+    gap: 0.75rem;
+  }
+  .team-cards-grid:not(.has-expanded-member) .team-member-card {
+    grid-column: span 30;
+  }
+  .team-cards-grid:not(.has-expanded-member) .team-member-card:last-child {
+    grid-column: 1 / -1;
+  }
+  .team-cards-grid.has-expanded-member .team-member-card:not(.is-expanded) {
+    grid-column: span 30;
+  }
+  .team-card-visual {
+    min-block-size: 16.75rem;
+    padding: 0.95rem 0.9rem 0;
+  }
+  .team-member-name {
+    font-size: 0.96rem;
+  }
+  .team-member-role {
+    font-size: 0.72rem;
+  }
+  .team-member-card.is-expanded {
+    grid-column: 1 / -1;
+    grid-template-columns: 1fr;
+  }
+  .team-member-card.is-expanded .team-card-visual {
+    min-block-size: 19.5rem;
+    border-inline-end: 0;
+    border-block-end: 1px solid rgba(174, 108, 192, 0.22);
+  }
+  .team-spotlight-actions .btn {
+    flex: 1 1 100%;
+  }
+}
+
+/* Ultra-Narrow Cover Screens (Galaxy Z Fold folded ~280px–359px): single column for full legibility */
+@media (max-width: 359px) {
+  .team-cards-grid:not(.has-expanded-member) .team-member-card,
+  .team-cards-grid.has-expanded-member .team-member-card:not(.is-expanded) {
+    grid-column: 1 / -1;
+  }
+  .team-card-visual {
+    min-block-size: 18.5rem;
+  }
 }
 
 .sectors-grid {
@@ -2261,9 +3044,17 @@ dialog.syllabus-dialog::backdrop {
    ========================================================================== */
 
 @media (max-width: 980px) {
+  .hero-banner {
+    min-block-size: auto;
+    padding-block: calc(6.75rem + 1.5rem) 2.75rem;
+  }
+  .page-banner {
+    block-size: auto;
+    min-block-size: 21rem;
+    padding-block: calc(6.75rem + 1.5rem) 2.5rem;
+  }
   .hero-grid,
   .estimator-shell,
-  .cert-tracker-shell,
   .cta-banner-shell,
   .split-grid,
   .contact-grid,
@@ -2346,14 +3137,104 @@ dialog.syllabus-dialog::backdrop {
   }
 }
 
-/* Dual-Screen & Foldable Spanned Mode (Surface Duo / Foldables) */
+/* Dual-Screen & Foldable Spanned Mode (iPhone Duo, Honor Magic V6, Surface Duo, Galaxy Z Fold) */
 @media (horizontal-viewport-segments: 2) {
   .hero-grid,
   .estimator-shell,
   .split-grid,
-  .contact-grid {
+  .contact-grid,
+  .page-banner-inner {
     grid-template-columns: env(viewport-segment-width 0 0) 1fr;
     gap: calc(env(viewport-segment-left 1 0) - env(viewport-segment-right 0 0) + 2rem);
+  }
+
+  /* Keep card grids in even column counts (2 or 4) so no card is split down the middle by the hinge/crease */
+  .pillars-grid,
+  .services-grid,
+  .bulletin-grid,
+  .audience-grid,
+  .pdca-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: calc(env(viewport-segment-left 1 0) - env(viewport-segment-right 0 0) + 1.5rem);
+  }
+
+  .team-cards-grid {
+    column-gap: calc(env(viewport-segment-left 1 0) - env(viewport-segment-right 0 0) + 1.15rem);
+  }
+
+  .team-cards-grid:not(.has-expanded-member) .team-member-card,
+  .team-cards-grid.has-expanded-member .team-member-card:not(.is-expanded) {
+    grid-column: span 30;
+  }
+
+  .team-member-card.is-expanded {
+    grid-column: 1 / -1;
+    grid-template-columns: env(viewport-segment-width 0 0) 1fr;
+    column-gap: calc(env(viewport-segment-left 1 0) - env(viewport-segment-right 0 0));
+  }
+}
+
+/* Tabletop / Tent / Clamshell Half-Folded Mode (Vertical Viewport Segments: 2) */
+@media (vertical-viewport-segments: 2) {
+  .hero-banner,
+  .page-banner {
+    min-block-size: env(viewport-segment-height 0 0);
+    max-block-size: env(viewport-segment-height 0 0);
+  }
+  dialog.syllabus-dialog {
+    max-block-size: calc(env(viewport-segment-height 0 0) - 1.5rem);
+  }
+}
+
+/* Square-Proportion Unfolded Inner Foldable Screens (Honor Magic V6, Galaxy Z Fold, Pixel Fold ~670px–880px width, aspect-ratio 0.8/1 to 1.25/1) */
+@media (min-width: 650px) and (max-width: 920px) and (min-aspect-ratio: 4/5) and (max-aspect-ratio: 5/4) {
+  .hero-banner {
+    min-block-size: auto;
+    padding-block: calc(6.5rem + 1.25rem) 2.5rem;
+  }
+  .page-banner {
+    min-block-size: 20rem;
+    padding-block: calc(6.5rem + 1rem) 2.25rem;
+  }
+  .pillars-grid,
+  .services-grid,
+  .bulletin-grid,
+  .audience-grid,
+  .pdca-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .pillars-grid > .pillar-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Short Landscape Viewports (Phones in Landscape, Foldable Cover Displays in Landscape, Flex Mode <= 540px height) */
+@media (max-height: 540px) and (orientation: landscape) {
+  .site-header.is-scrolled .utility-bar {
+    display: none;
+  }
+  .navbar-inner {
+    min-block-size: 3.35rem;
+    padding-block: 0.35rem;
+  }
+  .hero-banner {
+    min-block-size: auto;
+    padding-block: calc(5.5rem + 1rem) 2rem;
+  }
+  .page-banner {
+    min-block-size: 16.5rem;
+    padding-block: calc(5.5rem + 0.75rem) 1.75rem;
+  }
+  dialog.syllabus-dialog,
+  .dialog-shell {
+    max-block-size: 92dvh;
+  }
+}
+
+/* Ultrawide & Large Desktop Displays (>= 1600px) */
+@media (min-width: 1600px) {
+  :root {
+    --container-max: 1340px;
   }
 }
 
