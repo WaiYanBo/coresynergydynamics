@@ -7,11 +7,16 @@ const STORAGE_THEME_KEY = 'color-scheme';
 let currentLang = getInitialLang();
 let activeHeroStdId = HERO_STANDARDS[1].id;
 let activeCategory = 'all';
+let activeSubcategory = 'all';
 let activeLevel = 'all';
+let activeSort = 'default';
+let activeViewMode = 'cards';
 let searchQuery = '';
 let activePdcaIndex = 0;
 let activeBulletinCategory = 'all';
 let activeBulletinTopic = getInitialBulletinTopic();
+let activeBulletinCatalogCat = getInitialBulletinCatalogCat();
+let activeBulletinCourse = getInitialBulletinCourse();
 let activeTeamMemberId = null;
 let activeModalCourseId = null;
 
@@ -19,6 +24,24 @@ function getInitialBulletinTopic() {
   try {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get('topic') || '';
+  } catch {
+    return '';
+  }
+}
+
+function getInitialBulletinCatalogCat() {
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('category') || '';
+  } catch {
+    return '';
+  }
+}
+
+function getInitialBulletinCourse() {
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('course') || '';
   } catch {
     return '';
   }
@@ -560,66 +583,365 @@ function matchesDurationFilter(durationStr, filterVal) {
   return true;
 }
 
-function renderTrainingFilters() {
-  const catWrap = document.getElementById('training-cat-pills');
-  const levelSelect = document.getElementById('training-level-select');
-  const searchInput = document.getElementById('training-search-input');
-  const tracksWrap = document.getElementById('training-tracks-directory');
+function getDurationRank(durationStr) {
+  const d = (durationStr || '').toLowerCase();
+  if (d === '1 day') return 1;
+  if (d === '2 days') return 2;
+  if (d === '3 days') return 3;
+  if (d === '6 days') return 6;
+  return 10; // Custom to organization needs
+}
 
-  if (tracksWrap) {
-    const trainingPillar = CORE_PILLARS.find((p) => p.id === 'training-services');
-    if (trainingPillar) {
-      tracksWrap.innerHTML = trainingPillar.items
-        .map(
-          (item) => `
-          <li>
-            <a href="${item.href}" class="pillar-topic-link ${item.featured ? 'pillar-topic-featured' : ''}">
-              <span class="pillar-topic-num">${item.num}.</span>
-              <span class="pillar-topic-title">${item.title[currentLang]}</span>
-              <span class="pillar-topic-arrow" aria-hidden="true">→</span>
-            </a>
-          </li>
-        `
-        )
-        .join('');
+function getDurationVisual(durationStr) {
+  const d = (durationStr || '').toLowerCase();
+  if (d === '1 day') {
+    return { tierClass: 'dur-tier-1d', icon: '⚡', label: '1 Day' };
+  }
+  if (d === '2 days') {
+    return { tierClass: 'dur-tier-2d', icon: '⏱', label: '2 Days' };
+  }
+  if (d === '3 days') {
+    return { tierClass: 'dur-tier-3d', icon: '🔥', label: '3 Days' };
+  }
+  if (d === '6 days') {
+    return { tierClass: 'dur-tier-6d', icon: '★', label: '6 Days' };
+  }
+  return {
+    tierClass: 'dur-tier-custom',
+    icon: '⚙',
+    label: currentLang === 'ms' ? 'Ikut Keperluan Organisasi' : 'Custom to Organization Needs'
+  };
+}
+
+function getCategoryIconSvg(catId) {
+  const icons = {
+    all: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg>',
+    'personal-effectiveness': '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3.5"/></svg>',
+    'organizational-effectiveness': '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/><path d="M10.5 7.5L6.5 16.5M13.5 7.5l4 9M8 19h8"/></svg>',
+    'communication-skills': '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></svg>',
+    'corporate-leadership': '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+    'cybersecurity-training': '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>',
+    'iso-training': '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/><path d="M9.5 8l1.8 1.8 3.2-3.3"/></svg>',
+    'quantity-surveyor-training': '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/><path d="M9 9v.01M9 12v.01M9 15v.01M9 18v.01"/></svg>'
+  };
+  return icons[catId] || icons.all;
+}
+
+function escapeHtml(str) {
+  return String(str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function highlightQuery(text, query) {
+  const safe = escapeHtml(text);
+  if (!query || query.length < 2) return safe;
+  const escapedQ = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return safe.replace(new RegExp(`(${escapedQ})`, 'gi'), '<mark class="catalog-highlight">$1</mark>');
+}
+
+function parseCourseVisuals(course, cat) {
+  let cleanTitle = course.title;
+  let officialCode = null;
+  let isSpecialistPlus = false;
+  let isoBadge = null;
+  let quotedTheme = null;
+
+  // 1. Extract [Code 221] etc.
+  const codeMatch = cleanTitle.match(/\[(Code\s+\d+)\]/i);
+  if (codeMatch) {
+    officialCode = codeMatch[1].toUpperCase();
+    cleanTitle = cleanTitle.replace(codeMatch[0], '').trim();
+  }
+
+  // 2. Detect trailing '+' certification/specialist marker
+  if (/\+$/.test(cleanTitle)) {
+    isSpecialistPlus = true;
+    cleanTitle = cleanTitle.replace(/\s*\+$/, '').trim();
+  }
+
+  // 3. Detect ISO / FSSC standard prefix (e.g. "ISO 9001: ...", "ISO/IEC 27001: ...", "FSSC 22000: ...")
+  const isoMatch = cleanTitle.match(/^((?:ISO(?:\/IEC)?|FSSC)\s*\d+)\s*:\s*(.+)$/i);
+  if (isoMatch) {
+    isoBadge = isoMatch[1].toUpperCase();
+  }
+
+  // 4. Extract quoted theme if at least 12 chars (e.g. "Swing to Solution Consciousness")
+  const quoteMatch = cleanTitle.match(/"([^"]{10,})"/);
+  if (quoteMatch) {
+    quotedTheme = quoteMatch[1].trim();
+    const stripped = cleanTitle.replace(quoteMatch[0], '').replace(/\s+-\s*$/, '').replace(/\s{2,}/g, ' ').trim();
+    if (stripped.length >= 10) {
+      cleanTitle = stripped;
     }
   }
 
-  if (!catWrap) return;
+  const catalogCode = `${cat.code || 'CS'}-${String(course.no).padStart(2, '0')}`;
+  return {
+    catalogCode,
+    cleanTitle,
+    officialCode,
+    isSpecialistPlus,
+    isoBadge,
+    quotedTheme
+  };
+}
 
-  const categories = [
-    { id: 'all', label: t('training.catAll') },
-    ...TRAINING_CATALOGUE_2026.map((cat) => ({
-      id: cat.id,
-      label: `${cat.num}. ${cat.shortTitle[currentLang]} (${cat.totalListings})`
-    }))
-  ];
+function triggerCatalogUpdate(mutator) {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const run = () => {
+    mutator();
+    renderTrainingFilters();
+    renderTrainingCatalog();
+  };
+  if (typeof document.startViewTransition === 'function' && !reduceMotion) {
+    document.startViewTransition(run);
+  } else {
+    run();
+  }
+}
 
-  catWrap.innerHTML = categories
+function renderTrainingTracksDirectory(containerId) {
+  const tracksWrap = document.getElementById(containerId);
+  if (!tracksWrap) return;
+  const trainingPillar = CORE_PILLARS.find((p) => p.id === 'training-services');
+  if (!trainingPillar) return;
+
+  tracksWrap.innerHTML = trainingPillar.items
     .map(
-      (c) => `
-      <button type="button"
-              class="filter-pill"
-              data-cat="${c.id}"
-              aria-pressed="${c.id === activeCategory ? 'true' : 'false'}">
-        ${c.label}
-      </button>
+      (item) => `
+      <li>
+        <a href="${item.href}" class="pillar-topic-link ${item.featured ? 'pillar-topic-featured' : ''}" data-bulletin-topic-link="${item.topicId}">
+          <span class="pillar-topic-num">${item.num}.</span>
+          <span class="pillar-topic-title">${item.title[currentLang]}</span>
+          <span class="pillar-topic-arrow" aria-hidden="true">→</span>
+        </a>
+      </li>
     `
     )
     .join('');
+}
 
-  catWrap.querySelectorAll('.filter-pill').forEach((btn) => {
+function renderTrainingFilters() {
+  const catWrap = document.getElementById('training-cat-pills');
+  const durPillsWrap = document.getElementById('training-duration-pills');
+  const subcatRow = document.getElementById('training-subcat-row');
+  const subcatWrap = document.getElementById('training-subcat-pills');
+  const levelSelect = document.getElementById('training-level-select');
+  const sortSelect = document.getElementById('training-sort-select');
+  const searchInput = document.getElementById('training-search-input');
+  const searchClear = document.getElementById('training-search-clear');
+  const quickReset = document.getElementById('training-quick-reset');
+
+  renderTrainingTracksDirectory('training-tracks-directory');
+
+  if (!catWrap) return;
+
+  // 1. Render 8-Card Interactive Category Bento Grid (All + 01..07)
+  const allCard = {
+    id: 'all',
+    code: 'ALL • 01–07',
+    numLabel: 'ALL',
+    title: t('training.bentoAllTitle'),
+    subtitle: t('training.bentoAllSub'),
+    count: 133,
+    subCount: 19,
+    durationSummary: currentLang === 'ms' ? '1–6 Hari & Ikut Organisasi' : '1–6 Days & Custom',
+    sharePct: 100
+  };
+
+  const bentoCards = [
+    allCard,
+    ...TRAINING_CATALOGUE_2026.map((cat) => ({
+      id: cat.id,
+      code: `CAT 0${cat.num} • ${cat.code}`,
+      numLabel: `0${cat.num}`,
+      title: cat.shortTitle[currentLang],
+      subtitle: cat.tagline[currentLang],
+      count: cat.totalListings,
+      subCount: cat.subcategories.length,
+      durationSummary: cat.durationSummary[currentLang],
+      sharePct: Math.max(18, Math.round((cat.totalListings / 27) * 100))
+    }))
+  ];
+
+  catWrap.innerHTML = bentoCards
+    .map((c) => {
+      const isActive = c.id === activeCategory;
+      return `
+        <button type="button"
+                class="catalog-bento-card ${isActive ? 'is-active' : ''}"
+                data-cat="${c.id}"
+                aria-pressed="${isActive ? 'true' : 'false'}"
+                style="--cat-progress: ${c.sharePct}%;">
+          <div class="catalog-bento-card-top">
+            <span class="catalog-bento-icon">${getCategoryIconSvg(c.id)}</span>
+            <span class="catalog-bento-code">${c.code}</span>
+            <span class="catalog-bento-count">${c.count} ${t('training.listingsWord')}</span>
+          </div>
+          <strong class="catalog-bento-title">${c.title}</strong>
+          <span class="catalog-bento-sub">${c.subtitle}</span>
+          <div class="catalog-bento-footer">
+            <span class="catalog-bento-meta">${c.subCount} ${t('training.subtracksWord')} • ${c.durationSummary}</span>
+            <span class="catalog-bento-bar" aria-hidden="true"><span></span></span>
+          </div>
+        </button>
+      `;
+    })
+    .join('');
+
+  catWrap.querySelectorAll('.catalog-bento-card').forEach((btn) => {
     btn.addEventListener('click', () => {
-      activeCategory = btn.dataset.cat;
-      renderTrainingFilters();
-      renderTrainingCatalog();
+      const nextCat = btn.dataset.cat;
+      if (nextCat === activeCategory) return;
+      triggerCatalogUpdate(() => {
+        activeCategory = nextCat;
+        activeSubcategory = 'all';
+      });
     });
+  });
+
+  // 2. Render Interactive Duration Filter Pills with Live Counts
+  if (durPillsWrap) {
+    const scopeCats =
+      activeCategory === 'all'
+        ? TRAINING_CATALOGUE_2026
+        : TRAINING_CATALOGUE_2026.filter((c) => c.id === activeCategory);
+
+    const allScopeCourses = [];
+    for (const c of scopeCats) {
+      for (const s of c.subcategories) {
+        if (activeSubcategory !== 'all' && s.title.en !== activeSubcategory) continue;
+        allScopeCourses.push(...s.courses);
+      }
+    }
+
+    const durBuckets = [
+      { id: 'all', icon: '✦', label: t('training.levelAll') },
+      { id: '1-day', icon: '⚡', label: t('training.level1Day') },
+      { id: '2-days', icon: '⏱', label: t('training.level2Days') },
+      { id: '3-plus-days', icon: '🔥', label: t('training.level3PlusDays') },
+      { id: 'custom', icon: '⚙', label: t('training.levelCustom') }
+    ];
+
+    durPillsWrap.innerHTML = durBuckets
+      .map((b) => {
+        const cnt = allScopeCourses.filter((cr) => matchesDurationFilter(cr.duration, b.id)).length;
+        const isPressed = activeLevel === b.id;
+        return `
+          <button type="button"
+                  class="catalog-chip ${isPressed ? 'is-active' : ''}"
+                  data-dur="${b.id}"
+                  aria-pressed="${isPressed ? 'true' : 'false'}">
+            <span aria-hidden="true">${b.icon}</span>
+            <span>${b.label}</span>
+            <span class="catalog-chip-count">${cnt}</span>
+          </button>
+        `;
+      })
+      .join('');
+
+    durPillsWrap.querySelectorAll('[data-dur]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const nextDur = btn.dataset.dur;
+        activeLevel = nextDur;
+        if (levelSelect) levelSelect.value = nextDur;
+        renderTrainingFilters();
+        renderTrainingCatalog();
+      });
+    });
+  }
+
+  // 3. Render Dynamic Sub-Track Slicer Chips
+  if (subcatWrap && subcatRow) {
+    const subcatOptions = [];
+    const targetCats =
+      activeCategory === 'all'
+        ? TRAINING_CATALOGUE_2026
+        : TRAINING_CATALOGUE_2026.filter((c) => c.id === activeCategory);
+
+    for (const cat of targetCats) {
+      for (const sub of cat.subcategories) {
+        const prefix = activeCategory === 'all' ? `${cat.code} • ` : '';
+        subcatOptions.push({
+          key: sub.title.en,
+          catId: cat.id,
+          label: `${prefix}${sub.title[currentLang]}`,
+          count: sub.courses.length
+        });
+      }
+    }
+
+    const totalInCat = subcatOptions.reduce((acc, s) => acc + s.count, 0);
+
+    subcatWrap.innerHTML = [
+      `
+        <button type="button"
+                class="catalog-subcat-chip ${activeSubcategory === 'all' ? 'is-active' : ''}"
+                data-subcat="all"
+                aria-pressed="${activeSubcategory === 'all' ? 'true' : 'false'}">
+          <span>${t('training.subcatAll')}</span>
+          <span class="catalog-chip-count">${totalInCat}</span>
+        </button>
+      `,
+      ...subcatOptions.map((s) => {
+        const isPressed = activeSubcategory === s.key;
+        return `
+          <button type="button"
+                  class="catalog-subcat-chip ${isPressed ? 'is-active' : ''}"
+                  data-subcat="${escapeHtml(s.key)}"
+                  data-subcat-cat="${s.catId}"
+                  aria-pressed="${isPressed ? 'true' : 'false'}">
+            <span>${escapeHtml(s.label)}</span>
+            <span class="catalog-chip-count">${s.count}</span>
+          </button>
+        `;
+      })
+    ].join('');
+
+    subcatWrap.querySelectorAll('[data-subcat]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const nextSub = btn.dataset.subcat;
+        activeSubcategory = nextSub === activeSubcategory && nextSub !== 'all' ? 'all' : nextSub;
+        renderTrainingFilters();
+        renderTrainingCatalog();
+      });
+    });
+  }
+
+  // 4. Bind Sort, View Mode, Search & Reset Controls
+  if (sortSelect) {
+    sortSelect.value = activeSort;
+    if (!sortSelect.dataset.bound) {
+      sortSelect.dataset.bound = 'true';
+      sortSelect.addEventListener('change', (e) => {
+        activeSort = e.target.value;
+        renderTrainingCatalog();
+        renderTrainingFilters();
+      });
+    }
+  }
+
+  document.querySelectorAll('[data-view-mode]').forEach((btn) => {
+    const mode = btn.dataset.viewMode;
+    btn.setAttribute('aria-pressed', mode === activeViewMode ? 'true' : 'false');
+    if (!btn.dataset.bound) {
+      btn.dataset.bound = 'true';
+      btn.addEventListener('click', () => {
+        activeViewMode = btn.dataset.viewMode;
+        renderTrainingFilters();
+        renderTrainingCatalog();
+      });
+    }
   });
 
   if (levelSelect && !levelSelect.dataset.bound) {
     levelSelect.dataset.bound = 'true';
     levelSelect.addEventListener('change', (e) => {
       activeLevel = e.target.value;
+      renderTrainingFilters();
       renderTrainingCatalog();
     });
   }
@@ -628,9 +950,194 @@ function renderTrainingFilters() {
     searchInput.dataset.bound = 'true';
     searchInput.addEventListener('input', (e) => {
       searchQuery = e.target.value.trim().toLowerCase();
+      if (searchClear) searchClear.hidden = !searchQuery;
       renderTrainingCatalog();
+      renderTrainingFilters();
     });
   }
+
+  if (searchClear) {
+    searchClear.hidden = !searchQuery;
+    if (!searchClear.dataset.bound) {
+      searchClear.dataset.bound = 'true';
+      searchClear.addEventListener('click', () => {
+        searchQuery = '';
+        if (searchInput) {
+          searchInput.value = '';
+          searchInput.focus();
+        }
+        searchClear.hidden = true;
+        renderTrainingFilters();
+        renderTrainingCatalog();
+      });
+    }
+  }
+
+  const hasActiveFilter =
+    activeCategory !== 'all' ||
+    activeSubcategory !== 'all' ||
+    activeLevel !== 'all' ||
+    activeSort !== 'default' ||
+    Boolean(searchQuery);
+
+  if (quickReset) {
+    quickReset.hidden = !hasActiveFilter;
+    if (!quickReset.dataset.bound) {
+      quickReset.dataset.bound = 'true';
+      quickReset.addEventListener('click', () => {
+        triggerCatalogUpdate(() => {
+          activeCategory = 'all';
+          activeSubcategory = 'all';
+          activeLevel = 'all';
+          activeSort = 'default';
+          searchQuery = '';
+          if (levelSelect) levelSelect.value = 'all';
+          if (sortSelect) sortSelect.value = 'default';
+          if (searchInput) searchInput.value = '';
+          if (searchClear) searchClear.hidden = true;
+        });
+      });
+    }
+  }
+}
+
+function renderCourseCardHtml(c, cat, sub, showCategoryTag = false) {
+  const vis = parseCourseVisuals(c, cat);
+  const durVis = getDurationVisual(c.duration);
+
+  if (activeViewMode === 'compact') {
+    return `
+      <li class="catalog-index-row">
+        <div class="catalog-index-code-col">
+          <span class="catalog-code-pill">${vis.catalogCode}</span>
+          ${vis.officialCode ? `<span class="catalog-official-code">${vis.officialCode}</span>` : ''}
+        </div>
+        <div class="catalog-index-title-col">
+          <div class="catalog-index-title-line">
+            ${vis.isoBadge ? `<span class="catalog-iso-chip">${vis.isoBadge}</span>` : ''}
+            <strong class="catalog-index-title">${highlightQuery(vis.cleanTitle, searchQuery)}</strong>
+            ${vis.isSpecialistPlus ? `<span class="catalog-plus-badge">★ CERT +</span>` : ''}
+          </div>
+          ${
+            vis.quotedTheme
+              ? `<span class="catalog-theme-inline">“${highlightQuery(vis.quotedTheme, searchQuery)}”</span>`
+              : ''
+          }
+          ${
+            c.scope
+              ? `<p class="catalog-course-scope"><strong>${t('training.scopeLabel')}</strong> ${highlightQuery(c.scope, searchQuery)}</p>`
+              : ''
+          }
+        </div>
+        <div class="catalog-index-sub-col">
+          ${showCategoryTag ? `<span class="catalog-cat-mini-tag">0${cat.num} • ${cat.shortTitle[currentLang]}</span>` : ''}
+          <button type="button" class="catalog-subtrack-tag" data-jump-subcat="${escapeHtml(sub.title.en)}">
+            ${highlightQuery(sub.title[currentLang], searchQuery)}
+          </button>
+        </div>
+        <div class="catalog-index-dur-col">
+          <span class="catalog-dur-pill ${durVis.tierClass}">
+            <span aria-hidden="true">${durVis.icon}</span>
+            <span>${durVis.label}</span>
+          </span>
+        </div>
+        <div class="catalog-index-cta-col">
+          <a href="bulletin.html?topic=${encodeURIComponent(cat.topicId)}&amp;category=${encodeURIComponent(cat.id)}&amp;course=${encodeURIComponent(c.title)}#bulletin-updates" class="btn btn-secondary btn-sm">
+            ${t('training.bulletinBtn')}
+          </a>
+          <a href="contact.html?course=${encodeURIComponent(c.title)}#corporate-enquiry-form" class="btn btn-primary btn-sm">
+            ${t('training.bookBtn')} →
+          </a>
+        </div>
+      </li>
+    `;
+  }
+
+  return `
+    <li class="catalog-modern-card">
+      <div class="catalog-card-top">
+        <div class="catalog-card-codes">
+          <span class="catalog-code-pill">${vis.catalogCode}</span>
+          ${vis.isoBadge ? `<span class="catalog-iso-chip">${vis.isoBadge}</span>` : ''}
+          ${vis.officialCode ? `<span class="catalog-official-code">${vis.officialCode}</span>` : ''}
+          ${vis.isSpecialistPlus ? `<span class="catalog-plus-badge">★ SPECIALIST +</span>` : ''}
+        </div>
+        <span class="catalog-dur-pill ${durVis.tierClass}">
+          <span aria-hidden="true">${durVis.icon}</span>
+          <span>${durVis.label}</span>
+        </span>
+      </div>
+
+      <div class="catalog-card-body">
+        ${
+          showCategoryTag
+            ? `<span class="catalog-cat-mini-tag">0${cat.num} • ${cat.shortTitle[currentLang]}</span>`
+            : ''
+        }
+        <h4 class="catalog-card-title">${highlightQuery(vis.cleanTitle, searchQuery)}</h4>
+        ${
+          vis.quotedTheme
+            ? `
+          <div class="catalog-theme-callout">
+            <span class="catalog-theme-quote-icon" aria-hidden="true">“</span>
+            <span>${highlightQuery(vis.quotedTheme, searchQuery)}”</span>
+          </div>
+        `
+            : ''
+        }
+        ${
+          c.scope
+            ? `
+          <div class="catalog-scope-box">
+            <strong>${t('training.scopeLabel')}</strong>
+            <p>${highlightQuery(c.scope, searchQuery)}</p>
+          </div>
+        `
+            : ''
+        }
+      </div>
+
+      <div class="catalog-card-footer">
+        <button type="button"
+                class="catalog-subtrack-tag"
+                data-jump-subcat="${escapeHtml(sub.title.en)}"
+                title="Filter by ${escapeHtml(sub.title[currentLang])}">
+          <span class="catalog-subtrack-dot" aria-hidden="true"></span>
+          <span>${highlightQuery(sub.title[currentLang], searchQuery)}</span>
+        </button>
+        <div class="catalog-card-actions">
+          <a href="bulletin.html?topic=${encodeURIComponent(cat.topicId)}&amp;category=${encodeURIComponent(cat.id)}&amp;course=${encodeURIComponent(c.title)}#bulletin-updates" class="catalog-card-bulletin-link">
+            <span>${t('training.bulletinBtn')}</span>
+          </a>
+          <a href="contact.html?course=${encodeURIComponent(c.title)}#corporate-enquiry-form" class="catalog-card-cta">
+            <span>${t('training.bookBtn')}</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </li>
+  `;
+}
+
+function bindCatalogInteractiveTags(container) {
+  container.querySelectorAll('[data-jump-subcat]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const targetSub = btn.dataset.jumpSubcat;
+      activeSubcategory = activeSubcategory === targetSub ? 'all' : targetSub;
+      renderTrainingFilters();
+      renderTrainingCatalog();
+    });
+  });
+
+  container.querySelectorAll('[data-select-cat]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const targetCat = btn.dataset.selectCat;
+      triggerCatalogUpdate(() => {
+        activeCategory = activeCategory === targetCat ? 'all' : targetCat;
+        activeSubcategory = 'all';
+      });
+    });
+  });
 }
 
 function renderTrainingCatalog() {
@@ -641,6 +1148,7 @@ function renderTrainingCatalog() {
 
   let totalMatched = 0;
   const renderedBlocks = [];
+  const flatMatchedCourses = [];
 
   for (const cat of TRAINING_CATALOGUE_2026) {
     if (activeCategory !== 'all' && cat.id !== activeCategory) continue;
@@ -648,9 +1156,11 @@ function renderTrainingCatalog() {
     const matchedSubcategories = [];
 
     for (const sub of cat.subcategories) {
+      if (activeSubcategory !== 'all' && sub.title.en !== activeSubcategory) continue;
+
       const matchedCourses = sub.courses.filter((course) => {
         const matchDur = matchesDurationFilter(course.duration, activeLevel);
-        const blob = `${cat.title.en} ${cat.title.ms} ${sub.title.en} ${sub.title.ms} ${course.title} ${course.duration} ${course.scope || ''}`.toLowerCase();
+        const blob = `${cat.code} ${cat.title.en} ${cat.title.ms} ${sub.title.en} ${sub.title.ms} ${course.title} ${course.duration} ${course.scope || ''}`.toLowerCase();
         const matchSearch = !searchQuery || blob.includes(searchQuery);
         return matchDur && matchSearch;
       });
@@ -658,6 +1168,9 @@ function renderTrainingCatalog() {
       if (matchedCourses.length > 0) {
         totalMatched += matchedCourses.length;
         matchedSubcategories.push({ sub, matchedCourses });
+        for (const c of matchedCourses) {
+          flatMatchedCourses.push({ c, cat, sub });
+        }
       }
     }
 
@@ -679,20 +1192,105 @@ function renderTrainingCatalog() {
 
   if (emptyEl) emptyEl.hidden = true;
 
+  // Global Course-Level Sort Mode (Title A-Z, Title Z-A, Duration Shortest-Longest, Duration Longest-Shortest)
+  const isCourseLevelSort =
+    activeSort === 'title-asc' ||
+    activeSort === 'title-desc' ||
+    activeSort === 'duration-asc' ||
+    activeSort === 'duration-desc';
+
+  if (isCourseLevelSort) {
+    const sortedFlat = [...flatMatchedCourses].sort((a, b) => {
+      if (activeSort === 'title-asc') {
+        return a.c.title.localeCompare(b.c.title);
+      }
+      if (activeSort === 'title-desc') {
+        return b.c.title.localeCompare(a.c.title);
+      }
+      if (activeSort === 'duration-asc') {
+        const diff = getDurationRank(a.c.duration) - getDurationRank(b.c.duration);
+        return diff !== 0 ? diff : a.c.title.localeCompare(b.c.title);
+      }
+      if (activeSort === 'duration-desc') {
+        const diff = getDurationRank(b.c.duration) - getDurationRank(a.c.duration);
+        return diff !== 0 ? diff : a.c.title.localeCompare(b.c.title);
+      }
+      return 0;
+    });
+
+    const sortTitleMap = {
+      'title-asc': t('training.sortTitleAsc'),
+      'title-desc': t('training.sortTitleDesc'),
+      'duration-asc': t('training.sortDurAsc'),
+      'duration-desc': t('training.sortDurDesc')
+    };
+
+    grid.innerHTML = `
+      <section class="catalog-category-block" aria-label="Sorted Course Listings">
+        <header class="catalog-category-showcase">
+          <span class="catalog-category-watermark" aria-hidden="true">A–Z</span>
+          <div class="catalog-category-showcase-main">
+            <span class="catalog-showcase-eyebrow">SORTED VIEW • ${escapeHtml(sortTitleMap[activeSort] || '')}</span>
+            <h2 class="catalog-category-title">${totalMatched} ${t('training.listingsWord')}</h2>
+            <p class="catalog-category-tagline">PEOPLE.PROCESSES.PROGRESS. • HRD Corp Claimable Corporate Training</p>
+          </div>
+        </header>
+        <ol class="${activeViewMode === 'compact' ? 'catalog-index-list' : 'catalog-bento-courses-grid'}">
+          ${sortedFlat.map(({ c, cat, sub }) => renderCourseCardHtml(c, cat, sub, true)).join('')}
+        </ol>
+      </section>
+    `;
+    bindCatalogInteractiveTags(grid);
+    return;
+  }
+
+  // Category-Grouped Mode ('default' 01->07 or 'volume-desc' Most Listings First)
+  if (activeSort === 'volume-desc') {
+    renderedBlocks.sort((a, b) => b.catCourseCount - a.catCourseCount || a.cat.num - b.cat.num);
+  }
+
   grid.innerHTML = renderedBlocks
     .map(
       ({ cat, matchedSubcategories, catCourseCount }, idx) => `
-      <section class="catalog-category-block ${idx > 0 ? 'catalog-category-deferred' : ''}" aria-labelledby="cat-heading-${cat.id}">
-        <header class="catalog-category-header">
-          <div>
-            <span class="pillar-code">CATEGORY 0${cat.num} • PEOPLE.PROCESSES.PROGRESS.</span>
+      <section class="catalog-category-block ${idx > 1 ? 'catalog-category-deferred' : ''}" aria-labelledby="cat-heading-${cat.id}">
+        <header class="catalog-category-showcase">
+          <span class="catalog-category-watermark" aria-hidden="true">0${cat.num}</span>
+          <div class="catalog-category-showcase-main">
+            <div class="catalog-showcase-meta-row">
+              <span class="catalog-showcase-icon">${getCategoryIconSvg(cat.id)}</span>
+              <span class="catalog-showcase-eyebrow">CATEGORY 0${cat.num} • ${cat.code} • PEOPLE.PROCESSES.PROGRESS.</span>
+            </div>
             <h2 id="cat-heading-${cat.id}" class="catalog-category-title">${cat.title[currentLang]}</h2>
+            <p class="catalog-category-tagline">${cat.tagline[currentLang]}</p>
+            <div class="catalog-showcase-subchips">
+              ${cat.subcategories
+                .map((s) => {
+                  const isSubActive = activeSubcategory === s.title.en;
+                  return `
+                    <button type="button"
+                            class="catalog-header-subchip ${isSubActive ? 'is-active' : ''}"
+                            data-jump-subcat="${escapeHtml(s.title.en)}">
+                      <span>${escapeHtml(s.title[currentLang])}</span>
+                      <span class="catalog-header-subchip-cnt">${s.courses.length}</span>
+                    </button>
+                  `;
+                })
+                .join('')}
+            </div>
           </div>
           <div class="catalog-category-badges">
-            <span class="badge">${catCourseCount} ${t('training.listingsWord')}</span>
-            <a href="bulletin.html?topic=${encodeURIComponent(cat.topicId)}#bulletin-updates" class="btn btn-secondary btn-sm">
-              ${t('training.bulletinBtn')} →
-            </a>
+            <div class="catalog-count-orb">
+              <strong>${catCourseCount}</strong>
+              <span>${t('training.listingsWord')}</span>
+            </div>
+            <div class="catalog-showcase-actions">
+              <a href="contact.html?course=${encodeURIComponent(cat.title.en)}#corporate-enquiry-form" class="btn btn-primary btn-sm">
+                ${t('training.inquireCatBtn')} →
+              </a>
+              <a href="bulletin.html?topic=${encodeURIComponent(cat.topicId)}#bulletin-updates" class="btn btn-ghost-light btn-sm">
+                ${t('training.bulletinBtn')}
+              </a>
+            </div>
           </div>
         </header>
 
@@ -701,33 +1299,15 @@ function renderTrainingCatalog() {
             .map(
               ({ sub, matchedCourses }) => `
             <div class="catalog-subcategory-group">
-              <h3 class="catalog-subcategory-title">${sub.title[currentLang]}</h3>
-              <ol class="catalog-courses-list">
-                ${matchedCourses
-                  .map(
-                    (c) => `
-                  <li class="catalog-course-item">
-                    <div class="catalog-course-main">
-                      <span class="catalog-course-no">${String(c.no).padStart(2, '0')}</span>
-                      <div class="catalog-course-info">
-                        <strong class="catalog-course-title">${c.title}</strong>
-                        ${
-                          c.scope
-                            ? `<p class="catalog-course-scope"><strong>${t('training.scopeLabel')}</strong> ${c.scope}</p>`
-                            : ''
-                        }
-                      </div>
-                    </div>
-                    <div class="catalog-course-meta">
-                      <span class="badge">${c.duration}</span>
-                      <a href="contact.html?course=${encodeURIComponent(c.title)}#corporate-enquiry-form" class="btn btn-primary btn-sm">
-                        ${t('training.bookBtn')}
-                      </a>
-                    </div>
-                  </li>
-                `
-                  )
-                  .join('')}
+              <div class="catalog-subcategory-bar">
+                <h3 class="catalog-subcategory-title">
+                  <span class="catalog-subcategory-dot" aria-hidden="true"></span>
+                  <span>${sub.title[currentLang]}</span>
+                </h3>
+                <span class="catalog-subcategory-count">${matchedCourses.length} ${t('training.listingsWord')}</span>
+              </div>
+              <ol class="${activeViewMode === 'compact' ? 'catalog-index-list' : 'catalog-bento-courses-grid'}">
+                ${matchedCourses.map((c) => renderCourseCardHtml(c, cat, sub, false)).join('')}
               </ol>
             </div>
           `
@@ -738,6 +1318,8 @@ function renderTrainingCatalog() {
     `
     )
     .join('');
+
+  bindCatalogInteractiveTags(grid);
 }
 
 function bindSyllabusTriggers(scope) {
@@ -779,6 +1361,27 @@ function openSyllabusModal(courseId) {
 }
 
 function initModalCloseHandlers() {
+  const resetBtn = document.getElementById('training-reset-btn');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      activeCategory = 'all';
+      activeSubcategory = 'all';
+      activeLevel = 'all';
+      activeSort = 'default';
+      searchQuery = '';
+      const levelSelect = document.getElementById('training-level-select');
+      const sortSelect = document.getElementById('training-sort-select');
+      const searchInput = document.getElementById('training-search-input');
+      const searchClear = document.getElementById('training-search-clear');
+      if (levelSelect) levelSelect.value = 'all';
+      if (sortSelect) sortSelect.value = 'default';
+      if (searchInput) searchInput.value = '';
+      if (searchClear) searchClear.hidden = true;
+      renderTrainingFilters();
+      renderTrainingCatalog();
+    });
+  }
+
   const dialog = document.getElementById('syllabus-dialog');
   if (!dialog) return;
 
@@ -802,21 +1405,6 @@ function initModalCloseHandlers() {
     dialog.addEventListener('pointerup', (e) => {
       if (pointerDownOutside && isOutside(e)) dialog.close();
       pointerDownOutside = false;
-    });
-  }
-
-  const resetBtn = document.getElementById('training-reset-btn');
-  if (resetBtn) {
-    resetBtn.addEventListener('click', () => {
-      activeCategory = 'all';
-      activeLevel = 'all';
-      searchQuery = '';
-      const levelSelect = document.getElementById('training-level-select');
-      const searchInput = document.getElementById('training-search-input');
-      if (levelSelect) levelSelect.value = 'all';
-      if (searchInput) searchInput.value = '';
-      renderTrainingFilters();
-      renderTrainingCatalog();
     });
   }
 }
@@ -1247,7 +1835,27 @@ function findTopicDetails(topicId) {
 function renderBulletins() {
   const grid = document.getElementById('bulletin-cards-grid');
   const pillsWrap = document.getElementById('bulletin-filter-pills');
+  const catPillsWrap = document.getElementById('bulletin-cat-pills');
+  const spotlightWrap = document.getElementById('bulletin-active-spotlight');
   const countEl = document.getElementById('bulletin-results-count');
+
+  renderTrainingTracksDirectory('bulletin-tracks-directory');
+
+  // Allow clicking the 17 training tracks right on bulletin.html to filter smoothly without full reload
+  document.querySelectorAll('#bulletin-tracks-directory [data-bulletin-topic-link]').forEach((a) => {
+    if (!a.dataset.bound) {
+      a.dataset.bound = 'true';
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        activeBulletinTopic = a.dataset.bulletinTopicLink;
+        activeBulletinCatalogCat = '';
+        activeBulletinCourse = '';
+        renderBulletins();
+        document.getElementById('bulletin-updates')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+  });
+
   if (!grid) return;
 
   if (pillsWrap) {
@@ -1260,30 +1868,163 @@ function renderBulletins() {
     ];
 
     pillsWrap.innerHTML = categories
-      .map(
-        (cat) => `
+      .map((cat) => {
+        const isActive =
+          !activeBulletinTopic &&
+          !activeBulletinCatalogCat &&
+          !activeBulletinCourse &&
+          cat.id === activeBulletinCategory;
+        return `
         <button type="button"
-                class="filter-pill"
+                class="catalog-chip ${isActive ? 'is-active' : ''}"
                 data-bulletin-cat="${cat.id}"
-                aria-pressed="${!activeBulletinTopic && cat.id === activeBulletinCategory ? 'true' : 'false'}">
-          ${cat.label}
+                aria-pressed="${isActive ? 'true' : 'false'}">
+          <span>${cat.label}</span>
         </button>
-      `
-      )
+      `;
+      })
       .join('');
 
     pillsWrap.querySelectorAll('[data-bulletin-cat]').forEach((btn) => {
       btn.addEventListener('click', () => {
         activeBulletinTopic = '';
+        activeBulletinCatalogCat = '';
+        activeBulletinCourse = '';
         activeBulletinCategory = btn.dataset.bulletinCat;
         renderBulletins();
       });
     });
   }
 
+  if (catPillsWrap) {
+    catPillsWrap.innerHTML = TRAINING_CATALOGUE_2026.map((cat) => {
+      const isActive = activeBulletinCatalogCat === cat.id;
+      return `
+        <button type="button"
+                class="catalog-subcat-chip ${isActive ? 'is-active' : ''}"
+                data-bulletin-catalog-cat="${cat.id}"
+                aria-pressed="${isActive ? 'true' : 'false'}">
+          <span>0${cat.num}. ${cat.shortTitle[currentLang]}</span>
+          <span class="catalog-chip-count">${cat.totalListings}</span>
+        </button>
+      `;
+    }).join('');
+
+    catPillsWrap.querySelectorAll('[data-bulletin-catalog-cat]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.dataset.bulletinCatalogCat;
+        activeBulletinCatalogCat = activeBulletinCatalogCat === targetId ? '' : targetId;
+        activeBulletinTopic = '';
+        activeBulletinCourse = '';
+        activeBulletinCategory = 'training';
+        renderBulletins();
+      });
+    });
+  }
+
   const topicDetails = findTopicDetails(activeBulletinTopic);
+  const catalogCatObj =
+    TRAINING_CATALOGUE_2026.find((c) => c.id === activeBulletinCatalogCat) ||
+    (activeBulletinTopic ? TRAINING_CATALOGUE_2026.find((c) => c.topicId === activeBulletinTopic) : null);
+
+  // Render Live Course / Category / Topic Bulletin Spotlight Card when deep-linked
+  if (spotlightWrap) {
+    if (activeBulletinCourse || catalogCatObj || topicDetails) {
+      const matchedCat = catalogCatObj || TRAINING_CATALOGUE_2026[0];
+      let matchedCourseObj = null;
+      let matchedSubObj = null;
+      if (activeBulletinCourse) {
+        for (const cat of TRAINING_CATALOGUE_2026) {
+          for (const sub of cat.subcategories) {
+            const found = sub.courses.find(
+              (cr) => cr.title.toLowerCase() === activeBulletinCourse.toLowerCase()
+            );
+            if (found) {
+              matchedCourseObj = found;
+              matchedSubObj = sub;
+              break;
+            }
+          }
+          if (matchedCourseObj) break;
+        }
+      }
+
+      const previewCourses = matchedCat.subcategories.flatMap((s) => s.courses).slice(0, 6);
+
+      spotlightWrap.hidden = false;
+      spotlightWrap.innerHTML = `
+        <article class="catalog-category-block" style="margin-block-end:2rem;">
+          <header class="catalog-category-showcase">
+            <span class="catalog-category-watermark" aria-hidden="true">${matchedCat ? '0' + matchedCat.num : '26'}</span>
+            <div class="catalog-category-showcase-main">
+              <span class="catalog-showcase-eyebrow">
+                LIVE BULLETIN UPDATE • ${
+                  matchedCourseObj
+                    ? `${matchedCat.code}-${String(matchedCourseObj.no).padStart(2, '0')} • ${matchedSubObj.title[currentLang]}`
+                    : topicDetails
+                      ? topicDetails.item.title[currentLang]
+                      : matchedCat.title[currentLang]
+                }
+              </span>
+              <h3 class="catalog-category-title">
+                ${escapeHtml(
+                  matchedCourseObj
+                    ? matchedCourseObj.title
+                    : topicDetails
+                      ? `${topicDetails.item.title[currentLang]} — 2026 Cohort & Programme Bulletin`
+                      : `${matchedCat.title[currentLang]} — 2026 Cohort Bulletin`
+                )}
+              </h3>
+              <p class="catalog-category-tagline">
+                ${
+                  matchedCourseObj
+                    ? `Duration: ${matchedCourseObj.duration} • HRD Corp Claimable (SBL-Khas) • Available for In-House Corporate Cohorts, KL/Penang/JB Workshops & University CSR Collaborations.${matchedCourseObj.scope ? ' Scope: ' + matchedCourseObj.scope : ''}`
+                    : matchedCat.tagline[currentLang]
+                }
+              </p>
+              <div class="catalog-showcase-subchips">
+                ${previewCourses
+                  .map(
+                    (pc) => `
+                  <a href="bulletin.html?topic=${encodeURIComponent(matchedCat.topicId)}&amp;category=${encodeURIComponent(matchedCat.id)}&amp;course=${encodeURIComponent(pc.title)}#bulletin-updates"
+                     class="catalog-header-subchip ${matchedCourseObj?.title === pc.title ? 'is-active' : ''}">
+                    <span>${escapeHtml(pc.title)}</span>
+                    <span class="catalog-header-subchip-cnt">${escapeHtml(pc.duration)}</span>
+                  </a>
+                `
+                  )
+                  .join('')}
+              </div>
+            </div>
+            <div class="catalog-category-badges">
+              <div class="catalog-showcase-actions">
+                <a href="contact.html?course=${encodeURIComponent(
+                  matchedCourseObj
+                    ? matchedCourseObj.title
+                    : topicDetails
+                      ? topicDetails.item.title.en
+                      : matchedCat.title.en
+                )}#corporate-enquiry-form" class="btn btn-primary btn-sm">
+                  ${t('training.bookBtn')} →
+                </a>
+                <a href="training.html?category=${encodeURIComponent(matchedCat.id)}" class="btn btn-ghost-light btn-sm">
+                  View All ${matchedCat.totalListings} Courses in Catalogue →
+                </a>
+              </div>
+            </div>
+          </header>
+        </article>
+      `;
+    } else {
+      spotlightWrap.hidden = true;
+      spotlightWrap.innerHTML = '';
+    }
+  }
 
   const filtered = BULLETINS.filter((item) => {
+    if (activeBulletinCatalogCat) {
+      return item.catalogCategoryId === activeBulletinCatalogCat;
+    }
     if (topicDetails) {
       return Array.isArray(item.topics) && item.topics.includes(activeBulletinTopic);
     }
@@ -1293,15 +2034,21 @@ function renderBulletins() {
   const displayList = filtered.length ? filtered : BULLETINS;
 
   if (countEl) {
-    if (topicDetails) {
+    if (activeBulletinCourse || topicDetails || activeBulletinCatalogCat) {
+      const activeLabel =
+        activeBulletinCourse ||
+        (topicDetails ? topicDetails.item.title[currentLang] : catalogCatObj?.title[currentLang] || '');
       countEl.innerHTML = `
-        <strong>${t('bulletin.topicActivePrefix')} ${topicDetails.item.title[currentLang]}</strong>
-        <button type="button" id="clear-topic-filter-btn" class="btn btn-secondary btn-sm" style="margin-inline-start:0.65rem;">
+        <strong>${t('bulletin.topicActivePrefix')} ${escapeHtml(activeLabel)}</strong>
+        <button type="button" id="clear-topic-filter-btn" class="catalog-quick-reset-btn" style="margin-inline-start:0.65rem;">
           ${t('bulletin.topicClearBtn')}
         </button>
       `;
       document.getElementById('clear-topic-filter-btn')?.addEventListener('click', () => {
         activeBulletinTopic = '';
+        activeBulletinCatalogCat = '';
+        activeBulletinCourse = '';
+        activeBulletinCategory = 'all';
         renderBulletins();
       });
     } else {
@@ -1320,8 +2067,9 @@ function renderBulletins() {
         <h3>${item.title[currentLang]}</h3>
         <span class="badge badge-hrd">${topicDetails ? topicDetails.item.title[currentLang] : item.highlightBadge[currentLang]}</span>
         <p>${item.summary[currentLang]}</p>
-        <div style="padding-block-start:0.5rem;border-block-start:1px solid var(--border-subtle);">
+        <div style="display:flex;flex-wrap:wrap;gap:0.6rem;padding-block-start:0.75rem;border-block-start:1px solid var(--border-subtle);margin-block-start:auto;">
           <a href="${item.ctaHref}" class="btn btn-secondary btn-sm">${item.ctaText[currentLang]} →</a>
+          <a href="contact.html?course=${encodeURIComponent(item.title.en)}#corporate-enquiry-form" class="btn btn-primary btn-sm">${t('training.bookBtn')} →</a>
         </div>
       </article>
     `

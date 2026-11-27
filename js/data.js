@@ -2,9 +2,15 @@ export const TRAINING_CATALOGUE_2026 = [
   {
     id: 'personal-effectiveness',
     num: 1,
+    code: 'PE',
     topicId: 'personal-effectiveness',
     title: { en: '1. Personal Effectiveness', ms: '1. Keberkesanan Diri (Personal Effectiveness)' },
     shortTitle: { en: 'Personal Effectiveness', ms: 'Keberkesanan Diri' },
+    tagline: {
+      en: 'EQ, MindMapping, Design Thinking, Cognitive Performance & Stress Mastery',
+      ms: 'EQ, Pemetaan Minda, Pemikiran Reka Bentuk, Prestasi Kognitif & Pengurusan Tekanan'
+    },
+    durationSummary: { en: '1–3 Days', ms: '1–3 Hari' },
     totalListings: 24,
     subcategories: [
       {
@@ -56,9 +62,15 @@ export const TRAINING_CATALOGUE_2026 = [
   {
     id: 'organizational-effectiveness',
     num: 2,
+    code: 'OE',
     topicId: 'management-and-supervisory',
     title: { en: '2. Organizational Effectiveness', ms: '2. Keberkesanan Organisasi (Organizational Effectiveness)' },
     shortTitle: { en: 'Organizational Effectiveness', ms: 'Keberkesanan Organisasi' },
+    tagline: {
+      en: 'Analytical Decision Making, Crisis Management, Winning KPIs & High-Performance Teams',
+      ms: 'Pembuatan Keputusan Analitikal, Pengurusan Krisis, KPI & Kerjasama Pasukan Berprestasi Tinggi'
+    },
+    durationSummary: { en: '1–3 Days', ms: '1–3 Hari' },
     totalListings: 21,
     subcategories: [
       {
@@ -117,9 +129,15 @@ export const TRAINING_CATALOGUE_2026 = [
   {
     id: 'communication-skills',
     num: 3,
+    code: 'CS',
     topicId: 'communication-skills',
     title: { en: '3. Communication Skills', ms: '3. Kemahiran Komunikasi (Communication Skills)' },
     shortTitle: { en: 'Communication Skills', ms: 'Kemahiran Komunikasi' },
+    tagline: {
+      en: 'Executive Rapport, Business Writing, High-Impact Storytelling & NLP Practitioner Tracks',
+      ms: 'Hubungan Eksekutif, Penulisan Perniagaan, Penceritaan Berimpak Tinggi & Persijilan NLP'
+    },
+    durationSummary: { en: '1–6 Days', ms: '1–6 Hari' },
     totalListings: 24,
     subcategories: [
       {
@@ -176,9 +194,15 @@ export const TRAINING_CATALOGUE_2026 = [
   {
     id: 'corporate-leadership',
     num: 4,
+    code: 'CL',
     topicId: 'corporate-leadership',
     title: { en: '4. Corporate Leadership', ms: '4. Kepimpinan Korporat (Corporate Leadership)' },
     shortTitle: { en: 'Corporate Leadership', ms: 'Kepimpinan Korporat' },
+    tagline: {
+      en: 'Enlightened Leadership, Strategic Management, Active Coaching & Change Acceleration',
+      ms: 'Kepimpinan Berwawasan, Pengurusan Strategik, Bimbingan Aktif & Pemecutan Perubahan'
+    },
+    durationSummary: { en: '1–3 Days', ms: '1–3 Hari' },
     totalListings: 23,
     subcategories: [
       {
@@ -229,9 +253,15 @@ export const TRAINING_CATALOGUE_2026 = [
   {
     id: 'cybersecurity-training',
     num: 5,
+    code: 'CY',
     topicId: 'cyber-security-training',
     title: { en: '5. Cybersecurity Training', ms: '5. Latihan Keselamatan Siber (Cybersecurity Training)' },
     shortTitle: { en: 'Cybersecurity Training', ms: 'Latihan Keselamatan Siber' },
+    tagline: {
+      en: 'Ethical Hacking, Network/Web/Mobile Penetration Testing, Digital Forensics & Incident Response',
+      ms: 'Penggodaman Beretika, Ujian Penembusan Rangkaian/Web/Mudah Alih, Forensik Digital & Tindak Balas Insiden'
+    },
+    durationSummary: { en: '1–3 Days', ms: '1–3 Hari' },
     totalListings: 7,
     subcategories: [
       {
@@ -251,9 +281,15 @@ export const TRAINING_CATALOGUE_2026 = [
   {
     id: 'iso-training',
     num: 6,
+    code: 'ISO',
     topicId: 'safety-and-health',
     title: { en: '6. ISO Training', ms: '6. Latihan ISO (ISO Training)' },
     shortTitle: { en: 'ISO Training', ms: 'Latihan ISO' },
+    tagline: {
+      en: 'ISO 9001, 13485, 14001, 45001, 20000, 27001, 22000, FSSC, 22301, 37001, HIRARC & OSHA',
+      ms: 'ISO 9001, 13485, 14001, 45001, 20000, 27001, 22000, FSSC, 22301, 37001, HIRARC & OSHA'
+    },
+    durationSummary: { en: 'Custom Scope', ms: 'Ikut Organisasi' },
     totalListings: 27,
     subcategories: [
       {
@@ -287,7 +323,7 @@ export const TRAINING_CATALOGUE_2026 = [
         ]
       },
       {
-        title: { en: 'Others (Safety, Risk & OSHA)', ms: 'Lain-Lain (Keselamatan, Risiko & OSHA)' },
+        title: { en: 'Others', ms: 'Lain-Lain' },
         courses: [
           { no: 21, title: 'Risk Assessment Training', duration: 'Custom to organization needs' },
           { no: 22, title: 'Business Continuity Plan Training', duration: 'Custom to organization needs' },
@@ -303,9 +339,15 @@ export const TRAINING_CATALOGUE_2026 = [
   {
     id: 'quantity-surveyor-training',
     num: 7,
+    code: 'QS',
     topicId: 'engineering-technical-and-maintenance',
     title: { en: '7. Quantity Surveyor Training', ms: '7. Latihan Juruukur Bahan (Quantity Surveyor Training)' },
     shortTitle: { en: 'Quantity Surveyor Training', ms: 'Latihan Juruukur Bahan' },
+    tagline: {
+      en: 'Cost Estimation, BOQ (SMM/CESMM/NRM), Contract Law (FIDIC/PAM), CostX/BIM & Claims',
+      ms: 'Anggaran Kos, Penyediaan BOQ, Undang-Undang Kontrak (FIDIC/PAM), Perisian CostX/BIM & Tuntutan'
+    },
+    durationSummary: { en: 'Custom Scope', ms: 'Ikut Organisasi' },
     totalListings: 7,
     subcategories: [
       {
@@ -414,11 +456,11 @@ export const CORE_PILLARS = [
     id: 'training-services',
     roman: 'III',
     code: 'III. TRAINING SERVICES',
-    badge: { en: 'HRD Corp Claimable', ms: 'Boleh Dituntut HRD Corp' },
+    badge: { en: '133 Courses • 7 Categories', ms: '133 Kursus • 7 Kategori' },
     title: { en: 'TRAINING SERVICES', ms: 'PERKHIDMATAN LATIHAN' },
     summary: {
-      en: 'Practitioner-led corporate training tracks across 17 specialized disciplines—each linked directly to our Bulletin Updates.',
-      ms: 'Laluan latihan korporat berteraskan pengamal merentasi 17 disiplin khusus—setiap satu dipautkan terus ke Buletin Terkini.'
+      en: '133 HRD Corp claimable corporate training courses across 7 specialized categories (2026 Edition)—linked directly to our Training Catalogue & Bulletin Updates.',
+      ms: '133 kursus latihan korporat layak HRD Corp merentasi 7 kategori khusus (Edisi 2026)—dipautkan terus ke Katalog Latihan & Buletin Terkini.'
     },
     items: [
       {
@@ -1398,15 +1440,148 @@ export const PDCA_ROADMAP = [
 
 export const BULLETINS = [
   {
-    id: 'bul-2026-11-consultancy',
+    id: 'bul-2026-pe',
+    date: { en: '24 Nov 2026', ms: '24 Nov 2026' },
+    category: 'training',
+    catalogCategoryId: 'personal-effectiveness',
+    topics: ['personal-effectiveness', 'grooming'],
+    categoryLabel: { en: 'Category 01 • Personal Effectiveness', ms: 'Kategori 01 • Keberkesanan Diri' },
+    highlightBadge: { en: '24 Catalogue Listings • 1–3 Days', ms: '24 Senarai Kursus • 1–3 Hari' },
+    title: {
+      en: 'Personal Effectiveness, EQ, MindMapping & Design Thinking 2026 Cohort Bulletin',
+      ms: 'Buletin Kohort 2026 Keberkesanan Diri, EQ, Pemetaan Minda & Pemikiran Reka Bentuk'
+    },
+    summary: {
+      en: 'Active in-house and public cohorts across all 24 Personal Effectiveness listings—including Emotional Intelligence (EQ) & MindMapping, The Buzan Technique, Design Thinking (3 Days), Color Therapy Stress Management, Assertiveness [Code 221], Charismatic Persuasion [Code 222], and Brain Wellness [Code 224].',
+      ms: 'Kohort dalaman dan korporat aktif merentasi 24 kursus Keberkesanan Diri—termasuk Kecerdasan Emosi (EQ) & Pemetaan Minda, Teknik Buzan, Bengkel Pemikiran Reka Bentuk (3 Hari), Pengurusan Tekanan, Kod 221, Kod 222 dan Kesejahteraan Minda [Kod 224].'
+    },
+    ctaText: { en: 'Browse 24 Courses in Catalogue', ms: 'Lihat 24 Kursus Dalam Katalog' },
+    ctaHref: 'training.html?category=personal-effectiveness'
+  },
+  {
+    id: 'bul-2026-oe',
+    date: { en: '22 Nov 2026', ms: '22 Nov 2026' },
+    category: 'training',
+    catalogCategoryId: 'organizational-effectiveness',
+    topics: ['management-and-supervisory', 'team-building', 'project-management'],
+    categoryLabel: { en: 'Category 02 • Organizational Effectiveness', ms: 'Kategori 02 • Keberkesanan Organisasi' },
+    highlightBadge: { en: '21 Catalogue Listings • 1–3 Days', ms: '21 Senarai Kursus • 1–3 Hari' },
+    title: {
+      en: 'Organizational Effectiveness, Lego Serious Play, Crisis Management & Winning KPIs Update',
+      ms: 'Buletin Keberkesanan Organisasi, Lego Serious Play, Pengurusan Krisis & KPI Berimpak Tinggi'
+    },
+    summary: {
+      en: '2026 executive rollouts for all 21 Organizational Effectiveness courses—covering Analytical Problem Solving, C.U.T.E Principle, Lego Serious Play Methodology, DISC at the Workplace, Holistic Crisis Management (3 Days), Winning KPIs, Effective Delegation, and High-Performance Team Collaboration.',
+      ms: 'Pelaksanaan kohort 2026 bagi 21 kursus Keberkesanan Organisasi—merangkumi Penyelesaian Masalah Analitikal, Prinsip C.U.T.E, Metodologi Lego Serious Play, DISC di Tempat Kerja, Pengurusan Krisis Holistik (3 Hari), KPI, Delegasi dan Kerjasama Pasukan.'
+    },
+    ctaText: { en: 'Browse 21 Courses in Catalogue', ms: 'Lihat 21 Kursus Dalam Katalog' },
+    ctaHref: 'training.html?category=organizational-effectiveness'
+  },
+  {
+    id: 'bul-2026-cs',
+    date: { en: '20 Nov 2026', ms: '20 Nov 2026' },
+    category: 'training',
+    catalogCategoryId: 'communication-skills',
+    topics: ['communication-skills', 'customer-service', 'sales-and-marketing'],
+    categoryLabel: { en: 'Category 03 • Communication Skills', ms: 'Kategori 03 • Kemahiran Komunikasi' },
+    highlightBadge: { en: '24 Catalogue Listings • Incl. 6-Day NLP Cert', ms: '24 Senarai Kursus • Termasuk Sijil NLP 6 Hari' },
+    title: {
+      en: 'Communication Skills, Colour Brain Strategy, Business Storytelling & NLP Practitioner Bulletin',
+      ms: 'Buletin Kemahiran Komunikasi, Strategi Colour Brain, Penceritaan Perniagaan & Pengamal NLP'
+    },
+    summary: {
+      en: 'Updated 2026 intake schedule for all 24 Communication Skills courses—spanning Business & Technical Writing, Assertive Influencing, The "Colour Brain" Strategy, P.O.W.E.R Pack & Masterclass Presentations, and the 6-Day NLP Basic Practitioner Certification +.',
+      ms: 'Jadual pengambilan 2026 bagi kesemua 24 kursus Kemahiran Komunikasi—merangkumi Penulisan Perniagaan & Teknikal, Komunikasi Asertif, Strategi "Colour Brain", Pembentangan P.O.W.E.R Pack, serta Pensijilan Pengamal Asas NLP 6 Hari +.'
+    },
+    ctaText: { en: 'Browse 24 Courses in Catalogue', ms: 'Lihat 24 Kursus Dalam Katalog' },
+    ctaHref: 'training.html?category=communication-skills'
+  },
+  {
+    id: 'bul-2026-cl',
+    date: { en: '18 Nov 2026', ms: '18 Nov 2026' },
+    category: 'training',
+    catalogCategoryId: 'corporate-leadership',
+    topics: ['corporate-leadership', 'human-resource-and-legal', 'finance-and-accounting'],
+    categoryLabel: { en: 'Category 04 • Corporate Leadership', ms: 'Kategori 04 • Kepimpinan Korporat' },
+    highlightBadge: { en: '23 Catalogue Listings • 1–3 Days', ms: '23 Senarai Kursus • 1–3 Hari' },
+    title: {
+      en: 'Corporate Leadership, Strategic Management, Gen Y/Z Coaching & Change Accelerator Bulletin',
+      ms: 'Buletin Kepimpinan Korporat, Pengurusan Strategik, Bimbingan Gen Y/Z & Pemecut Perubahan'
+    },
+    summary: {
+      en: 'Executive leadership cohorts across 23 Corporate Leadership listings—featuring The Intensive Enlightened Leadership Workshop (3 Days), Sun Tzu’s Art of War Strategies, Adaptive Leadership, Coaching for Quantum Success (3 Days), and The Change Accelerator.',
+      ms: 'Kohort kepimpinan eksekutif merentasi 23 kursus Kepimpinan Korporat—menampilkan Bengkel Kepimpinan Berwawasan Intensif (3 Hari), Strategi Sun Tzu, Kepimpinan Adaptif, Bimbingan Kejayaan Kuantum (3 Hari), dan Pemecut Perubahan.'
+    },
+    ctaText: { en: 'Browse 23 Courses in Catalogue', ms: 'Lihat 23 Kursus Dalam Katalog' },
+    ctaHref: 'training.html?category=corporate-leadership'
+  },
+  {
+    id: 'bul-2026-cy',
+    date: { en: '16 Nov 2026', ms: '16 Nov 2026' },
+    category: 'training',
+    catalogCategoryId: 'cybersecurity-training',
+    topics: ['cyber-security-training', 'certification-program-series', 'microsoft-application'],
+    categoryLabel: { en: 'Category 05 • Cybersecurity Training', ms: 'Kategori 05 • Latihan Keselamatan Siber' },
+    highlightBadge: { en: '7 Technical Lab Listings • 1–3 Days', ms: '7 Kursus Makmal Teknikal • 1–3 Hari' },
+    title: {
+      en: 'Cybersecurity Awareness, Ethical Hacking, Penetration Testing & Digital Forensics Lab Bulletin',
+      ms: 'Buletin Makmal Kesedaran Siber, Penggodaman Beretika, Ujian Penembusan & Forensik Digital'
+    },
+    summary: {
+      en: 'Hands-on red/blue-team labs across all 7 Cybersecurity Training courses: Cybersecurity Awareness (1 Day), Fundamental of Ethical Hacking (1 Day), Network PenTest (3 Days), Web App PenTest (3 Days), Mobile App PenTest (3 Days), Digital Forensics (3 Days), and Incident Response (3 Days).',
+      ms: 'Makmal teknikal merentasi 7 kursus Latihan Keselamatan Siber: Kesedaran Siber (1 Hari), Asas Penggodaman Beretika (1 Hari), Ujian Penembusan Rangkaian/Web/Mudah Alih (3 Hari), Forensik Digital (3 Hari), dan Tindak Balas Insiden (3 Hari).'
+    },
+    ctaText: { en: 'Browse 7 Courses in Catalogue', ms: 'Lihat 7 Kursus Dalam Katalog' },
+    ctaHref: 'training.html?category=cybersecurity-training'
+  },
+  {
+    id: 'bul-2026-iso',
+    date: { en: '15 Nov 2026', ms: '15 Nov 2026' },
+    category: 'training',
+    catalogCategoryId: 'iso-training',
+    topics: ['safety-and-health', 'iso-management-system', 'certification-program-series'],
+    categoryLabel: { en: 'Category 06 • ISO Training & Safety', ms: 'Kategori 06 • Latihan ISO & Keselamatan' },
+    highlightBadge: { en: '27 Catalogue Listings • Custom to Organization', ms: '27 Senarai Kursus • Ikut Keperluan Organisasi' },
+    title: {
+      en: 'ISO Awareness, Internal Audit (9001, 13485, 14001, 45001, 20000, 27001, 22000, FSSC, 22301, 37001) & OSHA Bulletin',
+      ms: 'Buletin Kesedaran ISO, Audit Dalaman (9001, 13485, 14001, 45001, 20000, 27001, 22000, FSSC, 22301, 37001) & OSHA'
+    },
+    summary: {
+      en: 'Tailored in-house deliveries across all 27 ISO Training & Safety programmes—10 Awareness tracks, 10 Internal Audit tracks, and 7 Risk/Safety programmes (Risk Assessment, BCP, HIRARC, Safety Committee, OSHA Awareness, Chemical Handling, and First Aid).',
+      ms: 'Penyampaian dalaman khusus merentasi 27 program Latihan ISO & Keselamatan—10 kursus Kesedaran, 10 kursus Audit Dalaman, serta 7 kursus Keselamatan & Risiko (Penilaian Risiko, BCP, HIRARC, Jawatankuasa Keselamatan, OSHA, Bahan Kimia & Pertolongan Cemas).'
+    },
+    ctaText: { en: 'Browse 27 Courses in Catalogue', ms: 'Lihat 27 Kursus Dalam Katalog' },
+    ctaHref: 'training.html?category=iso-training'
+  },
+  {
+    id: 'bul-2026-qs',
     date: { en: '14 Nov 2026', ms: '14 Nov 2026' },
+    category: 'training',
+    catalogCategoryId: 'quantity-surveyor-training',
+    topics: ['engineering-technical-and-maintenance', 'project-management', 'supply-chain-management'],
+    categoryLabel: { en: 'Category 07 • Quantity Surveyor Training', ms: 'Kategori 07 • Latihan Juruukur Bahan' },
+    highlightBadge: { en: '7 Commercial Construction Listings • Custom Scope', ms: '7 Kursus Pembinaan Komersial • Skop Khusus' },
+    title: {
+      en: 'Quantity Surveyor (QS) Training: Cost Estimation, BOQ (SMM/CESMM/NRM), FIDIC/PAM Contracts & CostX/BIM Bulletin',
+      ms: 'Buletin Latihan Juruukur Bahan (QS): Anggaran Kos, BOQ, Kontrak FIDIC/PAM & Perisian CostX/BIM'
+    },
+    summary: {
+      en: 'Specialized construction and engineering cohorts covering Cost Estimation & Budgeting, BOQ Preparation, Contract Administration & Law (JCT/NEC/FIDIC/PAM), Tendering & Procurement, Cost Control, CostX/WinQS/BIM Software, and Dispute Resolution & Claims.',
+      ms: 'Kohort kejuruteraan dan pembinaan khusus merangkumi Anggaran Kos & Bajet, Penyediaan BOQ, Pentadbiran Kontrak (JCT/NEC/FIDIC/PAM), Strategi Tender, Kawalan Kos, Perisian CostX/WinQS/BIM, dan Penyelesaian Pertikaian & Tuntutan.'
+    },
+    ctaText: { en: 'Browse 7 Courses in Catalogue', ms: 'Lihat 7 Kursus Dalam Katalog' },
+    ctaHref: 'training.html?category=quantity-surveyor-training'
+  },
+  {
+    id: 'bul-2026-11-consultancy',
+    date: { en: '12 Nov 2026', ms: '12 Nov 2026' },
     category: 'consultancy',
     topics: ['iso-management-system', 'hr-management-customer-service', 'corporate-branding-business-strategy'],
-    categoryLabel: { en: 'Consultancy', ms: 'Perundingan' },
-    highlightBadge: { en: 'Consultancy & Advisory', ms: 'Perundingan & Penasihat' },
+    categoryLabel: { en: 'I. Consultancy', ms: 'I. Perundingan' },
+    highlightBadge: { en: 'Consultancy & Strategic Advisory', ms: 'Perundingan & Penasihat Strategik' },
     title: {
-      en: 'ISO Management System, HR Management & Corporate Strategy Advisory Rollout',
-      ms: 'Pelancaran Perundingan Sistem Pengurusan ISO, Pengurusan HR & Strategi Korporat'
+      en: 'ISO Management System, HR Management & Corporate Branding Strategy Advisory Rollout',
+      ms: 'Pelancaran Perundingan Sistem Pengurusan ISO, Pengurusan HR & Strategi Penjenamaan Korporat'
     },
     summary: {
       en: 'COSYNERGY DYNAMICS SDN. BHD. completed Phase 1–4 advisory blueprints covering ISO Management Systems, HR Management and Customer Service frameworks, and Corporate Branding and Business Strategy for Malaysian enterprises.',
@@ -1417,10 +1592,10 @@ export const BULLETINS = [
   },
   {
     id: 'bul-2026-11-digitalization',
-    date: { en: '12 Nov 2026', ms: '12 Nov 2026' },
+    date: { en: '10 Nov 2026', ms: '10 Nov 2026' },
     category: 'digitalization',
     topics: ['business-process-digitalization', 'microsoft-application', 'supply-chain-management'],
-    categoryLabel: { en: 'Digitalization', ms: 'Pendigitalan' },
+    categoryLabel: { en: 'II. Digitalization', ms: 'II. Pendigitalan' },
     highlightBadge: { en: 'Business Process Digitalization', ms: 'Pendigitalan Proses Perniagaan' },
     title: {
       en: 'Business Process Digitalization & Automated PDCA Workflow Architecture',
@@ -1434,33 +1609,15 @@ export const BULLETINS = [
     ctaHref: 'contact.html?course=Business+Process+Digitalization#corporate-enquiry-form'
   },
   {
-    id: 'bul-2026-11-kl',
-    date: { en: '09 Nov 2026', ms: '09 Nov 2026' },
-    category: 'training',
-    topics: ['cyber-security-training', 'certification-program-series', 'project-management', 'engineering-technical-and-maintenance', 'safety-and-health'],
-    categoryLabel: { en: 'Training Services', ms: 'Perkhidmatan Latihan' },
-    highlightBadge: { en: 'Technical & Certification Series', ms: 'Siri Teknikal & Pensijilan' },
-    title: {
-      en: 'Cyber Security, Project Management, Safety & Engineering Technical Training Cohorts',
-      ms: 'Kohort Latihan Keselamatan Siber, Pengurusan Projek, Keselamatan & Teknikal Kejuruteraan'
-    },
-    summary: {
-      en: 'Corporate employees and technical leads completed intensive hands-on sessions across Cyber Security Training, Certification Program Series, Safety and Health, and Engineering, Technical and Maintenance using COSYNERGY DYNAMICS SDN. BHD. toolkits.',
-      ms: 'Pekerja korporat dan ketua teknikal melengkapkan sesi intensif merangkumi Latihan Keselamatan Siber, Siri Program Pensijilan, Keselamatan dan Kesihatan, serta Kejuruteraan, Teknikal dan Penyelenggaraan.'
-    },
-    ctaText: { en: 'Request In-House Cohort', ms: 'Mohon Kohort Dalaman' },
-    ctaHref: 'contact.html?course=Training+Services#corporate-enquiry-form'
-  },
-  {
     id: 'bul-2026-11-student',
     date: { en: '06 Nov 2026', ms: '06 Nov 2026' },
     category: 'csr',
     topics: ['grooming', 'communication-skills', 'personal-effectiveness', 'team-building'],
     categoryLabel: { en: 'CSR University Workshops', ms: 'Bengkel CSR Universiti' },
-    highlightBadge: { en: 'University CSR Collaboration', ms: 'Kerjasama CSR Universiti' },
+    highlightBadge: { en: 'Collaborating With Universities', ms: 'Kerjasama Dengan Universiti' },
     title: {
-      en: 'CSR Workshops - Collaborating With Universities on Career, Grooming & ISO Readiness',
-      ms: 'Bengkel CSR - Kerjasama Dengan Universiti untuk Kesediaan Kerjaya, Penampilan & ISO'
+      en: 'CSR Workshops — Collaborating With Universities on Career, Grooming & ISO Readiness',
+      ms: 'Bengkel CSR — Kerjasama Dengan Universiti untuk Kesediaan Kerjaya, Penampilan & ISO'
     },
     summary: {
       en: 'Through our CSR Workshops collaborating with universities, graduating cohorts completed industry-bridging workshops covering Grooming, Communication Skills, Personal Effectiveness, and ISO quality systems.',
@@ -1468,42 +1625,6 @@ export const BULLETINS = [
     },
     ctaText: { en: 'Collaborate on CSR Workshop', ms: 'Kerjasama Bengkel CSR' },
     ctaHref: 'contact.html?course=CSR+Workshops+-+Collaborating+With+Universities#corporate-enquiry-form'
-  },
-  {
-    id: 'bul-2026-10-workshop',
-    date: { en: '28 Oct 2026', ms: '28 Okt 2026' },
-    category: 'training',
-    topics: ['corporate-leadership', 'management-and-supervisory', 'human-resource-and-legal', 'finance-and-accounting'],
-    categoryLabel: { en: 'Training Services', ms: 'Perkhidmatan Latihan' },
-    highlightBadge: { en: 'Leadership & Governance', ms: 'Kepimpinan & Tadbir Urus' },
-    title: {
-      en: 'Corporate Leadership, Management & Supervisory, HR Legal and Finance Workshops',
-      ms: 'Bengkel Kepimpinan Korporat, Pengurusan & Penyeliaan, HR Perundangan dan Kewangan'
-    },
-    summary: {
-      en: 'Department heads and management teams completed our multi-track executive series covering Corporate Leadership, Management and Supervisory excellence, Human Resource and Legal compliance, and Finance and Accounting governance.',
-      ms: 'Ketua jabatan dan pasukan pengurusan melengkapkan siri eksekutif merangkumi Kepimpinan Korporat, Pengurusan dan Penyeliaan, Sumber Manusia dan Perundangan, serta Kewangan dan Perakaunan.'
-    },
-    ctaText: { en: 'Fill Out Inquiry Form', ms: 'Isi Borang Pertanyaan' },
-    ctaHref: 'contact.html#corporate-enquiry-form'
-  },
-  {
-    id: 'bul-2026-10-commercial',
-    date: { en: '18 Oct 2026', ms: '18 Okt 2026' },
-    category: 'training',
-    topics: ['customer-service', 'sales-and-marketing', 'team-building', 'grooming', 'communication-skills'],
-    categoryLabel: { en: 'Training Services', ms: 'Perkhidmatan Latihan' },
-    highlightBadge: { en: 'Commercial & People Excellence', ms: 'Kecemerlangan Komersial & Insan' },
-    title: {
-      en: 'Customer Service, Sales & Marketing, Team Building and Professional Grooming Tracks',
-      ms: 'Laluan Khidmat Pelanggan, Jualan & Pemasaran, Pembinaan Pasukan dan Penampilan Profesional'
-    },
-    summary: {
-      en: 'Frontline and commercial divisions across Kuala Lumpur, Penang, and Johor Bahru completed interactive workshops in Customer Service excellence, high-conversion Sales and Marketing, Team Building, and executive Grooming.',
-      ms: 'Bahagian barisan hadapan dan komersial di Kuala Lumpur, Pulau Pinang, dan Johor Bahru melengkapkan bengkel interaktif Khidmat Pelanggan, Jualan dan Pemasaran, Pembinaan Pasukan, serta Penampilan Diri.'
-    },
-    ctaText: { en: 'Inquire for Your Team', ms: 'Mohon Untuk Pasukan Anda' },
-    ctaHref: 'contact.html?course=Training+Services#corporate-enquiry-form'
   }
 ];
 

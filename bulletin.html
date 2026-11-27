@@ -104,17 +104,84 @@
       </div>
     </section>
 
-    <!-- Filterable Bulletin Updates -->
+    <!-- Filterable Bulletin Updates Synchronized with 2026 Training Catalogue & Core Pillars -->
     <section id="bulletin-updates" class="section">
       <div class="container">
-        <div class="filter-panel reveal-up">
-          <div id="bulletin-filter-pills" class="filter-pills" role="group" aria-label="Bulletin Categories"></div>
-          <div style="font-size:0.86rem;color:var(--text-muted);">
-            <span id="bulletin-results-count">6 bulletin updates available</span>
+        <div class="catalog-command-shell reveal-up">
+          <div class="catalog-command-top">
+            <div class="catalog-command-heading-col">
+              <div class="team-eyebrow-line">
+                <span class="team-line-seg" aria-hidden="true"></span>
+                <span class="team-eyebrow-text" data-i18n="bulletin.bannerEyebrow">LIVE COHORT LOGS &amp; ANNOUNCEMENTS</span>
+                <span class="team-line-dot" aria-hidden="true"></span>
+                <span class="team-line-seg" aria-hidden="true"></span>
+              </div>
+              <h2 class="catalog-command-title" data-i18n="bulletin.bannerTitle">Bulletin Updates &amp; Program Highlights</h2>
+            </div>
+
+            <div class="catalog-kpi-strip" aria-label="Bulletin Summary Metrics">
+              <div class="catalog-kpi-pill">
+                <strong>10</strong>
+                <span>Active Bulletins</span>
+              </div>
+              <div class="catalog-kpi-pill">
+                <strong>07</strong>
+                <span>Catalogue Categories</span>
+              </div>
+              <div class="catalog-kpi-pill">
+                <strong>17</strong>
+                <span>Training Tracks</span>
+              </div>
+              <div class="catalog-kpi-pill catalog-kpi-accent">
+                <strong>133</strong>
+                <span>Linked Courses</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="catalog-control-bar">
+            <div class="catalog-duration-strip">
+              <span class="catalog-strip-label">Core Pillars</span>
+              <div id="bulletin-filter-pills" class="catalog-duration-pills" role="group" aria-label="Bulletin Categories"></div>
+            </div>
+
+            <div class="catalog-subcat-strip">
+              <span class="catalog-strip-label">2026 Catalogue</span>
+              <div id="bulletin-cat-pills" class="catalog-subcat-pills" role="group" aria-label="2026 Training Catalogue Categories"></div>
+            </div>
+
+            <div class="catalog-status-bar">
+              <div class="catalog-status-left">
+                <span class="catalog-status-dot" aria-hidden="true"></span>
+                <span id="bulletin-results-count">10 bulletin updates available</span>
+              </div>
+              <div class="catalog-status-right">
+                <a href="training.html" class="catalog-card-cta">
+                  <span>Open Full 2026 Training Catalogue (133 Courses)</span>
+                  <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
 
+        <!-- Dynamic Course / Category / Track Bulletin Spotlight (when deep-linked from Home or Training Catalogue) -->
+        <div id="bulletin-active-spotlight" hidden></div>
+
         <div id="bulletin-cards-grid" class="bulletin-grid"></div>
+      </div>
+    </section>
+
+    <!-- 17 Training Service Tracks Directory on Bulletin Update Page -->
+    <section class="section section-alt" aria-labelledby="bulletin-tracks-heading">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="eyebrow" data-i18n="training.tracksEyebrow">17 SPECIALIZED TRAINING SERVICE TRACKS</span>
+          <h2 id="bulletin-tracks-heading" class="section-title" data-i18n="training.tracksTitle">Training Services &amp; Bulletin Updates Directory</h2>
+          <p class="section-desc" data-i18n="training.tracksDesc">Select any of our 17 training service tracks below to filter Bulletin Updates directly, or explore all 133 course listings in the 2026 Training Catalogue.</p>
+        </div>
+
+        <ol id="bulletin-tracks-directory" class="pillar-topics-list pillar-topics-grid reveal-up"></ol>
       </div>
     </section>
 
